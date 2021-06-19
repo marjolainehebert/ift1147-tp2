@@ -34,14 +34,6 @@ function envoyerLister(par, valeurPar){
 	document.getElementById('formLister').submit();
 }
 
-function validerNum(elem){
-	var num=document.getElementById(elem).value;
-	var numRegExp=new RegExp("^[0-9]{1,4}$");
-	if(num!="" && numRegExp.test(num))
-		return true;
-	return false;
-}
-
 function validerFormEnregFilms(){
     // obtenir les valeurs du formulaire et les mettre dans des variables
     var titreFilm=document.getElementById('titreFilm').value;
@@ -51,6 +43,10 @@ function validerFormEnregFilms(){
 	var langueFilm=document.getElementById('langueFilm').value;
 	var dateFilm=document.getElementById('dateFilm').value;
 	var urlFilm=document.getElementById('urlPreview').value;
+
+    var regexDuree=new RegExp("^[0-9]{1,3}$");
+    var regexDate=new RegExp("(?:(?:18|19|20|21)[0-9]{2})");
+    var regexUrl=new RegExp('^(?!mailto:)(?:(?:http|https|ftp)://)(?:\\S+(?::\\S*)?@)?(?:(?:(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[0-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)(?:\\.(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)*(?:\\.(?:[a-z\\u00a1-\\uffff]{2,})))|localhost)(?::\\d{2,5})?(?:(/|\\?|#)[^\\s]*)?$');
 
     // aller chercher les éléments et les mettre dans des variables
     var mesTitre = document.getElementById("messageTitre"); 
@@ -85,9 +81,13 @@ function validerFormEnregFilms(){
         return false; // retourne false
     } 
 
-    if (dureeFilm == '') { // vérifier que le titre ne soit pas vide
+    // if (dureeFilm == '') { // vérifier que le titre ne soit pas vide
+    //     mesDuree.style.display = "block"; // montrer le message d'erreur
+    //     return false; // retourne false
+    // }
+    if(dureeFilm == '' || !regexDuree.test(dureeFilm)){
         mesDuree.style.display = "block"; // montrer le message d'erreur
-        return false; // retourne false
+	    return false;
     } 
 
     if (langueFilm == '') { // vérifier que le titre ne soit pas vide
@@ -95,23 +95,16 @@ function validerFormEnregFilms(){
         return false; // retourne false
     } 
 
-    if (dateFilm == '') { // vérifier que le titre ne soit pas vide
+    if(dateFilm == '' || !regexDate.test(dateFilm)){
         mesDate.style.display = "block"; // montrer le message d'erreur
-        return false; // retourne false
+	    return false;
     } 
 
-    if (urlFilm == '') { // vérifier que le titre ne soit pas vide
+    if (urlFilm == '' || !regexUrl.test(urlFilm)) { // vérifier que le titre ne soit pas vide
         mesUrl.style.display = "block"; // montrer le message d'erreur
         return false; // retourne false
     } 
     
-
-
-	// var numRegExp=new RegExp("^[0-9]{1,4}$");
-	// if(titre!="" && duree!="" && res!="")
-	// 	//if(numRegExp.test(num))
-	// 		return true;
-	// return false;
 }
 
 let initialiser = (message) =>{
