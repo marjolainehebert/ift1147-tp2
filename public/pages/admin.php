@@ -1,0 +1,265 @@
+<?php
+   if (isset($_GET['msg'])){
+	$msg=$_GET['msg'];
+   }
+   else {
+	   $msg="";
+   }
+?>
+
+<html>
+    <head>
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+        <!-- Css Styles -->
+        <link rel="stylesheet" href="../utilitaires/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="../utilitaires/css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="../utilitaires/css/themify-icons.css" type="text/css">
+        <link rel="stylesheet" href="../utilitaires/css/elegant-icons.css" type="text/css">
+        <link rel="stylesheet" href="../utilitaires/css/owl.carousel.min.css" type="text/css">
+        <link rel="stylesheet" href="../utilitaires/css/nice-select.css" type="text/css">
+        <link rel="stylesheet" href="../utilitaires/css/jquery-ui.min.css" type="text/css">
+        <link rel="stylesheet" href="../utilitaires/css/slicknav.min.css" type="text/css">
+        <link rel="stylesheet" href="../utilitaires/css/style.css" type="text/css">
+        <link rel="stylesheet" href="../css/styles.css" type="text/css">
+        <script src="../javascript/fonctions.js"></script>
+        <!-- Javascript -->
+    </head>
+
+<body onLoad="initialiser(<?php echo "'".$msg."'" ?>);listerFilms(<?php echo "'".$liste."'" ?>);"><!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <header class="header-section">
+        
+        <div class="container">
+            <div class="inner-header">
+                <div class="row">
+                    <div class="col-md-2 col-sm-12">
+                        <div class="logo">
+                            <img src="../images/streamtopia.png" alt="StreamTopia">
+                            <a href="../../index.php">
+                                StreamTopia
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </header>
+    <!-- Header End -->
+
+    <section>
+        <div class="container my-5">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="text-center mb-4">Bienvenue à la page d'admin</h1>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <h3>Gestion films</h3>
+                    <div class="bgcolor block flex-wrap mt-3 mb-5">
+                        <button class="btn btn-outline-success mb-3" onclick="montrer('enregFilm');">Enregistrer</button>
+                        <button class="btn btn-outline-warning mb-3" onclick="envoyerLister()">Lister</button>
+                        <button class="btn btn-outline-info mb-3" onclick="montrer('modifierFilm');">Modifier</button>
+                        <button class="btn btn-outline-danger mb-3" onclick="montrer('supprimerFilm');">Supprimer</button>
+                    </div>
+
+                    <h3>Gestion membres</h3>
+                    <div class="bgcolor block flex-wrap mt-3 mb-5">
+                        <button class="btn btn-outline-success mb-3" onclick="montrer('enregMembre');">Enregistrer</button>
+                        <button class="btn btn-outline-warning mb-3" onclick="envoyerLister()">Lister</button>
+                        <button class="btn btn-outline-info mb-3" onclick="montrer('modifierMembre');">Modifier</button>
+                        <button class="btn btn-outline-danger mb-3" onclick="montrer('supprimerMembre');">Supprimer</button>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-8">
+                    <div class="" id="enregFilm">
+                        <h3 class="mb-2">Enregistrer un film</h3>
+                        <hr>
+                        <form id="enregFilmForm" enctype="multipart/form-data" name="enregFilmForm" action="../../serveur/films/enregistrerFilm.php" method="POST" onsubmit="return validerFormEnregFilms();">
+                            <div class="mb-3">
+                                <label for="titreFilm" class="form-label">Titre du film</label>
+                                <div id="messageTitre">Entrez le titre</div>
+                                <input type="text" class="form-control" id="titreFilm" name="titreFilm">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="realisateur" class="form-label">Réalisateur</label>
+                                <div id="messageRealis">Entrez le nom du réalisateur</div>
+                                <input type="text" class="form-control" id="realisateur" name="realisateur">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="categFilm" class="form-label">Catégorie</label>
+                                <div id="messageCateg">Choisissez la catégorie</div>
+                                <select id="categFilm" name="categFilm" class="form-select" aria-label="Default select example">
+                                    <option value="">Choisir la catégorie</option>
+                                    <option value="Drame">Drame</option>
+                                    <option value="Comédie">Comédie</option>
+                                    <option value="Suspense">Suspense</option>
+                                    <option value="Action">Action</option>
+                                </select>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-sm">
+                                    <label for="dureeFilm" class="form-label">Durée du film (minutes)</label>
+                                    <div id="messageDuree">Entrez la durée en minutes</div>
+                                    <input type="text" class="form-control" id="dureeFilm" name="dureeFilm">
+                                </div>
+                                <div class="col-sm">
+                                    <label for="langueFilm" class="form-label">Langue du film</label>
+                                    <div id="messageLangue">Entrez le langue</div>
+                                    <input type="text" class="form-control" id="langueFilm" name="langueFilm">
+                                </div>
+                                <div class="col-sm">
+                                    <label for="dateFilm" class="form-label">Date du film</label>
+                                    <div id="messageDate">Entrez l'année de la sortie du film</div>
+                                    <input type="text" class="form-control" id="dateFilm" name="dateFilm">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="pochette" class="form-label">Ajouter une image de la pochette</label>
+                                <input type="file" class="form-control" id="pochette" name="pochette">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="urlPreview" class="form-label">URL de la bande annonce</label>
+                                <div id="messageUrl">Entrez un url commençant par http ou https</div>
+                                <input type="text" class="form-control" id="urlPreview" name="urlPreview">
+                            </div>
+
+                            <button type="submit" class="btn btn-warning">Soumettre</button>
+                        </form>
+                    </div>
+
+                    <!-- -- Lister -- -->
+                    <div class="" id="listerFilms">
+                        <form id="formLister" action="../../serveur/films/listerFilms.php" method="POST">
+                            <input type="hidden" id="par" name="par" value="tout">
+                            <input type="hidden" id="valeurPar" name="valeurPar" value="">
+                        </form>
+                    </div>
+
+                    <!-- -- Modifier -- -->
+                    <div class="" id="modifierFilm">
+                        <h3>Modifier un film</h3>
+                        <hr>
+                        <form id="modifierForm" name="modifierForm" action="../../serveur/films/ficheFilm.php" method="POST">
+                            <div class="mb-3">
+                                <label for="numFilmM" class="form-label">ID du Film</label>
+                                <input type="text" class="form-control" id="numFilmM" name="numFilm">
+                            </div>
+                            <button type="submit" class="btn btn-warning">Soumettre</button>
+                        </form>
+                    </div>
+
+                    <!-- -- enlever -- -->
+                    <div class="" id="supprimerFilm">
+                        <h3>Supprimer un film</h3>
+                        <hr>
+                        <form id="supprimerForm" name="supprimerForm" action="../../serveur/films/supprimer.php" method="POST">
+                            <div class="mb-3">
+                                <label for="numFilmS" class="form-label">ID du Film</label>
+                                <input type="text" class="form-control" id="numFilmS" name="numFilm">
+                            </div>
+                            <a type="submit" class="btn btn-warning">Soumettre</a>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <p class="text-right"><a href="../../index.php" class="btn btn-warning mt-5">Retour à la page d'accueil</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    
+    
+
+    
+    
+
+
+
+    <!-- Footer Section Begin -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="footer-left">
+                        
+                        <div class="logo">
+                            <img src="../images/streamtopia.png" alt="StreamTopia">
+                            <a href="../../index.php">
+                                StreamTopia
+                            </a>
+                        </div>
+                        <ul>
+                            <li>1234 rue Nom de la rue, Montréal, Qc H1H 1H1</li>
+                            <li>Téléphone: 1 (800) 555-1234</li>
+                            <li>Courriel: hello.colorlib@gmail.com</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="footer-widget">
+                        <h5>Information</h5>
+                        <ul>
+                            <li><a href="#">À propos</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-reserved">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="copyright-text">
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Scripts -->
+    <script>
+        // on the footer of redirect page
+        if (window.location.hash == "#openm") {
+            $("#myModal").modal("show");
+        }
+    </script>
+    
+
+
+
+    <!-- Js Plugins -->
+    <script src="../utilitaires/js/jquery-3.3.1.min.js"></script>
+    <script src="../utilitaires/js/bootstrap.min.js"></script>
+    <script src="../utilitaires/js/jquery-ui.min.js"></script>
+    <script src="../utilitaires/js/jquery.countdown.min.js"></script>
+    <script src="../utilitaires/js/jquery.nice-select.min.js"></script>
+    <!-- <script src="../utilitaires/js/jquery.zoom.min.js"></script> -->
+    <script src="../utilitaires/js/jquery.dd.min.js"></script>
+    <script src="../utilitaires/js/jquery.slicknav.js"></script>
+    <script src="../utilitaires/js/owl.carousel.min.js"></script>
+    <script src="../utilitaires/js/main.js"></script>
+
+	</body>
+</html>

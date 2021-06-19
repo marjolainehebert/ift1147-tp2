@@ -1,0 +1,159 @@
+/* Entête et navigation */
+
+.header-section{
+    background-color:#1c1c1e;
+}
+
+.logo {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center
+}
+
+.logo img{
+    max-width:55px;
+    height:auto; padding-right:20px;
+}
+
+.logo a{
+    color:#FFC107;
+    font-size:2rem;
+}
+
+@media screen and (min-width: 800px) {
+    .logo {
+        justify-content: start;
+    }
+}
+.nav-right a{
+    font-size:0.875rem;
+    color:#ffffff;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.nav-right a:hover{
+    color:#FFC107;
+}
+.nav-right .btn{
+    color:#000000;
+}
+
+.nav-right a:hover{
+    color:#ffffff;
+}
+
+
+/* formulaires d'enregistrement */
+.col-50 {
+    display:flex;
+    justify-content: space-between;
+    border-top:1px solid #dee2e6;
+    padding-top:20px;
+}
+
+.col-50 div {
+    width:48%;
+}
+
+.formulaires input{
+    width:100%;
+    margin-bottom:1rem;
+}
+.formulaires input.radio{
+    width:auto;
+    margin-bottom:0;
+}
+
+.formulaires label{
+    margin-bottom:0;
+}
+h5.modal-title {
+    font-weight:bold;
+    font-size: 1.125rem;
+}
+p.genre{
+    margin-bottom:0.25rem;
+}
+.small{
+    line-height:1rem;
+}
+
+a {
+    color:#FFC107;
+}
+
+a.dark-link {
+    color: #FFC107;
+}
+a.dark-link:hover {
+    color:black;
+}
+
+#messagePrenom, #messageNom, #messageCourriel, 
+#messageMdpVide, #messageMdpErrone, 
+#messageConfMdpVide, #messageConfMdpErrone, #messageNaissance, 
+#messageCourrielMembre, #messageMdpMembreVide, #messageMdpMembreErrone, 
+#messageTitre, #messageRealis, #messageCateg, #messageDuree, #messageLangue, #messageDate, 
+#messageUrl {
+    width:100% !important;
+    color:red;
+    font-weight: bold;
+    font-size: 0.8rem;
+    display:none;
+}
+
+
+
+/* autres */
+@media (max-width: 768px){
+    .mobile-display-none{
+        display:none;
+    }
+}
+
+h1{font-size:3.5rem; color:#FFC107;};
+.red {
+    color: #FF4E50;
+}
+
+.btn {
+    font-weight:700;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    padding:0.8rem 2rem;
+}
+
+
+
+
+/**** Page Admin ****/
+/*  Sidebar  */
+.block{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media (max-width: 768px){
+    .block{
+        flex-direction: row;
+        justify-content:space-around;
+    }
+}
+
+.bgcolor {}
+
+/* Contenu */
+#enregFilm{
+    display:none;
+}
+
+#modifierFilm{
+    display:none;
+}
+
+#supprimerFilm{
+    display:none;
+}
