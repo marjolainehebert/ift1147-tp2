@@ -95,33 +95,108 @@
                                 <input type="text" class="form-control" id="realisateur" name="realisateur">
                             </div>
 
-                            <div class="mb-3">
-                                <label for="categFilm" class="form-label">Catégorie</label>
-                                <div id="messageCateg">Choisissez la catégorie</div>
-                                <select id="categFilm" name="categFilm" class="form-select" aria-label="Default select example">
-                                    <option value="">Choisir la catégorie</option>
-                                    <option value="Drame">Drame</option>
-                                    <option value="Comédie">Comédie</option>
-                                    <option value="Suspense">Suspense</option>
-                                    <option value="Action">Action</option>
-                                </select>
-                            </div>
-
                             <div class="row mb-3">
                                 <div class="col-sm">
                                     <label for="dureeFilm" class="form-label">Durée du film (minutes)</label>
-                                    <div id="messageDuree">Entrez la durée en minutes</div>
+                                    <div id="messageDuree">Entrez la durée en minutes (entre 1 et 999)</div>
                                     <input type="text" class="form-control" id="dureeFilm" name="dureeFilm">
                                 </div>
-                                <div class="col-sm">
-                                    <label for="langueFilm" class="form-label">Langue du film</label>
-                                    <div id="messageLangue">Entrez le langue</div>
-                                    <input type="text" class="form-control" id="langueFilm" name="langueFilm">
-                                </div>
+
                                 <div class="col-sm">
                                     <label for="dateFilm" class="form-label">Date du film</label>
                                     <div id="messageDate">Entrez l'année de la sortie du film</div>
                                     <input type="text" class="form-control" id="dateFilm" name="dateFilm">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm">
+                                    <label for="categFilm" class="form-label">Catégorie</label>
+                                    <div id="messageCateg">Choisissez la catégorie</div>
+                                    <select id="categFilm" name="categFilm" class="form-control" data-placeholder="Choisir la catégorie...">
+                                        <option value="Drame">Drame</option>
+                                        <option value="Comédie">Comédie</option>
+                                        <option value="Suspense">Suspense</option>
+                                        <option value="Action">Action</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm">
+                                    <label for="langueFilm" class="form-label">Langue du film</label>
+                                    <div id="messageLangue">Entrez le langue</div>
+                                    <select type="text" class="form-control" id="langueFilm" name="langueFilm" data-placeholder="Choisir la langue...">
+                                        <option value="EN">Français</option>
+                                        <option value="EN">English</option>
+                                        <option value="EN">English</option>
+                                        <option value="AF">Afrikaans</option>
+                                        <option value="SQ">Albanian</option>
+                                        <option value="AR">Arabic</option>
+                                        <option value="HY">Armenian</option>
+                                        <option value="EU">Basque</option>
+                                        <option value="BN">Bengali</option>
+                                        <option value="BG">Bulgarian</option>
+                                        <option value="CA">Catalan</option>
+                                        <option value="KM">Cambodian</option>
+                                        <option value="ZH">Chinese (Mandarin)</option>
+                                        <option value="HR">Croatian</option>
+                                        <option value="CS">Czech</option>
+                                        <option value="DA">Danish</option>
+                                        <option value="NL">Dutch</option>
+                                        <option value="ET">Estonian</option>
+                                        <option value="FJ">Fiji</option>
+                                        <option value="FI">Finnish</option>
+                                        <option value="KA">Georgian</option>
+                                        <option value="DE">German</option>
+                                        <option value="EL">Greek</option>
+                                        <option value="GU">Gujarati</option>
+                                        <option value="HE">Hebrew</option>
+                                        <option value="HI">Hindi</option>
+                                        <option value="HU">Hungarian</option>
+                                        <option value="IS">Icelandic</option>
+                                        <option value="ID">Indonesian</option>
+                                        <option value="GA">Irish</option>
+                                        <option value="IT">Italian</option>
+                                        <option value="JA">Japanese</option>
+                                        <option value="JW">Javanese</option>
+                                        <option value="KO">Korean</option>
+                                        <option value="LA">Latin</option>
+                                        <option value="LV">Latvian</option>
+                                        <option value="LT">Lithuanian</option>
+                                        <option value="MK">Macedonian</option>
+                                        <option value="MS">Malay</option>
+                                        <option value="ML">Malayalam</option>
+                                        <option value="MT">Maltese</option>
+                                        <option value="MI">Maori</option>
+                                        <option value="MR">Marathi</option>
+                                        <option value="MN">Mongolian</option>
+                                        <option value="NE">Nepali</option>
+                                        <option value="NO">Norwegian</option>
+                                        <option value="FA">Persian</option>
+                                        <option value="PL">Polish</option>
+                                        <option value="PT">Portuguese</option>
+                                        <option value="PA">Punjabi</option>
+                                        <option value="QU">Quechua</option>
+                                        <option value="RO">Romanian</option>
+                                        <option value="RU">Russian</option>
+                                        <option value="SM">Samoan</option>
+                                        <option value="SR">Serbian</option>
+                                        <option value="SK">Slovak</option>
+                                        <option value="SL">Slovenian</option>
+                                        <option value="ES">Spanish</option>
+                                        <option value="SW">Swahili</option>
+                                        <option value="SV">Swedish </option>
+                                        <option value="TA">Tamil</option>
+                                        <option value="TT">Tatar</option>
+                                        <option value="TE">Telugu</option>
+                                        <option value="TH">Thai</option>
+                                        <option value="BO">Tibetan</option>
+                                        <option value="TO">Tonga</option>
+                                        <option value="TR">Turkish</option>
+                                        <option value="UK">Ukrainian</option>
+                                        <option value="UR">Urdu</option>
+                                        <option value="UZ">Uzbek</option>
+                                        <option value="VI">Vietnamese</option>
+                                        <option value="CY">Welsh</option>
+                                        <option value="XH">Xhosa</option>
+                                        </select>
                                 </div>
                             </div>
 
@@ -132,7 +207,7 @@
 
                             <div class="mb-3">
                                 <label for="urlPreview" class="form-label">URL de la bande annonce</label>
-                                <div id="messageUrl">Entrez un url commençant par http ou https</div>
+                                <div id="messageUrl">Entrez un URL valide</div>
                                 <input type="text" class="form-control" id="urlPreview" name="urlPreview">
                             </div>
 

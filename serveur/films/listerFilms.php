@@ -12,8 +12,17 @@
             <?php
                 require_once("../bdconfig/connexion.inc.php");
 
-                $rep='';
-                $rep.='<table class="table table-striped">';
+
+                // $titreFilm=$_POST['titreFilm']; 
+				// $realisFilm=$_POST['realisateur']; 
+				// $categFilm=$_POST['categFilm']; 
+                // $dureeFilm=$_POST['dureeFilm'];
+				// $langFilm=$_POST['langueFilm']; 
+                // $dateFilm=$_POST['dateFilm'];
+				// $url=$_POST['urlPreview'];
+
+                $rep='<table class="table table-striped">';
+                $rep.='<tr><th>ID</th><th>Titre</th><th>Réalisateur</th><th>Catégorie</th><th>Durée</th><th>Langue</th><th>date</th><th>URL</th><th>Pochette</th></tr>';
                 $ligne=fgets($fic);
                 while (!feof($fic)) {
                     $tab=explode(";",$ligne);
