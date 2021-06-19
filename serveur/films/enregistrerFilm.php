@@ -1,8 +1,14 @@
-<script src="../js/jquery.js"></script>
-<link rel="stylesheet" href="../css/bootstrap-5.0.0-dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/styles.css">
-<script src="c../ss/bootstrap-5.0.0-dist/js/bootstrap.min.js"></script>
-<script src="../js/films.js"></script>
+    <link rel="stylesheet" href="../../public/utilitaires/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../../public/utilitaires/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../../public/utilitaires/css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="../../public/utilitaires/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../../public/utilitaires/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../../public/utilitaires/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="../../public/utilitaires/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="../../public/utilitaires/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../../public/utilitaires/css/style.css" type="text/css">
+    <link rel="stylesheet" href="../../public/css/styles.css" type="text/css">
+    <script src="../../public/javascript/fonctions.js"></script>
 
 <div class="container">
     <div class="row">
@@ -17,7 +23,7 @@
 				$langFilm=$_POST['langueFilm']; 
                 $dateFilm=$_POST['dateFilm'];
 				$url=$_POST['urlPreview'];
-                $dossier="../images/pochettes/";
+                $dossier="../../public/images/pochettes/";
                 $nomPochette=sha1($titreFilm.time());
                 $pochette="avatar.jpg";
 
