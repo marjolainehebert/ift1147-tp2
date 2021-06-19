@@ -1,47 +1,50 @@
-<script src="../js/jquery.js"></script>
-<link rel="stylesheet" href="../css/bootstrap-5.0.0-dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/styles.css">
-<script src="../ss/bootstrap-5.0.0-dist/js/bootstrap.min.js"></script>
-<script src="../js/films.js"></script>
+<!DOCTYPE php>
+<html lang="fr">
 
-<div class="container">
-    <div class="row">
-        <div class="col-sm-12">
-        <h1 style="display:inline-block;">Listes tous les films</h1>
-        <a href="../../public/pages/admin.php" class="btn btn-outline-warning mb-2 ms-5">Revenir en arrière</a>
-            <?php
-                require_once("../bdconfig/connexion.inc.php");
+<head>
+    <link rel="stylesheet" href="../../public/utilitaires/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../../public/utilitaires/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../../public/utilitaires/css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="../../public/utilitaires/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../../public/utilitaires/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../../public/utilitaires/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="../../public/utilitaires/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="../../public/utilitaires/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../../public/utilitaires/css/style.css" type="text/css">
+    <link rel="stylesheet" href="../../public/css/styles.css" type="text/css">
+    <script src="../../public/javascript/fonctions.js"></script>
+</head>
 
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+            <h1 style="display:inline-block;" class="mt-2 mb-3">Listes tous les films</h1>
+            <a href="../../public/pages/admin.php" class="btn btn-outline-warning mb-3 ps-5">Revenir en arrière</a>
+                <?php
+                    require_once("../bdconfig/connexion.inc.php");
 
-                // $titreFilm=$_POST['titreFilm']; 
-				// $realisFilm=$_POST['realisateur']; 
-				// $categFilm=$_POST['categFilm']; 
-                // $dureeFilm=$_POST['dureeFilm'];
-				// $langFilm=$_POST['langueFilm']; 
-                // $dateFilm=$_POST['dateFilm'];
-				// $url=$_POST['urlPreview'];
+                    $rep='<table class="table table-striped">';
+                    $rep.='<tr><th>ID</th><th>Titre</th><th>Réalisateur</th><th>Catégorie</th><th>Durée</th><th>Langue</th><th>date</th><th>URL</th><th>Pochette</th></tr>';
 
-                $rep='<table class="table table-striped">';
-                $rep.='<tr><th>ID</th><th>Titre</th><th>Réalisateur</th><th>Catégorie</th><th>Durée</th><th>Langue</th><th>date</th><th>URL</th><th>Pochette</th></tr>';
-                $ligne=fgets($fic);
-                while (!feof($fic)) {
-                    $tab=explode(";",$ligne);
-                    $rep.="<div class=\"card col-xs-12 col-sm-6 col-md-4 col-le-3\">
-                        <img src=\"../images/pochettes/".$tab[3]."\" class=\"card-img-top\">
-                        <div class=\"card-body\">
-                            <h5 class=\"card-title\">#".$tab[0]." ".$tab[1]."</h5>
-                            <p class=\"card-text\">Durée : ".$tab[2]."</p>
-                            <a href=\"#\" class=\"btn btn-info\">Louer le film</a>
-                        </div>
-                    </div>";
-                    $ligne=fgets($fic);
-                }
-                $rep.="</table>";
-                fclose($fic);
-                echo $rep;
+                    $requeteLister="SELECT * FROM films";
+                    try {
+                        $listeFilms=mysqli_query($connexion,$requeteLister);
+                        while($ligne=mysqli_fetch_object($listeFilms)){
+                            $rep.="<tr><td>".($ligne->id)."</td><td>".($ligne->titre)."</td><td>".($ligne->realisateur)."</td><td>".($ligne->categorie)."</td><td>".($ligne->duree)."</td><td>".($ligne->langue)."</td><td>".($ligne->date)."</td><td><a href=\"".($ligne->urlPreview)."\">Visualiser</a></td><td><img src=\"../../public/images/pochettes/".($ligne->pochette)."\" class=\"img-lister\"></td></tr>";
+                        }
+                    } catch (Exeption $e) {
+                        echo "Problème pour lister. SVP, veuillez réessayer plus tard.";
+                    } finally {
+                        $rep.="</table>";
+                        echo $rep;
+                    }
 
-                
-            ?>
+                    mysqli_close($connexion);
+
+                    
+                ?>
+            </div>
         </div>
     </div>
-</div>
+</body>

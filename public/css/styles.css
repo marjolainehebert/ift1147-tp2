@@ -113,7 +113,7 @@ a.dark-link:hover {
     }
 }
 
-h1{font-size:3.5rem; color:#FFC107;};
+h1{font-size:3.5rem;};
 .red {
     color: #FF4E50;
 }
@@ -154,4 +154,10 @@ h1{font-size:3.5rem; color:#FFC107;};
 
 #supprimerFilm{
     display:none;
+}
+
+.img-lister{max-width:100px; height:auto;}
+
+.bgcolor {
+    background-color:#f8f9fa;
 }

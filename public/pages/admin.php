@@ -60,9 +60,9 @@
                     <h1 class="text-center mb-4">Bienvenue à la page d'admin</h1>
                 </div>
 
-                <div class="col-12 col-md-4">
+                <div class="col-12 col-md-3 col-xl-2 ">
                     <h3>Gestion films</h3>
-                    <div class="bgcolor block flex-wrap mt-3 mb-5">
+                    <div class="block flex-wrap mt-3 mb-5">
                         <button class="btn btn-outline-success mb-3" onclick="montrer('enregFilm');">Enregistrer</button>
                         <button class="btn btn-outline-warning mb-3" onclick="envoyerLister()">Lister</button>
                         <button class="btn btn-outline-info mb-3" onclick="montrer('modifierFilm');">Modifier</button>
@@ -70,7 +70,7 @@
                     </div>
 
                     <h3>Gestion membres</h3>
-                    <div class="bgcolor block flex-wrap mt-3 mb-5">
+                    <div class="block flex-wrap mt-3 mb-5">
                         <button class="btn btn-outline-success mb-3" onclick="montrer('enregMembre');">Enregistrer</button>
                         <button class="btn btn-outline-warning mb-3" onclick="envoyerLister()">Lister</button>
                         <button class="btn btn-outline-info mb-3" onclick="montrer('modifierMembre');">Modifier</button>
@@ -78,7 +78,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-md-8">
+                <div class="col-12 col-md-9 col-xl-10 bgcolor pt-2 pb-2">
                     <div class="" id="enregFilm">
                         <h3 class="mb-2">Enregistrer un film</h3>
                         <hr>
@@ -113,18 +113,19 @@
                                     <label for="categFilm" class="form-label">Catégorie</label>
                                     <div id="messageCateg">Choisissez la catégorie</div>
                                     <select id="categFilm" name="categFilm" class="form-control" data-placeholder="Choisir la catégorie...">
-                                        <option value="Drame">Drame</option>
-                                        <option value="Comédie">Comédie</option>
-                                        <option value="Suspense">Suspense</option>
                                         <option value="Action">Action</option>
+                                        <option value="Comédie">Comédie</option>
+                                        <option value="Drame">Drame</option>
+                                        <option value="Science Fiction">Science Fiction</option>
+                                        <option value="Suspense">Suspense</option>
+                                        <option value="Thriller">Thriller</option>
                                     </select>
                                 </div>
                                 <div class="col-sm">
                                     <label for="langueFilm" class="form-label">Langue du film</label>
                                     <div id="messageLangue">Entrez le langue</div>
                                     <select type="text" class="form-control" id="langueFilm" name="langueFilm" data-placeholder="Choisir la langue...">
-                                        <option value="EN">Français</option>
-                                        <option value="EN">English</option>
+                                        <option value="FR">Français</option>
                                         <option value="EN">English</option>
                                         <option value="AF">Afrikaans</option>
                                         <option value="SQ">Albanian</option>
