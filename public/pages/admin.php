@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="col-12 col-md-3 col-xl-2 ">
-                    <h3>Gestion films</h3>
+                    <h5><strong>Gestion films</strong></h5>
                     <div class="block flex-wrap mt-3 mb-5">
                         <button class="btn btn-outline-success mb-3" onclick="montrer('enregFilm');">Enregistrer</button>
                         <button class="btn btn-outline-warning mb-3" onclick="envoyerLister()">Lister</button>
@@ -69,7 +69,7 @@
                         <button class="btn btn-outline-danger mb-3" onclick="montrer('supprimerFilm');">Supprimer</button>
                     </div>
 
-                    <h3>Gestion membres</h3>
+                    <h5><strong>Gestion membres</strong></h5>
                     <div class="block flex-wrap mt-3 mb-5">
                         <button class="btn btn-outline-success mb-3" onclick="montrer('enregMembre');">Enregistrer</button>
                         <button class="btn btn-outline-warning mb-3" onclick="envoyerLister()">Lister</button>
