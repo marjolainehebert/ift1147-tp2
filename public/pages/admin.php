@@ -231,6 +231,7 @@
                         <form id="modifierForm" name="modifierForm" action="../../serveur/films/ficheFilm.php" method="POST">
                             <div class="mb-3">
                                 <label for="numFilmM" class="form-label">ID du Film</label>
+                                <div id="messageModifier">Entrez un nombre entre 1 et 9999</div>
                                 <input type="text" class="form-control" id="numFilmM" name="numFilm">
                             </div>
                             <button type="submit" class="btn btn-warning">Soumettre</button>
@@ -241,12 +242,13 @@
                     <div class="" id="supprimerFilm">
                         <h3>Supprimer un film</h3>
                         <hr>
-                        <form id="supprimerForm" name="supprimerForm" action="../../serveur/films/supprimer.php" method="POST">
+                        <form id="supprimerForm" name="supprimerForm" action="../../serveur/films/supprimerFilm.php" method="POST" onsubmit="return validerNombre('numFilmS');">
                             <div class="mb-3">
                                 <label for="numFilmS" class="form-label">ID du Film</label>
+                                <div id="messageSupprimer">Entrez un nombre entre 1 et 9999</div>
                                 <input type="text" class="form-control" id="numFilmS" name="numFilm">
                             </div>
-                            <a type="submit" class="btn btn-warning">Soumettre</a>
+                            <button type="submit" class="btn btn-warning">Soumettre</button>
                         </form>
                     </div>
                 </div>

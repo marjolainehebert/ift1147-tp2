@@ -50,6 +50,9 @@
                 $statement->bind_param("sssisiss", $titreFilm,$realisFilm,$categFilm,$dureeFilm,$langFilm,$dateFilm,$pochette,$url);
                 $statement->execute();
                 echo "Le film <strong>".$connexion->insert_id."</strong> a bien été enregistré.";
+
+
+                mysqli_close($connexion);
             ?>
 
             <p><a href='../../public/pages/admin.php' class='btn btn-outline-warning mb-2 ms-5'>Retour à la page Admin</a></p>

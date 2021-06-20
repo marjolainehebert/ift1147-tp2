@@ -96,7 +96,7 @@ a.dark-link:hover {
 #messageConfMdpVide, #messageConfMdpErrone, #messageNaissance, 
 #messageCourrielMembre, #messageMdpMembreVide, #messageMdpMembreErrone, 
 #messageTitre, #messageRealis, #messageCateg, #messageDuree, #messageLangue, #messageDate, 
-#messageUrl {
+#messageUrl, #messageSupprimer, #messageModifier {
     width:100% !important;
     color:red;
     font-weight: bold;
