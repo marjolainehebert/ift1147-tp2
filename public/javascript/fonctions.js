@@ -81,10 +81,6 @@ function validerFormEnregFilms(){
         return false; // retourne false
     } 
 
-    // if (dureeFilm == '') { // vérifier que le titre ne soit pas vide
-    //     mesDuree.style.display = "block"; // montrer le message d'erreur
-    //     return false; // retourne false
-    // }
     if(dureeFilm == '' || !regexDuree.test(dureeFilm)){
         mesDuree.style.display = "block"; // montrer le message d'erreur
 	    return false;
@@ -104,7 +100,6 @@ function validerFormEnregFilms(){
         mesUrl.style.display = "block"; // montrer le message d'erreur
         return false; // retourne false
     } 
-    
 }
 
 let initialiser = (message) =>{
@@ -121,6 +116,18 @@ let initialiser = (message) =>{
 
 let listerFilms = (listeFilms) =>{
 	document.getElementById('listeFilms').innerHTML = listeFilms;
+}
+
+function validerNombre(param){
+    var NumFilmS=document.getElementById(param).value;
+    var mesSupprimer = document.getElementById('messageSupprimer'); 
+    var regexNombre=new RegExp("^[0-9]{1,4}$");
+    mesSupprimer.style.display = "none";
+    
+    if (NumFilmS  == '' || !regexNombre.test(NumFilmS)){
+        mesSupprimer.style.display = "block"; // montrer le message d'erreur
+        return false;
+    }
 }
 
 
