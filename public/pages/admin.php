@@ -208,7 +208,7 @@
 
                             <div class="mb-3">
                                 <label for="urlPreview" class="form-label">URL de la bande annonce</label>
-                                <div id="messageUrl">Entrez un URL valide</div>
+                                <div id="messageUrl">Entrez un URL valide débutant par http:// ou https://</div>
                                 <input type="text" class="form-control" id="urlPreview" name="urlPreview">
                             </div>
 
