@@ -44,16 +44,14 @@
                         //enlever ancienne pochette
                         if($pochette!="avatar.jpg"){
                             $rmPoc='../../public/images/pochettes/'.$pochette;
-                            echo $rmPoc."<br>";
-                            $tabFichiers = glob('pochettes/*');
-                            echo $tabFichiers."<br>";
+                            $tabFichiers = glob('../../public/images/pochettes/*');
                             // parcourir les fichier
                             foreach($tabFichiers as $fichier){
                               if(is_file($fichier) && $fichier==trim($rmPoc)) {
                                 // enlever le fichier
+                                echo $rmPoc;
                                 unlink($fichier);
                                 break;
-                                //
                               }
                             }
                         }

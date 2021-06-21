@@ -98,9 +98,11 @@
                     echo "Film ".$num." est introuvable";
                     // $msg="Film ".$num." introuvable";
                     // header("Location:../../index.php?msg=$msg");
+                } else {
+                    mysqli_close($connexion);
+                    echo envoyerFormModifier($ligne);
                 }
-                mysqli_close($connexion);
-                echo envoyerFormModifier($ligne);
+                
 
                     
             ?>
