@@ -22,7 +22,7 @@
                 $dureeFilm=$_POST['dureeFilm'];
 				$langFilm=$_POST['langueFilm']; 
                 $dateFilm=$_POST['dateFilm'];
-				$url=$_POST['urlPreview'];
+				$urlPreview=$_POST['urlPreview'];
                 $dossier="../../public/images/pochettes/";
                 $nomPochette=sha1($titreFilm.time());
                 $pochette="avatar.jpg";
@@ -47,7 +47,7 @@
                 
                 $requete="INSERT INTO films values(0,?,?,?,?,?,?,?,?)";
                 $statement=$connexion->prepare($requete);
-                $statement->bind_param("sssisiss", $titreFilm,$realisFilm,$categFilm,$dureeFilm,$langFilm,$dateFilm,$pochette,$url);
+                $statement->bind_param("sssisiss", $titreFilm,$realisFilm,$categFilm,$dureeFilm,$langFilm,$dateFilm,$pochette,$urlPreview);
                 $statement->execute();
                 echo "Le film <strong>".$connexion->insert_id."</strong> a bien été enregistré.";
 

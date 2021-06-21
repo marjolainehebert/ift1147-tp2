@@ -103,7 +103,7 @@
                                 </div>
 
                                 <div class="col-sm">
-                                    <label for="dateFilm" class="form-label">Date du film</label>
+                                    <label for="dateFilm" class="form-label">Année de sortie</label>
                                     <div id="messageDate">Entrez l'année de la sortie du film</div>
                                     <input type="text" class="form-control" id="dateFilm" name="dateFilm">
                                 </div>

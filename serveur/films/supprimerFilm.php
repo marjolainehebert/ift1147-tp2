@@ -35,7 +35,7 @@
 	}
 	$pochette=$ligne->pochette;
 	if($pochette!="avatar.jpg"){
-		$rmPoc='../../public/images//pochettes/'.$pochette;
+		$rmPoc='../../public/images/pochettes/'.$pochette;
 		$tabFichiers = glob('pochettes/*');
 		//print_r($tabFichiers);
 		// parcourir les fichier
