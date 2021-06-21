@@ -25,13 +25,13 @@
                     require_once("../bdconfig/connexion.inc.php");
 
                     $rep='<table class="table table-striped">';
-                    $rep.='<tr><th>ID</th><th>Titre</th><th>Réalisateur</th><th>Catégorie</th><th>Durée</th><th>Langue</th><th>date</th><th>URL</th><th>Pochette</th></tr>';
+                    $rep.='<tr><th>ID</th><th>Titre</th><th>Réalisateur</th><th>Catégorie</th><th>Durée</th><th>Langue</th><th>Année</th><th>URL</th><th>Pochette</th></tr>';
 
                     $requeteLister="SELECT * FROM films";
                     try {
                         $listeFilms=mysqli_query($connexion,$requeteLister);
                         while($ligne=mysqli_fetch_object($listeFilms)){
-                            $rep.="<tr><td>".($ligne->id)."</td><td>".($ligne->titre)."</td><td>".($ligne->realisateur)."</td><td>".($ligne->categorie)."</td><td>".($ligne->duree)."</td><td>".($ligne->langue)."</td><td>".($ligne->date)."</td><td><a href=\"".($ligne->urlPreview)."\">Visualiser</a></td><td><img src=\"../../public/images/pochettes/".($ligne->pochette)."\" class=\"img-lister\"></td></tr>";
+                            $rep.="<tr><td>".($ligne->id)."</td><td>".($ligne->titre)."</td><td>".($ligne->realisateur)."</td><td>".($ligne->categorie)."</td><td>".($ligne->duree)."</td><td>".($ligne->langue)."</td><td>".($ligne->annee)."</td><td><a href=\"".($ligne->urlPreview)."\">Visualiser</a></td><td><img src=\"../../public/images/pochettes/".($ligne->pochette)."\" class=\"img-lister\"></td></tr>";
                         }
                     } catch (Exeption $e) {
                         echo "Problème pour lister. SVP, veuillez réessayer plus tard.";
