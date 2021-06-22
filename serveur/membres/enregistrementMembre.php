@@ -1,18 +1,6 @@
 <?php
 
-    require_once("bdconfig/connexion.inc.php");
-    define("FICHIERMEMBRES","membres/membres.txt"); 
-    define("CONNEXION","donnees/connexion.txt"); 
-
-// vérification si on peut ouvrir les fichiers
-    if(!$enreg=fopen(FICHIERMEMBRES,"a+")) { 
-        echo "Problème pour ouvrir le fichier membres.txt"; 
-        exit; 
-    }
-    if(!$connex=fopen(CONNEXION,"a+")) { 
-        echo "Problème pour ouvrir le fichier connexion.txt"; 
-        exit; 
-    }
+    
 
 // attribuer des valeurs aux variables
     $prenom=$_POST['prenom']; 

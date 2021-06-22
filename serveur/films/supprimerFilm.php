@@ -29,8 +29,9 @@
 	$statement->execute();
 	$result = $statement->get_result();
 	if(!$ligne = $result->fetch_object()){
-		echo "Film ".$num." introuvable";
 		mysqli_close($connexion);
+		$msg = "Le film <strong>".$num."</strong> ne se retrouve pas dans notre base de donnée. Veuillez réessayer.";
+		header("Location:../../public/pages/admin.php?msg=$msg");
 		exit;
 	}
 	$pochette=$ligne->pochette;
@@ -51,11 +52,9 @@
 	$statement->bind_param("i", $num);
 	$statement->execute();
 	mysqli_close($connexion);
-    echo "Le film ".$num." a été retiré.";
-	// $msg = "Le film ".$num." a été retiré.";
-	// header("Location:../../index.php?msg=$msg");
+	$msg = "Le film <strong>".$num."</strong> a été retiré.";
+	header("Location:../../public/pages/admin.php?msg=$msg");
 ?>
-<p><a href='../../public/pages/admin.php' class='btn btn-outline-warning mb-2 ms-5'>Retour à la page Admin</a></p>
 
 
 

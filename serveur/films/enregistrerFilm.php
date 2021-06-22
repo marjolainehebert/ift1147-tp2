@@ -49,13 +49,12 @@
                 $statement=$connexion->prepare($requete);
                 $statement->bind_param("sssisiss", $titreFilm,$realisFilm,$categFilm,$dureeFilm,$langFilm,$dateFilm,$pochette,$urlPreview);
                 $statement->execute();
-                echo "Le film <strong>".$connexion->insert_id."</strong> a bien été enregistré.";
 
 
                 mysqli_close($connexion);
+                $msg = "Le film <strong>".$titreFilm."</strong> a été bien enregistré.";
+	            header("Location:../../public/pages/admin.php?msg=$msg");
             ?>
-
-            <p><a href='../../public/pages/admin.php' class='btn btn-outline-warning mb-2 ms-5'>Retour à la page Admin</a></p>
         </div>
     </div>
 </div>

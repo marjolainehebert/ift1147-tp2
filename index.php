@@ -1,3 +1,18 @@
+<?php
+   if (isset($_GET['msg'])){
+	$msg=$_GET['msg'];
+   }
+   else {
+	   $msg="";
+   }
+   if (isset($_GET['liste'])){
+	$liste= $_GET['liste'];
+   }
+   else {
+	   $liste="";
+   }
+?>
+
 <!DOCTYPE php>
 <html lang="fr">
 
@@ -28,7 +43,7 @@
 
 </head>
 
-<body>
+<body onLoad="envoyerLister(<?php echo "'".$liste."'" ?>);">
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -76,247 +91,69 @@
                             <p class="text-light">Dans un futur proche, les femmes ont disparu. Le monde de Todd Hewitt n’est habité que par des hommes, tous soumis au Bruit, une mystérieuse force qui révèle leurs pensées et permet à chacun de connaître celles des autres. Lorsqu’une jeune femme, Viola, atterrit en catastrophe sur cette planète, elle s’y retrouve en grand danger… </p>
                             <button href="#" class=" btn btn-warning primary-btn">Louer maintenant</button>
                         </div>
-
-                        <div class="col mobile-display-none align-middle">
-                            <img src="public/images/chaos-walking.jpg" width="100%" style="max-width:300px">
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <!-- Hero Section End -->
+    
 
-    <!-- Banner Section Begin -->
-    <div class="banner-section spad">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-12 pb-4 text-center"><h4>En vedette cette semaine</h4></div>
-            </div>
-            <div class="row col-md-8 offset-md-2">
-                <div class="row justify-content-between">
-                    <div class="col">
-                        <div class="card">
-                            <img class="card-img-top" src="public/images/chaos-walking.jpg" alt="Chaos Walking">
-                            <div class="card-body">
-                                <h5 class="card-title">Chaos Walking</h5>
-                                <p class="card-text"><i class="fa fa-clock-o" aria-hidden="true"></i> 1 h 49</p>
-                                <p class="card-text">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                                </p>
-                                <a href="#" class="btn btn-warning">Détails</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <img class="card-img-top" src="public/images/inglourious-basterds.jpg" alt="Inglourious Basterds ">
-                            <div class="card-body">
-                                <h5 class="card-title">Inglourious Basterds</h5>
-                                <p class="card-text"><i class="fa fa-clock-o" aria-hidden="true"></i> 2 h 33m</p>
-                                <p class="card-text">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                                </p>
-                                <a href="#" class="btn btn-warning">Détails</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <img class="card-img-top" src="public/images/the-virtuoso.jpg" alt="The Virtuoso">
-                            <div class="card-body">
-                                <h5 class="card-title">The Virtuoso</h5>
-                                <p class="card-text"><i class="fa fa-clock-o" aria-hidden="true"></i> 1 h 50</p>
-                                <p class="card-text">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                                </p>
-                                <a href="#" class="btn btn-warning">Détails</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Contenus-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 pb-4 text-center"><h1 class="mt-5 mb-5">Nos films</h1></div>
+        </div>
+        <div class="row col-md-12">
+            
+            <?php
+                require_once("serveur/bdconfig/connexion.inc.php");
+
+                $rep='<div class="row justify-content-between">';
+
+                $requeteLister="SELECT * FROM films";
+                try {
+                    $listeFilms=mysqli_query($connexion,$requeteLister);
+                    while($ligne=mysqli_fetch_object($listeFilms)){
+
+                        $rep.='<div class="col-lg-3 mb-5">';
+                        $rep.='    <div class="card">';
+                        $rep.='        <img class="card-img-top" src="public/images/pochettes/'.($ligne->pochette).'" alt="'.($ligne->titre).'">';
+                        $rep.='        <div class="card-body">';
+                        $rep.='            <h5 class="card-title"><strong>'.($ligne->titre).'</strong> ('.($ligne->annee).')</h5>';
+                        $rep.='            <p class="card-text"><i class="fa fa-clock-o" aria-hidden="true"></i> '.($ligne->duree).' minutes</p>';
+                        $rep.='            <p class="card-text">Langue: '.($ligne->langue).'</p>';
+                        $rep.='            <p class="card-text">';
+                        $rep.='                <i class="fa fa-star" aria-hidden="true"></i>';
+                        $rep.='                <i class="fa fa-star" aria-hidden="true"></i>';
+                        $rep.='                <i class="fa fa-star" aria-hidden="true"></i>';
+                        $rep.='                <i class="fa fa-star-half-o" aria-hidden="true"></i>';
+                        $rep.='                <i class="fa fa-star-o" aria-hidden="true"></i>';
+                        $rep.='            </p>';
+                        $rep.='            <a href="#" class="btn btn-warning">Bande annonce</a>';
+                        $rep.='        </div>';
+                        $rep.='    </div>';
+                        $rep.='</div>';
+
+
+                        // $rep.="<tr><td>".($ligne->id)."</td><td>".($ligne->titre)."</td><td>".($ligne->realisateur)."</td><td>".($ligne->categorie)."</td><td>".($ligne->duree)."</td><td>".($ligne->langue)."</td><td>".($ligne->annee)."</td><td><a href=\"".($ligne->urlPreview)."\">Visualiser</a></td><td><img src=\"public/images/pochettes/".($ligne->pochette)."\" class=\"img-lister\"></td></tr>";
+                    }
+                } catch (Exeption $e) {
+                    echo "Problème pour lister. SVP, veuillez réessayer plus tard.";
+                } finally {
+                    $rep.="</div>";
+                    echo $rep;
+                }
+
+                mysqli_close($connexion);
+
+                    
+            ?>
             
         </div>
     </div>
-    <!-- Banner Section End -->
-
-    <!-- Man Banner Section Begin -->
-    <section class="man-banner spad">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="filter-control">
-                        <ul>
-                            <li class="active">Tous les films</li>
-                            <li>Action</li>
-                            <li>Comédie</li>
-                            <li>Drame</li>
-                            <li>Thriller</li>
-                        </ul>
-                    </div>
-                    <div class="product-slider owl-carousel">
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="public/images/chaos-walking.jpg" alt="">
-                                <div class="sale"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Départ imminent</div>
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">Détails</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Thriller</div>
-                                <a href="#">
-                                    <h5>Chaos Walking</h5>
-                                </a>
-                                <div class="product-price">
-                                    2,99 $
-                                    <span>5,99 $</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="public/images/inglourious-basterds.jpg" alt="">
-                                <div class="sale"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Départ imminent</div>
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">Détails</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Action</div>
-                                <a href="#">
-                                    <h5>Inglourious Basterds</h5>
-                                </a>
-                                <div class="product-price">
-                                    2,99 $
-                                    <span>5,99 $</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="public/images/22-contre-la-terre.jpg" alt="">
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">Détails</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Comédie</div>
-                                <a href="#">
-                                    <h5>22 contre la terre</h5>
-                                </a>
-                                <div class="product-price">
-                                    5,99 $
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="public/images/ferry.jpg" alt="Ferry">
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">Détails</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Drames</div>
-                                <a href="#">
-                                    <h5>Ferry</h5>
-                                </a>
-                                <div class="product-price">
-                                    5,99 $
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="public/images/nobody.jpg" alt="">
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">Détails</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Comédie</div>
-                                <a href="#">
-                                    <h5>Nobody</h5>
-                                </a>
-                                <div class="product-price">
-                                    5,99 $
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="public/images/the-virtuoso.jpg" alt="The Virtuoso">
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">Détails</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Action</div>
-                                <a href="#">
-                                    <h5>The Virtuoso</h5>
-                                </a>
-                                <div class="product-price">
-                                    5,99 $
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 offset-lg-1">
-                    <div class="product-large set-bg m-large" data-setbg="public/images/all-light-everywhere.jpg">
-                        <h2>À venir</h2>
-                        <h5 class="text-light">All Light, Everywhere</h5>
-                        <a href="#">En savoir plus</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Man Banner Section End -->
+    
+    <!-- Contenus End -->
 
     <!-- Modals -->
     <!-- modal s'enregistrer -->
@@ -330,7 +167,7 @@
             </button>
             </div>
             <div class="modal-body">
-                <form class="formulaires" id="enregForm" name="enregForm" action="serveur/enregistrementMembre.php" method="POST" onsubmit="return validerFormEnreg(this);">
+                <form class="formulaires" id="enregForm" name="enregForm" action="serveur/membres/enregistrementMembre.php" method="POST" onsubmit="return validerFormEnreg(this);">
                     <label for="prenom"><b>Prénom</b></label><br>
                     <div id="messagePrenom">Entrez votre prénom</div>
                     <input type="text" placeholder="Enter votre prénom" title="Enter votre prénom" name="prenom" id="prenom" />
@@ -399,7 +236,7 @@
                 </button>
                 </div>
                 <div class="modal-body">
-                    <form class="formulaires" id="connexionFrom" name="connexionFrom" action="serveur/connexionMembre.php" method="POST" onsubmit="return validerConnexion(this);">
+                    <form class="formulaires" id="connexionFrom" name="connexionFrom" action="serveur/membres/connexionMembre.php" method="POST" onsubmit="return validerConnexion(this);">
                         <label for="courrielMembre"><b>Courriel</b></label><br>
                         <div id="messageCourrielMembre">Entrez une adresse courriel valide dans le format votrenom@domaine.com</div>
                         <input type="text" placeholder="Entrez votre adresse courriel" name="courrielMembre" id="courrielMembre" />

@@ -5,6 +5,12 @@
    else {
 	   $msg="";
    }
+   if (isset($_GET['liste'])){
+	$liste= $_GET['liste'];
+   }
+   else {
+	   $liste="";
+   }
 ?>
 
 <html>
@@ -27,7 +33,8 @@
         <!-- Javascript -->
     </head>
 
-<body onLoad="initialiser(<?php echo "'".$msg."'" ?>);listerFilms(<?php echo "'".$liste."'" ?>);"><!-- Page Preloder -->
+<body onLoad="initialiser(<?php echo "'".$msg."'" ?>);">
+<!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
     </div>
@@ -45,6 +52,12 @@
                                 StreamTopia
                             </a>
                         </div>
+                    </div>
+                    <div class="text-right col-md-10 col-sm-12">
+                        <ul class="nav-right">
+                            <li><a href="#" data-toggle="modal" data-target="#connexion">Connexion</a></li>
+                            <li><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#enregistrer">Devenir Membre</button></li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -71,12 +84,12 @@
 
                     <h5><strong>Gestion membres</strong></h5>
                     <div class="block flex-wrap mt-3 mb-5">
-                        <button class="btn btn-outline-success mb-3" onclick="montrer('enregMembre');">Enregistrer</button>
-                        <button class="btn btn-outline-warning mb-3" onclick="envoyerLister()">Lister</button>
+                        <button class="btn btn-outline-warning mb-3" onclick="envoyerListerMembres()">Lister</button>
                         <button class="btn btn-outline-info mb-3" onclick="montrer('modifierMembre');">Modifier</button>
-                        <button class="btn btn-outline-danger mb-3" onclick="montrer('supprimerMembre');">Supprimer</button>
                     </div>
                 </div>
+
+                
 
                 <div class="col-12 col-md-9 col-xl-10 bgcolor pt-2 pb-2">
                     <div class="" id="enregFilm">
@@ -256,18 +269,26 @@
                 <div class="col-md-12">
                     <p class="text-right"><a href="../../index.php" class="btn btn-warning mt-5">Retour à la page d'accueil</a></p>
                 </div>
+
+                <!-- Toast -->
+                <div class="toast-container" aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
+                    <div id="toast" class="toast posToast" data-delay="3000" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header">
+                            <img src="../../public/images/streamtopia.png" width="24" height="auto" class="rounded me-2" alt="message">
+                            <strong class="me-auto">Messages</strong>
+                            <small class="text-muted"></small>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div id="textToast" class="toast-body">
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
-
-
-    
-    
-
-    
-    
-
-
 
     <!-- Footer Section Begin -->
     <footer class="footer-section">

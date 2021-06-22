@@ -95,9 +95,8 @@
                 $result = $stmt->get_result();
                 if(!$ligne = $result->fetch_object()){
                     mysqli_close($connexion);
-                    echo "Film ".$num." est introuvable";
-                    // $msg="Film ".$num." introuvable";
-                    // header("Location:../../index.php?msg=$msg");
+                    $msg = "Le film <strong>".$num."</strong> ne se retrouve pas dans notre base de donnée. Veuillez réessayer.";
+		            header("Location:../../public/pages/admin.php?msg=$msg");
                 } else {
                     mysqli_close($connexion);
                     echo envoyerFormModifier($ligne);

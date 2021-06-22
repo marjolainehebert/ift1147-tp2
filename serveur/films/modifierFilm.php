@@ -71,9 +71,8 @@
                     $stmt->bind_param("sssisissi",$titre,$realis,$categ,$duree,$langue,$annee,$pochette,$urlPreview,$num);
                     $stmt->execute();
                     mysqli_close($connexion);
-                    echo "Le film <strong>".$num."</strong> a été modifié.";
-                    // $msg = "Le film ".$num." a été modifié.";
-                    // header("Location:../../index.php?msg=$msg");
+                    $msg = "Le film <strong>".$num."</strong> a été modifié.";
+                    header("Location:../../public/pages/admin.php?msg=$msg");
                 ?>
             </div>
             <p><a href='../../public/pages/admin.php' class='btn btn-outline-warning mb-2 ms-5'>Retour à la page Admin</a></p>

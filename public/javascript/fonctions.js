@@ -1,5 +1,3 @@
-var messageSucces = "";
-
 // fermer le modal enregistrer et ouvrir le modal connexion
 function connexionModal() {
     $('#enregistrer').modal('hide');
@@ -100,22 +98,6 @@ function validerFormEnregFilms(){
         mesUrl.style.display = "block"; // montrer le message d'erreur
         return false; // retourne false
     } 
-}
-
-let initialiser = (message) =>{
-			let textToast = document.getElementById("textToast");
-			let toastElList = [].slice.call(document.querySelectorAll('.toast'))
-			let toastList = toastElList.map(function (toastEl) {
-				return new bootstrap.Toast(toastEl)
-			})
-			if(message.length > 0){
-				textToast.innerHTML = message;
-				toastList[0].show();
-			}
-}
-
-let listerFilms = (listeFilms) =>{
-	document.getElementById('listeFilms').innerHTML = listeFilms;
 }
 
 function validerNombre(param){
@@ -279,5 +261,19 @@ function validerConnexion(formulaire) {
     
 }
 
+
+
+/** Toast **/
+let initialiser = (message) =>{
+    let textToast = document.getElementById("textToast");
+    let toastElList = [].slice.call(document.querySelectorAll('.toast'))
+    let toastList = toastElList.map(function (toastEl) {
+        return new bootstrap.Toast(toastEl)
+    })
+    if(message.length > 0){
+        textToast.innerHTML = message;
+        toastList[0].show();
+    }
+}
 
 

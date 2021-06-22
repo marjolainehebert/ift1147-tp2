@@ -1,5 +1,10 @@
 /* Entête et navigation */
 
+section{
+    padding-top:40px;
+    padding-bottom:40px;
+}
+
 .header-section{
     background-color:#1c1c1e;
 }
@@ -156,8 +161,39 @@ h1{font-size:3.5rem;};
     display:none;
 }
 
-.img-lister{max-width:100px; height:auto;}
+.img-lister{width:auto; max-height:72px;}
 
 .bgcolor {
     background-color:#f8f9fa;
+}
+
+
+/*Toast*/
+.posToast{
+	position:absolute;
+	top:20%;
+	left:40%;
+    z-index: 100000;
+}
+
+.toast-header{
+    background-color:#1c1c1e;
+    color:#fff;
+}
+
+.toast-body{
+    font-size:1.25rem;
+}
+
+.btn-close{
+    position: absolute;
+    right: 0;
+    border:none;
+    font-size:1.5rem;
+}
+.me-auto{
+    font-size:1.5rem;
+    font-weight:bold;
+    padding-left:1rem;
+    padding-right:4rem;
 }
