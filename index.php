@@ -77,7 +77,7 @@
     <!-- Header End -->
 
     <!-- Hero Section Begin -->
-    <section class="hero-section">
+    <section class="hero-section pt-0">
         <div class="hero-items owl-carousel">
             <div class="single-hero-items set-bg" data-setbg="public/images/background.jpg">
                 <div class="container">
@@ -134,9 +134,6 @@
                         $rep.='        </div>';
                         $rep.='    </div>';
                         $rep.='</div>';
-
-
-                        // $rep.="<tr><td>".($ligne->id)."</td><td>".($ligne->titre)."</td><td>".($ligne->realisateur)."</td><td>".($ligne->categorie)."</td><td>".($ligne->duree)."</td><td>".($ligne->langue)."</td><td>".($ligne->annee)."</td><td><a href=\"".($ligne->urlPreview)."\">Visualiser</a></td><td><img src=\"public/images/pochettes/".($ligne->pochette)."\" class=\"img-lister\"></td></tr>";
                     }
                 } catch (Exeption $e) {
                     echo "Problème pour lister. SVP, veuillez réessayer plus tard.";

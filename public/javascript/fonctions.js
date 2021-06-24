@@ -16,6 +16,7 @@ function montrer(elem){
     cacher('enregFilm');
     cacher('modifierFilm');
     cacher('supprimerFilm');
+    cacher('modifierMembre');
 	document.getElementById(elem).style.display='block';
 }
 
@@ -24,6 +25,11 @@ function cacher(elem){
 	document.getElementById(elem).style.display='none';
 }
 
+
+
+
+// ------- Fonctions de validation des formulaires ------- //
+//Lister les films
 function envoyerLister(par, valeurPar){
 	if (par!==""){
 		document.getElementById('par').value=par;
@@ -32,6 +38,12 @@ function envoyerLister(par, valeurPar){
 	document.getElementById('formLister').submit();
 }
 
+// Lister les membres
+function envoyerListerMembres(){
+    document.getElementById('formListerMembres').submit();
+}
+
+//Enregistrement des films
 function validerFormEnregFilms(){
     // obtenir les valeurs du formulaire et les mettre dans des variables
     var titreFilm=document.getElementById('titreFilm').value;
@@ -100,6 +112,7 @@ function validerFormEnregFilms(){
     } 
 }
 
+// validation de l'entrée pour la supression
 function validerNombre(param){
     var NumFilmS=document.getElementById(param).value;
     var mesSupprimer = document.getElementById('messageSupprimer'); 
@@ -112,11 +125,7 @@ function validerNombre(param){
     }
 }
 
-
-
-
-// ------- Fonctions de validation des formulaires ------- //
-// valider le formulaire d'enregistrement
+// valider le formulaire d'enregistrement de membre
 function validerFormEnreg(formulaire) {
     let prenom = formulaire.prenom.value; // mettre le prénom entré dans une variable
     let nom = formulaire.nom.value; // mettre le nom entré dans une variable
@@ -189,12 +198,30 @@ function validerCourriel(courriel) {
     } 
 }
 
+function validerStatut(param){
+    let statutMembre=document.getElementById(param).value;
+    alert (statutMembre);
+    // aller chercher les éléments et les mettre dans des variables
+    var mesStatut = document.getElementById("messageStatut"); 
+    // lors de la validation cacher les messages d'erreur
+    mesStatut.style.display = "none";
+    if (statutMembre == 'A') {  
+        return true;  
+    } else if (statutMembre == 'I'){ 
+        return true;  
+    } else {
+        mesStatut.style.display = "block";
+        return false;  // retourne false
+    }
+}
+
 // valider le mot de passe
 function validerMotsDePasses(motDePasse) {
     let regexMDP =  /^[a-zA-Z0-9_-]{8,10}$/;
     if (!regexMDP.test(motDePasse)) {  // si le mot de passe ne se conforme pas à l'expression régulière
         return false;  // retourne false
     } 
+    
 }
 
 // valider les mots de passe identiques
@@ -260,6 +287,27 @@ function validerConnexion(formulaire) {
     } else {return true;} // sinon ça retourne true
     
 }
+
+/** Modif Membres **/
+function validerCourrielMembre(formulaire) {
+    let courriel = formulaire.courrielM.value; // mettre le courriel entré dans une variable
+    var mesCourrielM = document.getElementById("messageCourrielM"); // aller chercher l'élément messageCourrielM
+    mesCourrielM.style.display = "none"; // lors de la validation cacher les messages d'erreur
+
+    if (courriel == '') { // si le courriel est vide
+        mesCourrielM.style.display = "block"; // montrer le message d'erreur
+        return false; // retourne false
+    } else { //sinon valider le courriel
+        validationCourriel = validerCourriel(courriel); // appeler la fonction 
+        if (validationCourriel == false) {  // si ça retourne false
+            mesCourrielM.style.display = "block"; // montrer le message d'erreur
+            return false; // retourne false
+        }
+    }
+}
+
+
+
 
 
 
