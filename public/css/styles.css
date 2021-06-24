@@ -149,7 +149,7 @@ h1{font-size:3.5rem;};
 }
 
 /* Contenu */
-#enregFilm, #modifierFilm, #supprimerFilm, #modifierMembre{
+#enregFilm, #modifierFilm, #supprimerFilm, #modifierMembre, #modifierMembrePM{
     display:none;
 }
 

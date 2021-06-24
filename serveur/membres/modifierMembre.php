@@ -54,6 +54,9 @@
                     $courriel=$_POST['courrielM']; 
                     $statut=$_POST['statut'];
 
+                    $reqMembres="SELECT * FROM membres";
+                    $listeMembres=mysqli_query($connexion,$reqMembres);
+
                     $requete="UPDATE connexion SET statut=? WHERE courriel=?";
                     $stmt = $connexion->prepare($requete);
                     $stmt->bind_param("ss",$statut,$courriel);

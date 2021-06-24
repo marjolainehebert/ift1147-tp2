@@ -1,22 +1,39 @@
+<?php
+   if (isset($_GET['msg'])){
+	$msg=$_GET['msg'];
+   }
+   else {
+	   $msg="";
+   }
+   if (isset($_GET['liste'])){
+	$liste= $_GET['liste'];
+   }
+   else {
+	   $liste="";
+   }
+?>
 
+<html>
+    <head>
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
-<!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+        <!-- Css Styles -->
+        <link rel="stylesheet" href="../utilitaires/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="../utilitaires/css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="../utilitaires/css/themify-icons.css" type="text/css">
+        <link rel="stylesheet" href="../utilitaires/css/elegant-icons.css" type="text/css">
+        <link rel="stylesheet" href="../utilitaires/css/owl.carousel.min.css" type="text/css">
+        <link rel="stylesheet" href="../utilitaires/css/nice-select.css" type="text/css">
+        <link rel="stylesheet" href="../utilitaires/css/jquery-ui.min.css" type="text/css">
+        <link rel="stylesheet" href="../utilitaires/css/slicknav.min.css" type="text/css">
+        <link rel="stylesheet" href="../utilitaires/css/style.css" type="text/css">
+        <link rel="stylesheet" href="../css/styles.css" type="text/css">
+        <script src="../javascript/fonctions.js"></script>
+        <!-- Javascript -->
+    </head>
 
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="../utilitaires/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="../utilitaires/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="../utilitaires/css/themify-icons.css" type="text/css">
-    <link rel="stylesheet" href="../utilitaires/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="../utilitaires/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="../utilitaires/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="../utilitaires/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="../utilitaires/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="../utilitaires/css/style.css" type="text/css">
-    <link rel="stylesheet" href="../css/styles.css" type="text/css">
-    <script src="../javascript/fonctions.js"></script>
-    <!-- Javascript -->
-
+<body onLoad="initialiser(<?php echo "'".$msg."'" ?>);">
 <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -36,6 +53,12 @@
                             </a>
                         </div>
                     </div>
+                    <div class="text-right col-md-10 col-sm-12">
+                        <ul class="nav-right">
+                            <li><a href="#" data-toggle="modal" data-target="#connexion">Connexion</a></li>
+                            <li><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#enregistrer">Devenir Membre</button></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -43,30 +66,64 @@
     </header>
     <!-- Header End -->
 
-    
-
-    <!-- Banner Section Begin -->
-    <div class="banner-section spad">
-        <div class="container-fluid">
+    <section>
+        <div class="container my-5">
             <div class="row">
-                <div class="col-sm-12">
-                    <?php
-                        echo "<h2 class=\"text-center\">Bienvenue à la page membre</h2>
-                        <p class=\"text-center\"><a href=\"../../index.php\" class=\"btn btn-warning mt-5\">Retour à la page d'accueil</a></p>";
-                    ?>
+                <div class="col-12">
+                    <h1 class="text-center mb-4">Page Membre</h1>
                 </div>
+
+                <div class="col-12 col-md-3 col-xl-2 ">
+
+                    <h5><strong>Gestion membres</strong></h5>
+                    <div class="block flex-wrap mt-3 mb-5">
+                        <button class="btn btn-outline-warning mb-3" onclick="envoyerListerMembres()">Lister</button>
+                        <button class="btn btn-outline-info mb-3" onclick="montrer('modifierMembrePM');">Modifier</button>
+                    </div>
+                </div>
+
+                
+
+                <div class="col-12 col-md-9 col-xl-10 bgcolor pt-2 pb-2">
+                    <!-- -- Modifier membre -- -->
+                    <div class="" id="modifierMembrePM">
+                        <h3>Modifier le statut d'un membre</h3>
+                        <hr>
+                        <form id="modifierMembreFormPM" name="modifierMembreFormPM" action="../../serveur/membres/ficheMembrePM.php" method="POST"  onsubmit="return validerCourrielMembre(this);">
+                            <div class="mb-3">
+                            <label for="courrielMembre"><b>Courriel</b></label><br>
+                            <div id="messageCourrielMembre">Entrez une adresse courriel valide dans le format votrenom@domaine.com</div>
+                            <input type="text" class="form-control" placeholder="Entrez votre adresse courriel" title="Entrez votre adresse courriel" name="courrielM" id="courrielM"/>
+                            </div>
+                            <button type="submit" class="btn btn-warning">Soumettre</button>
+                        </form>
+                    </div>
+
+                </div>
+
+                <div class="col-md-12">
+                    <p class="text-right"><a href="../../index.php" class="btn btn-warning mt-5">Retour à la page d'accueil</a></p>
+                </div>
+
+                <!-- Toast -->
+                <div class="toast-container" aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
+                    <div id="toast" class="toast posToast" data-delay="3000" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header">
+                            <img src="../../public/images/streamtopia.png" width="24" height="auto" class="rounded me-2" alt="message">
+                            <strong class="me-auto">Messages</strong>
+                            <small class="text-muted"></small>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div id="textToast" class="toast-body">
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
-    </div>
-    <!-- Banner Section End -->
-
-    
-    
-
-    
-    
-
-
+    </section>
 
     <!-- Footer Section Begin -->
     <footer class="footer-section">
@@ -132,8 +189,11 @@
     <script src="../utilitaires/js/jquery-ui.min.js"></script>
     <script src="../utilitaires/js/jquery.countdown.min.js"></script>
     <script src="../utilitaires/js/jquery.nice-select.min.js"></script>
-    <script src="../utilitaires/js/jquery.zoom.min.js"></script>
+    <!-- <script src="../utilitaires/js/jquery.zoom.min.js"></script> -->
     <script src="../utilitaires/js/jquery.dd.min.js"></script>
     <script src="../utilitaires/js/jquery.slicknav.js"></script>
     <script src="../utilitaires/js/owl.carousel.min.js"></script>
     <script src="../utilitaires/js/main.js"></script>
+
+	</body>
+</html>
