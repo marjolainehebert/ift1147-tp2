@@ -101,7 +101,7 @@ a.dark-link:hover {
 #messageConfMdpVide, #messageConfMdpErrone, #messageNaissance, 
 #messageCourrielMembre, #messageMdpMembreVide, #messageMdpMembreErrone, 
 #messageTitre, #messageRealis, #messageCateg, #messageDuree, #messageLangue, #messageDate, 
-#messageUrl, #messageSupprimer, #messageModifier {
+#messageUrl, #messageSupprimer, #messageModifier, #messageCourrielM, #messageStatut {
     width:100% !important;
     color:red;
     font-weight: bold;
@@ -149,17 +149,10 @@ h1{font-size:3.5rem;};
 }
 
 /* Contenu */
-#enregFilm{
+#enregFilm, #modifierFilm, #supprimerFilm, #modifierMembre, #modifierMembrePM{
     display:none;
 }
 
-#modifierFilm{
-    display:none;
-}
-
-#supprimerFilm{
-    display:none;
-}
 
 .img-lister{width:auto; max-height:72px;}
 

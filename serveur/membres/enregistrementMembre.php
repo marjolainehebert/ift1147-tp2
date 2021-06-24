@@ -1,79 +1,66 @@
-<?php
+<link rel="stylesheet" href="../../public/utilitaires/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../../public/utilitaires/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../../public/utilitaires/css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="../../public/utilitaires/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../../public/utilitaires/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../../public/utilitaires/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="../../public/utilitaires/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="../../public/utilitaires/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../../public/utilitaires/css/style.css" type="text/css">
+    <link rel="stylesheet" href="../../public/css/styles.css" type="text/css">
+    <script src="../../public/javascript/fonctions.js"></script>
 
-    
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <?php
+                require_once("../bdconfig/connexion.inc.php");
+                // attribuer des valeurs aux variables
+                $prenom=$_POST['prenom']; 
+                $nom=$_POST['nom']; 
+                $courriel=$_POST['courriel'];
+                $sexe=$_POST['sexe'];
+                $naissance=$_POST['naissance'];
+                $motDePasse=$_POST['motDePasse'];
+                $statut='A';
+                $role='M';
 
-// attribuer des valeurs aux variables
-    $prenom=$_POST['prenom']; 
-    $nom=$_POST['nom']; 
-    $courriel=$_POST['courriel'];
-    $sexe=$_POST['sexe'];
-    $naissance=$_POST['naissance'];
-    $motDePasse=$_POST['motDePasse'];
-    $statut='A';
-    $role='M';
+                
+                $reqMembres="SELECT * FROM membres";
+                $reqConnexion="SELECT * FROM connexion";
 
-    // Vérifier si le courriel se retrouve déjà dans la base de donnée
-    while (!feof($connex) && !$trouverCourriel) {
-        $tab=explode(";",$ligne);
-        if ($tab[0] === $courriel) {
-            $trouverCourriel=true;
-        }
-        else {
-            $ligne=fgets($connex);
-        }
-    }
+                try { 
+                    $listeMembres=mysqli_query($connexion,$reqMembres);
+                    $listeConnexion=mysqli_query($connexion,$reqConnexion);
 
-    if ($trouverCourriel){ // si on trouve le courriel
-        // redirection vers la page erreur
-        header("Location: ../public/pages/dejaEnregistre.php");
-        exit;
-    } else { // sinon procéder à l'enregistrement dans le fichier texte
-        // écrire dans le fichier d'enregistrement membres
-        $ligneEnreg=$prenom.";".$nom.";".$courriel.";".$sexe.";".$naissance.";\n";
-        fputs($enreg,$ligneEnreg);
-        fclose($enreg);
-        
-        // Écrire dans le fichier connexion
-        $ligneConnex=$courriel.";".$motDePasse.";".$statut.";".$role.";\n";
-        fputs($connex,$ligneConnex);
-        fclose($connex);
+                    while($ligneMembre=mysqli_fetch_object($listeMembres)){
+                        if ($ligneMembre->courriel == $courriel) {// Vérifier si le courriel se retrouve déjà dans la base de donnée
+                            mysqli_close($connexion);
+                            header("Location:../../public/pages/dejaEnregistre.php");
+                            exit;
+                        }
+                    }
 
-        // redirection vers la page succès
-        header("Location: ../public/pages/enregistrementSucces.php");
-        exit;
-    }
+                    $reqMembres="INSERT INTO membres values(?,?,?,?,?)";
+                    $statMembre=$connexion->prepare($reqMembres);
+                    $statMembre->bind_param("sssss", $prenom,$nom,$courriel,$sexe,$naissance);
+                    $statMembre->execute();
 
+                    $reqConnexion="INSERT INTO connexion values(?,?,?,?)";
+                    $statConnex=$connexion->prepare($reqConnexion);
+                    $statConnex->bind_param("ssss", $courriel,$motDePasse,$statut,$role);
+                    $statConnex->execute();
+
+                    mysqli_close($connexion);
+                    header("Location: ../../public/pages/enregistrementSucces.php");
+                    
+                } catch (Exeption $e) {
+                    $msg = "Problème pour s'enregistrer. Veuillez réessayer plus tard.";
+                    header("Location:../../index.php?msg=$msg");
+                } finally {
+                    $rep.="</table>";
+                    echo $rep;
+                }
 
     
 ?>
-
-
-<!-- <?php
-	require_once("../bdconfig/connexion.inc.php");
-	$titre=$_POST['titre'];
-	$categ=$_POST['categ'];
-	$duree=$_POST['duree'];
-	$res=$_POST['res'];
-	$dossier="../ressources/pochettes/";
-	$nomPochette=sha1($titre.time());
-	$pochette="avatar.jpg";
-	if($_FILES['pochette']['tmp_name']!==""){
-		//Upload de la photo
-		$tmp = $_FILES['pochette']['tmp_name'];
-		$fichier= $_FILES['pochette']['name'];
-		$extension=strrchr($fichier,'.');
-		@move_uploaded_file($tmp,$dossier.$nomPochette.$extension);
-		// Enlever le fichier temporaire chargé
-		@unlink($tmp); //effacer le fichier temporaire
-		$pochette=$nomPochette.$extension;
-	}
-	$requete="INSERT INTO films values(0,?,?,?,?,?)";
-	$stmt = $connexion->prepare($requete);
-	$stmt->bind_param("ssiss", $titre,$categ, $duree,$res,$pochette);
-	$stmt->execute();
-	$id=$connexion->insert_id;
-
-	mysqli_close($connexion);
-	$msg = "Le film ".$id." a été bien enregistré.";
-	header("Location:../../index.php?msg=$msg");
-?> -->

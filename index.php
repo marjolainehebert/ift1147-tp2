@@ -77,7 +77,7 @@
     <!-- Header End -->
 
     <!-- Hero Section Begin -->
-    <section class="hero-section">
+    <section class="hero-section pt-0">
         <div class="hero-items owl-carousel">
             <div class="single-hero-items set-bg" data-setbg="public/images/background.jpg">
                 <div class="container">
@@ -134,9 +134,6 @@
                         $rep.='        </div>';
                         $rep.='    </div>';
                         $rep.='</div>';
-
-
-                        // $rep.="<tr><td>".($ligne->id)."</td><td>".($ligne->titre)."</td><td>".($ligne->realisateur)."</td><td>".($ligne->categorie)."</td><td>".($ligne->duree)."</td><td>".($ligne->langue)."</td><td>".($ligne->annee)."</td><td><a href=\"".($ligne->urlPreview)."\">Visualiser</a></td><td><img src=\"public/images/pochettes/".($ligne->pochette)."\" class=\"img-lister\"></td></tr>";
                     }
                 } catch (Exeption $e) {
                     echo "Problème pour lister. SVP, veuillez réessayer plus tard.";
@@ -260,7 +257,21 @@
         </div>
     </div>
 
-    
+    <!-- Toast -->
+    <div class="toast-container" aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
+                    <div id="toastAcc" class="toast posToast" data-delay="3000" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header">
+                            <img src="../../public/images/streamtopia.png" width="24" height="auto" class="rounded me-2" alt="message">
+                            <strong class="me-auto">Messages</strong>
+                            <small class="text-muted"></small>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div id="textToast" class="toast-body">
+                        </div>
+                    </div>
+                </div>
 
 
 

@@ -229,7 +229,7 @@
                         </form>
                     </div>
 
-                    <!-- -- Lister -- -->
+                    <!-- -- Lister films -- -->
                     <div class="" id="listerFilms">
                         <form id="formLister" action="../../serveur/films/listerFilms.php" method="POST">
                             <input type="hidden" id="par" name="par" value="tout">
@@ -237,7 +237,7 @@
                         </form>
                     </div>
 
-                    <!-- -- Modifier -- -->
+                    <!-- -- Modifier films -- -->
                     <div class="" id="modifierFilm">
                         <h3>Modifier un film</h3>
                         <hr>
@@ -264,6 +264,27 @@
                             <button type="submit" class="btn btn-warning">Soumettre</button>
                         </form>
                     </div>
+
+                    <!-- -- Lister Membres -- -->
+                    <div class="" id="listerMembres">
+                        <form id="formListerMembres" action="../../serveur/membres/listerMembres.php" method="POST">
+                        </form>
+                    </div>
+
+                    <!-- -- Modifier membre -- -->
+                    <div class="" id="modifierMembre">
+                        <h3>Modifier le statut d'un membre</h3>
+                        <hr>
+                        <form id="modifierMembreForm" name="modifierMembreForm" action="../../serveur/membres/ficheMembre.php" method="POST"  onsubmit="return validerCourrielMembre(this);">
+                            <div class="mb-3">
+                            <label for="courrielM"><b>Courriel</b></label><br>
+                            <div id="messageCourrielM">Entrez une adresse courriel valide dans le format votrenom@domaine.com</div>
+                            <input type="text" class="form-control" placeholder="Entrez votre adresse courriel" title="Entrez votre adresse courriel" name="courrielM" id="courrielM"/>
+                            </div>
+                            <button type="submit" class="btn btn-warning">Soumettre</button>
+                        </form>
+                    </div>
+
                 </div>
 
                 <div class="col-md-12">

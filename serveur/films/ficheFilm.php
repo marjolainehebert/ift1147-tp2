@@ -16,19 +16,54 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
+
+
+    <!-- Header Section Begin -->
+    <header class="header-section">
+        
+        <div class="container">
+            <div class="inner-header">
+                <div class="row">
+                    <div class="col-md-2 col-sm-12">
+                        <div class="logo">
+                            <img src="../../public/images/streamtopia.png" alt="StreamTopia">
+                            <a href="../../index.php">
+                                StreamTopia
+                            </a>
+                        </div>
+                    </div>
+                    <div class="text-right col-md-10 col-sm-12">
+                        <ul class="nav-right">
+                            <li><a href="#" data-toggle="modal" data-target="#connexion">Connexion</a></li>
+                            <li><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#enregistrer">Devenir Membre</button></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </header>
+    <!-- Header End -->
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    
                 <?php
                 require_once("../bdconfig/connexion.inc.php");
 
                 $num=$_POST['numFilm']; 
 
+                echo "<div class=\"d-flex justify-content-between align-items-baseline\">
+                        <div><h3 style=\"display:inline-block;\" class=\"mt-2 mb-3\"><a href=\"../../public/pages/admin.php\" class=\"dark-link\">Admin</a> > Modifier le film <strong>#".$num."</strong></h3></div>
+                        <div><a href=\"../../public/pages/admin.php\" class=\"btn-sm btn-warning\">Revenir en arrière</a></div>
+                    </div>";
+
                 function envoyerFormModifier($ligne){
                     global $num;
                     $rep = "<form id=\"modifierForm\" enctype=\"multipart/form-data\" name=\"modifierForm\" action=\"modifierFilm.php\" method=\"POST\" onsubmit=\"return validerFormEnregFilms();\">\n";
 
-                    $rep.= "<h1>Fiche du film <strong>#".$num."</strong></h1>\n";
                     $rep.= "<div class=\"mb-3\">\n";
                     $rep.= "<label for=\"numFilm\" class=\"form-label\">ID du Film</label>\n";
                     $rep.= "<input type=\"text\" class=\"form-control\" id=\"numFilm\" name=\"numFilm\" value='".$ligne->id."' readonly>\n";
@@ -75,13 +110,13 @@
                     $rep.= "<input type=\"file\" id=\"pochette\" name=\"pochette\"\n";
                     $rep.= "</div>\n";
 
-                    $rep.= "<div class=\"mb-3\">\n";
+                    $rep.= "<div class=\"mb-3 pb-5\">\n";
                     $rep.= "<label for=\"urlPreview\" class=\"form-label\">URL de l'extrait</label>\n";
                     $rep.= "<div id=\"messageUrl\">Entrez un URL valide débutant par http:// ou https://</div>\n";
                     $rep.= "<input type=\"text\" class=\"form-control\" id=\"urlPreview\" name=\"urlPreview\" value='".$ligne->urlPreview."'>\n";
                     $rep.= "</div>\n";
 
-                    $rep.= "<button type=\"submit\" class=\"btn btn-primary\">Soumettre</button>\n";
+                    $rep.= "<button type=\"submit\" class=\"btn btn-warning\">Soumettre</button>\n";
                     $rep.= "</form>\n";
 
                     return $rep;
@@ -105,6 +140,9 @@
 
                     
             ?>
+            </div>
         </div>
     </div>
-</div>
+</section>
+
+</body>

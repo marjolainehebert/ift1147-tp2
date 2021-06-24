@@ -27,11 +27,11 @@
                 $nomPochette=sha1($titreFilm.time());
                 $pochette="avatar.jpg";
 
-                define("OUVRIRFICHIER","../donnees/films.txt"); 
-                if(!$fic=fopen(OUVRIRFICHIER,"a+")) { 
-                    echo "Problème pour ouvrir le fichier"; 
-                    exit; 
-                }
+                // define("OUVRIRFICHIER","../donnees/films.txt"); 
+                // if(!$fic=fopen(OUVRIRFICHIER,"a+")) { 
+                //     echo "Problème pour ouvrir le fichier"; 
+                //     exit; 
+                // }
 
                 if($_FILES['pochette']['tmp_name']!==""){ // s'il est différent de vide ça veut dire qu'on vient d'uploader un fichier
                     //télécharger l'image
