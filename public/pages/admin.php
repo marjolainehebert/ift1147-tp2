@@ -69,15 +69,12 @@
     <section>
         <div class="container my-5">
             <div class="row">
-                <div class="col-12">
-                    <h1 class="text-center mb-4">Bienvenue à la page d'admin</h1>
-                </div>
 
                 <div class="col-12 col-md-3 col-xl-2 ">
                     <h5><strong>Gestion films</strong></h5>
                     <div class="block flex-wrap mt-3 mb-5">
                         <button class="btn btn-outline-success mb-3" onclick="montrer('enregFilm');">Enregistrer</button>
-                        <button class="btn btn-outline-warning mb-3" onclick="envoyerLister()">Lister</button>
+                        <button class="btn btn-outline-warning mb-3" onclick="montrer('listerFilms')">Lister</button>
                         <button class="btn btn-outline-info mb-3" onclick="montrer('modifierFilm');">Modifier</button>
                         <button class="btn btn-outline-danger mb-3" onclick="montrer('supprimerFilm');">Supprimer</button>
                     </div>
@@ -92,6 +89,8 @@
                 
 
                 <div class="col-12 col-md-9 col-xl-10 bgcolor pt-2 pb-2">
+                    <h1 class="text-center mb-4">Bienvenue à la page d'admin</h1>
+
                     <div class="" id="enregFilm">
                         <h3 class="mb-2">Enregistrer un film</h3>
                         <hr>
@@ -221,7 +220,7 @@
 
                             <div class="mb-3">
                                 <label for="urlPreview" class="form-label">URL de la bande annonce</label>
-                                <div id="messageUrl">Entrez un URL valide débutant par http:// ou https://</div>
+                                <div id="messageUrl">SVP entrez un URL provenant de Youtube</div>
                                 <input type="text" class="form-control" id="urlPreview" name="urlPreview">
                             </div>
 
@@ -231,9 +230,48 @@
 
                     <!-- -- Lister films -- -->
                     <div class="" id="listerFilms">
+                        <h3 class="mb-2">Lister les films</h3>
+                        <hr>
                         <form id="formLister" action="../../serveur/films/listerFilms.php" method="POST">
+                            <div class="row mb-5">
+                                <div class="col-sm">
+                                    <h4 class="pb-3">Tous les films</h4>
+                                    <button type="submit" class="btn-sm btn-outline-warning" onsubmit="envoyerLister('','');">Lister tout</button>
+                                </div>
+
+                                <div class="col-sm">
+                                    <h4 class="pb-3">Dans la catégorie</h4>
+                                    <select class="form-control" onChange="envoyerLister('categ',this.options[this.selectedIndex].value)">
+                                        <option value="">Choisir ...</option>
+                                        <option value="Action">Action</option>
+                                        <option value="Comédie">Comédie</option>
+                                        <option value="Drame">Drame</option>
+                                        <option value="Science Fiction">Science Fiction</option>
+                                        <option value="Suspense">Suspense</option>
+                                        <option value="Thriller">Thriller</option>
+                                    </select>
+                                </div>
+                            </div>
+                                
+                            <div class="row mb-5">
+                            
+                                <div class="col-sm">
+                                    <h4 class="pb-3">Recherche par titre</h4>
+                                    <input class="form-control" type="search" id="rctitre" placeholder="Titre" aria-label="Recherche">
+                                    <button class="btn-sm btn-outline-primary mt-3" onClick="envoyerLister('titre',document.getElementById('rctitre').value)">Recherche</button>
+                                </div>
+
+                                <div class="col-sm">
+                                    <h4 class="pb-3">Les films du réalisateur</h4>
+                                    <input class="form-control" type="search" id="rcres" placeholder="Réalisateur" aria-label="Recherche">
+                                    <button class="btn-sm btn-outline-success mt-3" onClick="envoyerLister('realisateurs',document.getElementById('rcres').value)">Recherche</button>
+                                </div>
+                            </div>
+                            
+                            
                             <input type="hidden" id="par" name="par" value="tout">
                             <input type="hidden" id="valeurPar" name="valeurPar" value="">
+                            
                         </form>
                     </div>
 
@@ -288,7 +326,7 @@
                 </div>
 
                 <div class="col-md-12">
-                    <p class="text-right"><a href="../../index.php" class="btn btn-warning mt-5">Retour à la page d'accueil</a></p>
+                    <p class="text-right"><a href="../../index.php" class="btn btn-outline-warning mt-5">Retour à la page d'accueil</a></p>
                 </div>
 
                 <!-- Toast -->

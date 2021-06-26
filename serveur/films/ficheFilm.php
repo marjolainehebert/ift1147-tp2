@@ -57,7 +57,7 @@
 
                 echo "<div class=\"d-flex justify-content-between align-items-baseline\">
                         <div><h3 style=\"display:inline-block;\" class=\"mt-2 mb-3\"><a href=\"../../public/pages/admin.php\" class=\"dark-link\">Admin</a> > Modifier le film <strong>#".$num."</strong></h3></div>
-                        <div><a href=\"../../public/pages/admin.php\" class=\"btn-sm btn-warning\">Revenir en arrière</a></div>
+                        <div><a href=\"../../public/pages/admin.php\" class=\"btn btn-outline-warning\">Revenir en arrière</a></div>
                     </div>";
 
                 function envoyerFormModifier($ligne){

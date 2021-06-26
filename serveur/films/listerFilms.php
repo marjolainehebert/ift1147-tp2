@@ -49,33 +49,96 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="d-flex  justify-content-between align-items-baseline">
-                        <div><h3 style="display:inline-block;" class="mt-2 mb-3"><a href="../../public/pages/admin.php" class="dark-link">Admin</a> > Listes tous les films</h3></div>
-                        <div><a href="../../public/pages/admin.php" class="btn-sm btn-warning">Revenir en arrière</a></div>
-                    </div>
-                    
                     <?php
                         require_once("../bdconfig/connexion.inc.php");
-
-                        $rep='<table class="table table-striped">';
-                        $rep.='<tr><th>ID</th><th>Titre</th><th>Réalisateur</th><th>Catégorie</th><th>Durée</th><th>Langue</th><th>Année</th><th>URL</th><th>Pochette</th></tr>';
-
-                        $requeteLister="SELECT * FROM films";
-                        try {
-                            $listeFilms=mysqli_query($connexion,$requeteLister);
-                            while($ligne=mysqli_fetch_object($listeFilms)){
-                                $rep.="<tr><td>".($ligne->id)."</td><td>".($ligne->titre)."</td><td>".($ligne->realisateur)."</td><td>".($ligne->categorie)."</td><td>".($ligne->duree)."</td><td>".($ligne->langue)."</td><td>".($ligne->annee)."</td><td><a href=\"".($ligne->urlPreview)."\" class=\"dark-link\">Visualiser</a></td><td><img src=\"../../public/images/pochettes/".($ligne->pochette)."\" class=\"img-lister\"></td></tr>";
+                        $categories=[];
+                        $categories["Action"]="Action";
+                        $categories["Comédie"]="Comédie";
+                        $categories["Drame"]="Drame";
+                        $categories["Science Fiction"]="Science Fiction";
+                        $categories["Suspense"]="Suspense";
+                        $categories["Thriller"]="Thriller";
+                        try{
+                            $par=$_POST['par'];
+                            $valeurPar=strtolower(trim($_POST['valeurPar']));
+                            switch($par){
+                                case "tout" : 
+                                    $requeteSort="SELECT * FROM films WHERE 1=?";
+                                    $valeurPar=1;
+                                    $nomFiltre="Lister tous les films";
+                                break;
+                                case "realisateurs" :
+                                    $requeteSort="SELECT * FROM films WHERE LOWER(realisateur) LIKE CONCAT('%', ?, '%')";
+                                    $nomFiltre="Lister les films du réalisateur ".$valeurPar;
+                                break;
+                                case "categ" :
+                                    $requeteSort="SELECT * FROM films WHERE categorie=?";
+                                    $nomFiltre="Lister les films de la catégorie ".$valeurPar;
+                                break;
+                                case "titre" :
+                                    $requeteSort="SELECT * FROM films WHERE LOWER(titre) LIKE CONCAT('%', ?, '%')";
+                                    $nomFiltre="Lister les films contenant le titre ".$valeurPar;
+                                break;
                             }
-                        } catch (Exeption $e) {
-                            $msg = "Problème pour lister. Veuillez réessayer plus tard.";
-		                    header("Location:../../public/pages/admin.php?msg=$msg");
-                        } finally {
-                            $rep.="</table>";
-                            echo $rep;
-                        }
 
-                        mysqli_close($connexion);
-                    ?>
+                            echo '
+                            <div class="d-flex  justify-content-between align-items-baseline mb-5 pb-5">
+                                <div><h3 style="display:inline-block;" class="mt-2 mb-3"><a href="../../public/pages/admin.php" class="dark-link">Admin</a> > '.$nomFiltre.'</h3></div>
+                                <div><a href="../../public/pages/admin.php" class="btn btn-outline-warning">Revenir en arrière</a></div>
+                            </div>
+                            ';
+                            
+                            $stmt = $connexion->prepare($requeteSort);
+                            $stmt->bind_param("s", $valeurPar);
+                            $stmt->execute();
+                            $listeFilms = $stmt->get_result();
+                            
+                                
+                                $rep="<div class='container'>";
+                                $i=0;
+                                
+                                $rep.=' <div class="row">';
+                                while($ligne=mysqli_fetch_object($listeFilms)){
+                                    $categ = $categories[$ligne->categ];
+                                    
+                                    $rep.='<div class="col-lg-3 mb-5">';
+                                    $rep.='    <div class="card">';
+                                    $rep.='        <img class="card-img-top" src="../../public/images/pochettes/'.($ligne->pochette).'" alt="'.($ligne->titre).'">';
+                                    $rep.='        <div class="montrerID">#'.($ligne->id).'</div>';
+                                    $rep.='        <div class="card-body">';
+                                    $rep.='            <h5 class="card-title"><strong>'.($ligne->titre).'</strong> ('.($ligne->annee).')</h5>';
+                                    $rep.='            <p class="card-text bold">';
+                                    $rep.=                 $ligne->categorie;
+                                    $rep.='            </p>';
+                                    $rep.='            <p class="card-text">';
+                                    $rep.='                 <span class="light">Réalisateur:</span> <br>'.($ligne->realisateur).'<br>';
+                                    $rep.='                 <span class="light">Durée:</span> '.($ligne->duree).' minutes<br>';
+                                    $rep.='                 <span class="light">Langue:</span> '.($ligne->langue).'<br>';
+                                    $rep.='                 <span class="light">URL de la bande annonce:</span> <br><a href="'.($ligne->urlPreview).'" class="dark-link">'.($ligne->urlPreview).'</a>';
+                                    $rep.='            </p>';
+                                    $rep.='        </div>';
+                                    $rep.='    </div>';
+                                    $rep.='</div>';
+                                }
+
+                                    $rep.="</div>";//fermer le dernier row
+                                $rep.="</div>";//fermer le container
+                                mysqli_free_result($listeFilms);
+                            }catch (Exception $e){
+                                    $rep.='<div class="col-sm">';
+                                        $rep.='<div class="card" style="width: 18rem;">';
+                                                $rep.='<div class="card-body">';
+                                                    $rep.='<h5 class="card-title">Erreur</h5>';
+                                                    $rep.='<p class="card-text">Problème pour lister les films</p>';
+                                                $rep.='</div>';
+                                        $rep.='</div>';
+                                    $rep.='</div>';
+                            }finally {
+                                mysqli_close($connexion);
+                                echo $rep;
+                                //header("Location:../../index.php?liste=$rep");
+                            }
+                ?>
                 </div>
             </div>
         </div>
