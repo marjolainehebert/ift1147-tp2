@@ -49,11 +49,6 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="d-flex  justify-content-between align-items-baseline mb-5 pb-5">
-                        <div><h3 style="display:inline-block;" class="mt-2 mb-3"><a href="../../public/pages/admin.php" class="dark-link">Admin</a> > Listes tous les films</h3></div>
-                        <div><a href="../../public/pages/admin.php" class="btn-sm btn-warning">Revenir en arrière</a></div>
-                    </div>
-                    
                     <?php
                         require_once("../bdconfig/connexion.inc.php");
                         $categories=[];
@@ -70,17 +65,28 @@
                                 case "tout" : 
                                     $requeteSort="SELECT * FROM films WHERE 1=?";
                                     $valeurPar=1;
+                                    $nomFiltre="Lister tous les films";
                                 break;
                                 case "realisateurs" :
                                     $requeteSort="SELECT * FROM films WHERE LOWER(realisateur) LIKE CONCAT('%', ?, '%')";
+                                    $nomFiltre="Lister les films du réalisateur ".$valeurPar;
                                 break;
                                 case "categ" :
                                     $requeteSort="SELECT * FROM films WHERE categorie=?";
+                                    $nomFiltre="Lister les films de la catégorie ".$valeurPar;
                                 break;
                                 case "titre" :
                                     $requeteSort="SELECT * FROM films WHERE LOWER(titre) LIKE CONCAT('%', ?, '%')";
+                                    $nomFiltre="Lister les films contenant le titre ".$valeurPar;
                                 break;
                             }
+
+                            echo '
+                            <div class="d-flex  justify-content-between align-items-baseline mb-5 pb-5">
+                                <div><h3 style="display:inline-block;" class="mt-2 mb-3"><a href="../../public/pages/admin.php" class="dark-link">Admin</a> > '.$nomFiltre.'</h3></div>
+                                <div><a href="../../public/pages/admin.php" class="btn btn-outline-warning">Revenir en arrière</a></div>
+                            </div>
+                            ';
                             
                             $stmt = $connexion->prepare($requeteSort);
                             $stmt->bind_param("s", $valeurPar);
@@ -101,14 +107,15 @@
                                     $rep.='        <div class="montrerID">#'.($ligne->id).'</div>';
                                     $rep.='        <div class="card-body">';
                                     $rep.='            <h5 class="card-title"><strong>'.($ligne->titre).'</strong> ('.($ligne->annee).')</h5>';
-                                    $rep.='            <p class="card-text">';
+                                    $rep.='            <p class="card-text bold">';
                                     $rep.=                 $ligne->categorie;
                                     $rep.='            </p>';
                                     $rep.='            <p class="card-text">';
-                                    $rep.='                 <i class="fa fa-id-card-o" aria-hidden="true"></i> '.($ligne->realisateur).'<br>';
-                                    $rep.='                 <i class="fa fa-clock-o" aria-hidden="true"></i> '.($ligne->duree).' minutes<br>';
-                                    $rep.='                 Langue: '.($ligne->langue).'</p>';
-                                    $rep.='            <a href="'.($ligne->urlPreview).'" class="btn btn-warning">Bande annonce</a>';
+                                    $rep.='                 <span class="light">Réalisateur:</span> <br>'.($ligne->realisateur).'<br>';
+                                    $rep.='                 <span class="light">Durée:</span> '.($ligne->duree).' minutes<br>';
+                                    $rep.='                 <span class="light">Langue:</span> '.($ligne->langue).'<br>';
+                                    $rep.='                 <span class="light">URL de la bande annonce:</span> <br><a href="'.($ligne->urlPreview).'" class="dark-link">'.($ligne->urlPreview).'</a>';
+                                    $rep.='            </p>';
                                     $rep.='        </div>';
                                     $rep.='    </div>';
                                     $rep.='</div>';

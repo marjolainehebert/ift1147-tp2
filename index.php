@@ -129,9 +129,19 @@
                         $rep.='            <p class="card-text">';
                         $rep.='                 <i class="fa fa-id-card-o" aria-hidden="true"></i> '.($ligne->realisateur).'<br>';
                         $rep.='                 <i class="fa fa-clock-o" aria-hidden="true"></i> '.($ligne->duree).' minutes<br>';
-                        $rep.='                 Langue: '.($ligne->langue).'</p>';
-                        $rep.='            <div class="block flex-wrap mb-3">
-                                                <button id="boutonAnnonce" class="btn btn-outline-warning" onclick="ouvrirModalAnnonce($ligne)">Bande annonce</a></div>';
+                        $rep.='                 Langue: '.($ligne->langue);
+                        $rep.='             </p>';
+                        $rep.='             <div class="block flex-wrap mb-3">';
+                        $rep.='                 <button class="btn btn-outline-warning"
+                                                    data-src="'.($ligne->urlPreview).'" 
+                                                    data-title="'.($ligne->titre).'" 
+                                                    onclick="
+                                                        $(\'#lienDuFilm\').attr(\'src\', $(this).data(\'src\')); 
+                                                        $(\'#titreDuFilm\').text($(this).data(\'title\')); 
+                                                        $(\'#bandeAnnonceModal\').modal(\'show\');">
+                                                    Bande Annonce
+                                                </button>';
+                        $rep.='            </div>';
 
                         $rep.='            <div class="block flex-wrap"><button class="btn btn-warning"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Ajouter</button></div>';
                         $rep.='        </div>';
@@ -153,29 +163,23 @@
     <!-- Contenus End -->
     
     <!-- Modals -->
-    <div class="modal fade" id="modalAnnonce" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                <h5 class="modal-title">Bande Annonce du film </h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div>
-                                        <iframe id="lienAnnonce" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                <button type="button" class="close btn btn-outline-warning" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">Fermer</span>
-                                </button>
-                
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Modal preview -->
+    <div class="modal fade" id="bandeAnnonceModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Bande Annonce du Film <span id="titreDuFilm" class="bold"></span></h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body d-flex justify-content-center">
+                    <iframe  id="lienDuFilm" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- modal s'enregistrer -->
     <div class="modal fade" id="enregistrer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
