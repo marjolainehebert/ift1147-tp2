@@ -109,28 +109,31 @@
             <?php
                 require_once("serveur/bdconfig/connexion.inc.php");
 
-                $rep='<div class="row justify-content-between">';
-
-                $requeteLister="SELECT * FROM films";
+                
+                $rep='<div class="row">';
+                
+                $requeteLister="SELECT * FROM films ORDER BY titre";
+                
                 try {
                     $listeFilms=mysqli_query($connexion,$requeteLister);
                     while($ligne=mysqli_fetch_object($listeFilms)){
-
                         $rep.='<div class="col-lg-3 mb-5">';
                         $rep.='    <div class="card">';
                         $rep.='        <img class="card-img-top" src="public/images/pochettes/'.($ligne->pochette).'" alt="'.($ligne->titre).'">';
+                        $rep.='        <div class="montrerID">#'.($ligne->id).'</div>';
                         $rep.='        <div class="card-body">';
                         $rep.='            <h5 class="card-title"><strong>'.($ligne->titre).'</strong> ('.($ligne->annee).')</h5>';
-                        $rep.='            <p class="card-text"><i class="fa fa-clock-o" aria-hidden="true"></i> '.($ligne->duree).' minutes</p>';
-                        $rep.='            <p class="card-text">Langue: '.($ligne->langue).'</p>';
                         $rep.='            <p class="card-text">';
-                        $rep.='                <i class="fa fa-star" aria-hidden="true"></i>';
-                        $rep.='                <i class="fa fa-star" aria-hidden="true"></i>';
-                        $rep.='                <i class="fa fa-star" aria-hidden="true"></i>';
-                        $rep.='                <i class="fa fa-star-half-o" aria-hidden="true"></i>';
-                        $rep.='                <i class="fa fa-star-o" aria-hidden="true"></i>';
+                        $rep.=                 ($ligne->categorie);
                         $rep.='            </p>';
-                        $rep.='            <a href="#" class="btn btn-warning">Bande annonce</a>';
+                        $rep.='            <p class="card-text">';
+                        $rep.='                 <i class="fa fa-id-card-o" aria-hidden="true"></i> '.($ligne->realisateur).'<br>';
+                        $rep.='                 <i class="fa fa-clock-o" aria-hidden="true"></i> '.($ligne->duree).' minutes<br>';
+                        $rep.='                 Langue: '.($ligne->langue).'</p>';
+                        $rep.='            <div class="block flex-wrap mb-3">
+                                                <button id="boutonAnnonce" class="btn btn-outline-warning" onclick="ouvrirModalAnnonce($ligne)">Bande annonce</a></div>';
+
+                        $rep.='            <div class="block flex-wrap"><button class="btn btn-warning"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Ajouter</button></div>';
                         $rep.='        </div>';
                         $rep.='    </div>';
                         $rep.='</div>';
@@ -141,18 +144,39 @@
                     $rep.="</div>";
                     echo $rep;
                 }
-
-                mysqli_close($connexion);
-
-                    
+                mysqli_close($connexion);    
             ?>
             
         </div>
     </div>
     
     <!-- Contenus End -->
-
+    
     <!-- Modals -->
+    <div class="modal fade" id="modalAnnonce" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title">Bande Annonce du film </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div>
+                                        <iframe id="lienAnnonce" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="close btn btn-outline-warning" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">Fermer</span>
+                                </button>
+                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
     <!-- modal s'enregistrer -->
     <div class="modal fade" id="enregistrer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
