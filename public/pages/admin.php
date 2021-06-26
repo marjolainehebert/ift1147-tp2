@@ -1,4 +1,9 @@
 <?php
+    session_start();
+
+    if(!isset($_SESSION['courrielSess'])){
+        header("Location:../../public/pages/seConnecter.php");
+    }
    if (isset($_GET['msg'])){
 	$msg=$_GET['msg'];
    }

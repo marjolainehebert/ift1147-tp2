@@ -1,4 +1,10 @@
 <?php
+    session_start();
+
+    if(!isset($_SESSION['courrielSess'])){
+        header("Location:../../public/pages/seConnecter.php");
+    }
+
    if (isset($_GET['msg'])){
 	$msg=$_GET['msg'];
    }
@@ -55,8 +61,9 @@
                     </div>
                     <div class="text-right col-md-10 col-sm-12">
                         <ul class="nav-right">
-                            <li><a href="#" data-toggle="modal" data-target="#connexion">Connexion</a></li>
-                            <li><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#enregistrer">Devenir Membre</button></li>
+                            <li><a href="">Prénom Nom</a></li>
+                            <li><a href="">Modifier profil</a></li>
+                            <li><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#enregistrer">Déconnexion</button></li>
                         </ul>
                     </div>
                 </div>
@@ -69,10 +76,6 @@
     <section>
         <div class="container my-5">
             <div class="row">
-                <div class="col-12">
-                    <h1 class="text-center mb-4">Page Membre</h1>
-                </div>
-
                 <div class="col-12 col-md-3 col-xl-2 ">
 
                     <h5><strong>Gestion membres</strong></h5>
@@ -85,6 +88,7 @@
                 
 
                 <div class="col-12 col-md-9 col-xl-10 bgcolor pt-2 pb-2">
+                    <h1 class="text-center mb-4">Bienvenue à la page membre</h1>
                     <!-- -- Modifier membre -- -->
                     <div class="" id="modifierMembrePM">
                         <h3>Modifier le statut d'un membre</h3>
