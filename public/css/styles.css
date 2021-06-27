@@ -109,7 +109,8 @@ a.dark-link:hover {
 #messageConfMdpVide, #messageConfMdpErrone, #messageNaissance, 
 #messageCourrielMembre, #messageMdpMembreVide, #messageMdpMembreErrone, 
 #messageTitre, #messageRealis, #messageCateg, #messageDuree, #messageLangue, #messageDate, 
-#messageUrl, #messageSupprimer, #messageModifier, #messageCourrielM, #messageStatut {
+#messageUrl, #messageSupprimer, #messageModifier, #messageCourrielM, #messageStatut, #messagePrenomPM, #messageNomPM, #messageCourrielPM, #messageMdpVidePM, #messageMdpErronePM, #messageConfMdpVidePM, #messageConfMdpErronePM, #messageNaissancePM 
+{
     width:100% !important;
     color:red;
     font-weight: bold;
@@ -138,7 +139,10 @@ h1{font-size:2.5rem;};
     padding:0.8rem 2rem;
 }
 
-
+.note {
+    color:#939393;
+    font-size:0.8rem;
+}
 
 
 /**** Page Admin ****/

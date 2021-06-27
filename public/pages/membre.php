@@ -62,9 +62,9 @@
                     </div>
                     <div class="text-right col-md-10 col-sm-12">
                         <ul class="nav-right">
-                            <li><a href=""><?php echo $_SESSION['prenomSess'].' '.$_SESSION['nomSess'];?></a></li>
-                            <li><a href="javascript:montrer('afficherProfilPM');">Profil</a></li>
+                            <li><a href="javascript:montrerM('afficherProfilPM');"><?php echo $_SESSION['prenomSess'].' '.$_SESSION['nomSess'];?></a></li>
                             <li><a href=""><i class="fa fa-shopping-cart"></i> <span id="nbItems"></span></a></li>
+                            <li><a href="javascript:montrerM('afficherProfilPM');">Profil</a></li>
                             <li><a href="../../serveur/membres/deconnexion.php">Déconnexion</a></li>
                         </ul>
                     </div>
@@ -82,14 +82,14 @@
 
                     <h5><strong>Gestion locations</strong></h5>
                     <div class="block flex-wrap mt-3 mb-5">
-                        <button class="btn btn-outline-success mb-3" onclick="montrer('listerLocationsPM');">Vos locations</button>
-                        <button class="btn btn-outline-warning mb-3" onclick="montrer('genererFacturePM')">Facture</button>
+                        <button class="btn btn-outline-success mb-3" onclick="montrerM('listerLocationsPM');">Vos locations</button>
+                        <button class="btn btn-outline-warning mb-3" onclick="montrerM('genererFacturePM')">Facture</button>
                     </div>
 
                     <h5><strong>Votre profil</strong></h5>
                     <div class="block flex-wrap mt-3 mb-5">
-                        <button class="btn btn-outline-info mb-3" onclick="montrer('afficherProfilPM');">Afficher</button>
-                        <button class="btn btn-outline-success mb-3" onclick="montrer('modifierMembrePM');">Modifier</button>
+                        <button class="btn btn-outline-info mb-3" onclick="montrerM('afficherProfilPM');">Afficher</button>
+                        <a class="btn btn-outline-success mb-3" href="../../serveur/membres/ficheProfil.php">Modifier</a>
                     </div>
                 </div>
 
@@ -100,15 +100,16 @@
                     <h3 class="text-center mb-5 pb-4">bienvenue dans votre espace membre</h3>
 
                     <!-- -- Lister Locations -- -->
-                    <div class="" id="listerLocationsPM">
+                    <div id="listerLocationsPM">
                         <h4>Vos locations</h4>
                         <hr>
                         Liste locations
                     </div>
 
                     <!-- -- Lister Locations -- -->
-                    <div class="" id="afficherProfilPM">
+                    <div id="afficherProfilPM">
                         <h4>Votre profil</h4>
+                        <hr>
                         <?php
                             $profil='<table class="table table-striped">';
                             $profil.='<tr><th>Prénom</th><th>Nom</th><th>Courriel</th><th>Sexe</th><th>Naissance</th></tr>';
@@ -128,23 +129,12 @@
 
 
                     <!-- -- Lister Locations -- -->
-                    <div class="" id="genererFacturePM">
+                    <div id="genererFacturePM">
                         <h4>Générer la facture</h4>
+                        <hr>
                     </div>
 
-                    <!-- -- Modifier membre -- -->
-                    <div class="" id="modifierMembrePM">
-                        <h3>Modification du profil</h3>
-                        <hr>
-                        <form id="modifierMembreFormPM" name="modifierMembreFormPM" action="../../serveur/membres/ficheMembrePM.php" method="POST"  onsubmit="return validerCourrielMembre(this);">
-                            <div class="mb-3">
-                            <label for="courrielMembre"><b>Courriel</b></label><br>
-                            <div id="messageCourrielMembre">Entrez une adresse courriel valide dans le format votrenom@domaine.com</div>
-                            <input type="text" class="form-control" placeholder="Entrez votre adresse courriel" title="Entrez votre adresse courriel" name="courrielM" id="courrielM"/>
-                            </div>
-                            <button type="submit" class="btn btn-warning">Soumettre</button>
-                        </form>
-                    </div>
+                    
 
                 </div>
 
