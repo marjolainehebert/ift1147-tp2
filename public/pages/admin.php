@@ -35,6 +35,7 @@
         <link rel="stylesheet" href="../utilitaires/css/style.css" type="text/css">
         <link rel="stylesheet" href="../css/styles.css" type="text/css">
         <script src="../javascript/fonctions.js"></script>
+        <script src="../javascript/panier.js"></script>
         <!-- Javascript -->
     </head>
 
