@@ -72,17 +72,8 @@
                     $stmtM = $connexion->prepare($requeteM);
                     $stmtM->bind_param("sssss",$prenom,$nom,$sexe,$naissance,$courriel);
                     $stmtM->execute();
-
-                    
-                    echo realpath('./')."<br>";
-                    echo $courriel."<br>";
-                    echo $prenom."<br>";
-                    echo $nom."<br>";
-                    echo $sexe."<br>";
-                    echo $naissance."<br>";
-                    echo $motDePasse."<br>";
-                    // $msg = "<strong>".$prenom."</strong>, votre profil a été modifié.";
-                    // header("Location:../../public/pages/membre.php?msg=$msg");
+                    $msg = "<strong>".$prenom."</strong>, votre profil a été modifié.";
+                    header("Location:../../public/pages/membre.php?msg=$msg");
                 } catch (Exeption $e) {
                     echo "Problème pour modifier. SVP, veuillez réessayer plus tard.";
                 } finally {
