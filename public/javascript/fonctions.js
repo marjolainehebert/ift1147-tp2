@@ -29,7 +29,6 @@ function montrerM(elem){
     cacher('listerLocationsPM');
     cacher ('genererFacturePM');
     cacher('afficherProfilPM');
-    cacher('modifierMembrePM');
 	
     document.getElementById(elem).style.display='block';
 }

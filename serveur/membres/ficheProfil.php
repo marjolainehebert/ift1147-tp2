@@ -42,7 +42,17 @@
                     </div>
                     <div class="text-right col-md-10 col-sm-12">
                         <ul class="nav-right">
-                            <li><a href="../../serveur/membres/deconnexion.php" class="btn btn-warning">Déconnexion</a></li>
+                            <?php
+                                if(!isset($_SESSION['courrielSess'])){
+                                    echo "<li><a href=\"#\" data-toggle=\"modal\" data-target=\"#connexion\">Connexion</a></li>";
+                                    echo "<li><button type=\"button\" class=\"btn btn-warning\" data-toggle=\"modal\" data-target=\"#enregistrer\">Devenir Membre</button></li>";
+                                }else {
+                                    echo "<li><a href=\"javascript:montrerM('afficherProfilPM');\">".$_SESSION['prenomSess']." ".$_SESSION['nomSess']."</a></li>";
+                                    echo "<li><a href=\"\"><i class=\"fa fa-shopping-cart\"></i> <span id=\"nbItems\"></span></a></li>";
+                                    echo "<li><a href=\"javascript:montrerM('afficherProfilPM');\">Profil</a></li>";
+                                    echo "<li><a href=\"../../serveur/membres/deconnexion.php\" class=\"btn btn-warning\">Déconnexion</a></li>";
+                                }
+                            ?>
                         </ul>
                     </div>
                 </div>
@@ -63,7 +73,7 @@
                     $courriel=$_SESSION['courrielSess']; 
                     
                     echo "<div class=\"d-flex justify-content-between align-items-baseline\">
-                        <div><h3 style=\"display:inline-block;\" class=\"mt-2 mb-3\"><a href=\"../../public/pages/membre.php\" class=\"dark-link\">Membre</a> > Modifier le profil de ".$_SESSION['prenomSess']." ".$_SESSION['nomSess']."</h3></div>
+                        <div><h3 style=\"display:inline-block;\" class=\"mt-2 mb-3\"><a href=\"../../public/pages/membre.php\" class=\"dark-link\">Espace membre</a> > Modifier le profil de ".$_SESSION['prenomSess']." ".$_SESSION['nomSess']."</h3></div>
                         <div><a href=\"../../public/pages/membre.php\" class=\"btn-sm btn-warning\">Revenir en arrière</a></div>
                     </div>";
 

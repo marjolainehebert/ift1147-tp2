@@ -78,31 +78,7 @@ h5.modal-title {
     font-weight:bold;
     font-size: 1.125rem;
 }
-p.genre{
-    margin-bottom:0.25rem;
-}
-.small{
-    line-height:1rem;
-}
 
-a {
-    color:#FFC107;
-}
-
-a.dark-link {
-    color: #FFC107;
-}
-a.dark-link:hover {
-    color:black;
-}
-
-.bold {
-    font-weight:bold;
-}
-.light {
-    font-weight:lighter;
-    color: #939393;
-}
 
 #messagePrenom, #messageNom, #messageCourriel, 
 #messageMdpVide, #messageMdpErrone, 
@@ -143,6 +119,37 @@ h1{font-size:2.5rem;};
     color:#939393;
     font-size:0.8rem;
 }
+p.genre{
+    margin-bottom:0.25rem;
+}
+.small{
+    line-height:1rem;
+}
+.jaune{
+    color:#FFC107;
+}
+.caps{
+    text-transform: uppercase;;
+} 
+
+a {
+    color:#FFC107;
+}
+
+a.dark-link {
+    color: #FFC107;
+}
+a.dark-link:hover {
+    color:black;
+}
+
+.bold {
+    font-weight:bold;
+}
+.light {
+    font-weight:lighter;
+    color: #939393;
+}
 
 
 /**** Page Admin ****/
@@ -175,8 +182,8 @@ h1{font-size:2.5rem;};
 /*Toast*/
 .posToast{
 	position:absolute;
-	top:20%;
-	left:40%;
+	top:200px;
+	right:5%;
     z-index: 100000;
 }
 

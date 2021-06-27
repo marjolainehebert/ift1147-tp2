@@ -65,8 +65,17 @@
                     </div>
                     <div class="text-right col-md-10 col-sm-12">
                         <ul class="nav-right">
-                            <li><a href="#" data-toggle="modal" data-target="#connexion">Connexion</a></li>
-                            <li><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#enregistrer">Devenir Membre</button></li>
+                            <?php
+                                if(!isset($_SESSION['courrielSess'])){
+                                    echo "<li><a href=\"#\" data-toggle=\"modal\" data-target=\"#connexion\">Connexion</a></li>";
+                                    echo "<li><button type=\"button\" class=\"btn btn-warning\" data-toggle=\"modal\" data-target=\"#enregistrer\">Devenir Membre</button></li>";
+                                }else {
+                                    echo "<li><a href=\"javascript:montrerM('afficherProfilPM');\">".$_SESSION['prenomSess']." ".$_SESSION['nomSess']."</a></li>";
+                                    echo "<li><a href=\"\"><i class=\"fa fa-shopping-cart\"></i> <span id=\"nbItems\"></span></a></li>";
+                                    echo "<li><a href=\"javascript:montrerM('afficherProfilPM');\">Profil</a></li>";
+                                    echo "<li><a href=\"../../serveur/membres/deconnexion.php\" class=\"btn btn-warning\">Déconnexion</a></li>";
+                                }
+                            ?>
                         </ul>
                     </div>
                 </div>
@@ -114,9 +123,6 @@
                 <img src="../images/streamtopia.png" width="24" height="auto" class="rounded me-2" alt="message">
                 <strong class="me-auto">Messages</strong>
                 <small class="text-muted"></small>
-                <button type="button" class="btn-close btn-sm btn-warning" data-bs-dismiss="toast" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
             <div id="textToast" class="toast-body">
                 

@@ -1,16 +1,17 @@
 <?php
-   if (isset($_GET['msg'])){
-	$msg=$_GET['msg'];
-   }
-   else {
-	   $msg="";
-   }
-   if (isset($_GET['liste'])){
-	$liste= $_GET['liste'];
-   }
-   else {
-	   $liste="";
-   }
+    session_start();
+    if (isset($_GET['msg'])){
+	    $msg=$_GET['msg'];
+    }
+    else {
+	       $msg="";
+    }
+    if (isset($_GET['liste'])){
+	    $liste= $_GET['liste'];
+     }
+    else {
+	       $liste="";
+    }
 ?>
 
 <!DOCTYPE php>
@@ -65,8 +66,17 @@
                     </div>
                     <div class="text-right col-md-10 col-sm-12">
                         <ul class="nav-right">
-                            <li><a href="#" data-toggle="modal" data-target="#connexion">Connexion</a></li>
-                            <li><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#enregistrer">Devenir Membre</button></li>
+                            <?php
+                                if(!isset($_SESSION['courrielSess'])){
+                                    echo "<li><a href=\"#\" data-toggle=\"modal\" data-target=\"#connexion\">Connexion</a></li>";
+                                    echo "<li><button type=\"button\" class=\"btn btn-warning\" data-toggle=\"modal\" data-target=\"#enregistrer\">Devenir Membre</button></li>";
+                                }else {
+                                    echo "<li><a href=\"javascript:montrerM('afficherProfilPM');\">".$_SESSION['prenomSess']." ".$_SESSION['nomSess']."</a></li>";
+                                    echo "<li><a href=\"\"><i class=\"fa fa-shopping-cart\"></i> <span id=\"nbItems\"></span></a></li>";
+                                    echo "<li><a href=\"javascript:montrerM('afficherProfilPM');\">Profil</a></li>";
+                                    echo "<li><a href=\"serveur/membres/deconnexion.php\" class=\"btn btn-warning\">Déconnexion</a></li>";
+                                }
+                            ?>
                         </ul>
                     </div>
                 </div>
@@ -83,13 +93,14 @@
                 <div class="container">
                     <div class="row justify-content-around align-middle">
                         <div class="align-middle col-8">
+                            <h4 class="jaune bold caps pb-4">En vedette</h4>
                             <span>
                                 Science-Fiction, Action, Aventure, Thriller<br>
                                 <i class="fa fa-clock-o" aria-hidden="true"></i> 1h 49m
                             </span>
                             <h1 class="text-light">Chaos Walking</h1>
                             <p class="text-light">Dans un futur proche, les femmes ont disparu. Le monde de Todd Hewitt n’est habité que par des hommes, tous soumis au Bruit, une mystérieuse force qui révèle leurs pensées et permet à chacun de connaître celles des autres. Lorsqu’une jeune femme, Viola, atterrit en catastrophe sur cette planète, elle s’y retrouve en grand danger… </p>
-                            <button href="#" class=" btn btn-warning primary-btn">Louer maintenant</button>
+                            
                         </div>
                     </div>
                 </div>
@@ -141,9 +152,13 @@
                                                         $(\'#bandeAnnonceModal\').modal(\'show\');">
                                                     Bande Annonce
                                                 </button>';
-                        $rep.='            </div>';
+                        $rep.='             </div>';
 
-                        $rep.='            <div class="block flex-wrap"><button class="btn btn-warning"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Ajouter</button></div>';
+                        $rep.='             <div class="block flex-wrap">
+                                                <button class="btn btn-warning">
+                                                    <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Ajouter
+                                                </button>
+                                            </div>';
                         $rep.='        </div>';
                         $rep.='    </div>';
                         $rep.='</div>';
