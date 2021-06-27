@@ -76,11 +76,13 @@ function validerFormEnregFilms(){
 	var langueFilm=document.getElementById('langueFilm').value;
 	var dateFilm=document.getElementById('dateFilm').value;
 	var urlFilm=document.getElementById('urlPreview').value;
+    var prixFilm=document.getElementById('prix').value;
     // var regexUrl=new RegExp('^(?!mailto:)(?:(?:http|https|ftp)://)(?:\\S+(?::\\S*)?@)?(?:(?:(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[0-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)(?:\\.(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)*(?:\\.(?:[a-z\\u00a1-\\uffff]{2,})))|localhost)(?::\\d{2,5})?(?:(/|\\?|#)[^\\s]*)?$');
 
     var regexDuree=new RegExp("^[0-9]{1,3}$");
     var regexDate=new RegExp("(?:(?:18|19|20|21)[0-9]{2})");
     var regexUrl=new RegExp('(?:https?:\/\/)?(?:www\.)?youtu(?:\.be\/|be.com\/\S*(?:watch|embed)(?:(?:(?=\/[^&\s\?]+(?!\S))\/)|(?:\S*v=|v\/)))([^&\s\?]+)');
+    var regexPrix=new RegExp("[0-9]{1,2}+(\.[0-9][0-9])?$/");
 
     // aller chercher les éléments et les mettre dans des variables
     var mesTitre = document.getElementById("messageTitre"); 
@@ -90,6 +92,7 @@ function validerFormEnregFilms(){
     var mesLang = document.getElementById("messageLangue"); 
     var mesDate = document.getElementById("messageDate"); 
     var mesUrl = document.getElementById("messageUrl"); 
+    var mesPrix = document.getElementById("messagePrix"); 
 
     // lors de la validation cacher les messages d'erreur
     mesTitre.style.display = "none";
@@ -99,6 +102,7 @@ function validerFormEnregFilms(){
     mesLang.style.display = "none";
     mesDate.style.display = "none";
     mesUrl.style.display = "none";
+    mesPrix.style.display = "none";
 
     if (titreFilm == '') { // vérifier que le titre ne soit pas vide
         mesTitre.style.display = "block"; // montrer le message d'erreur
@@ -133,6 +137,12 @@ function validerFormEnregFilms(){
     if (urlFilm == '' || !regexUrl.test(urlFilm)) { // vérifier que le titre ne soit pas vide
         mesUrl.style.display = "block"; // montrer le message d'erreur
         return false; // retourne false
+    } 
+
+
+    if(prixFilm == '' || !regexPrix.test(prixFilm)){
+        mesPrix.style.display = "block"; // montrer le message d'erreur
+	    return false;
     } 
 }
 
@@ -218,11 +228,9 @@ function validerFormEnreg(formulaire) {
 function validerProfil(formulaire) {
     let prenom = formulaire.prenom.value; // mettre le prénom entré dans une variable
     let nom = formulaire.nom.value; // mettre le nom entré dans une variable
-    let courriel = formulaire.courrielM.value; // mettre le courriel entré dans une variable
     let motDePasse = formulaire.motDePasse.value; // mettre le mot de passe entré dans une variable
     let repeterMDP = formulaire.repeterMDP.value; // mettre la confirmation du mot de passe entré dans une variable
     let naissance = formulaire.naissance.value; // mettre la confirmation du mot de passe entré dans une variable
-    let sexe = formulaire.sexe.value; // mettre la confirmation du mot de passe entré dans une variable
     let validationMDP; // pour la validation du mot de passe
 
     var mesPrenom = document.getElementById("messagePrenomPM"); // aller chercher l'élément messagePrenom
@@ -433,5 +441,6 @@ let initialiser = (message) =>{
         toastList[0].show();
     }
 }
+
 
 

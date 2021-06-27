@@ -128,6 +128,7 @@
                 try {
                     $listeFilms=mysqli_query($connexion,$requeteLister);
                     while($ligne=mysqli_fetch_object($listeFilms)){
+
                         $rep.='<div class="col-lg-3 mb-5">';
                         $rep.='    <div class="card">';
                         $rep.='        <img class="card-img-top" src="public/images/pochettes/'.($ligne->pochette).'" alt="'.($ligne->titre).'">';
@@ -136,6 +137,9 @@
                         $rep.='            <h5 class="card-title"><strong>'.($ligne->titre).'</strong> ('.($ligne->annee).')</h5>';
                         $rep.='            <p class="card-text">';
                         $rep.=                 ($ligne->categorie);
+                        $rep.='            </p>';
+                        $rep.='            <p class="prix">';
+                        $rep.=                 ($ligne->prix).' $';
                         $rep.='            </p>';
                         $rep.='            <p class="card-text">';
                         $rep.='                 <i class="fa fa-id-card-o" aria-hidden="true"></i> '.($ligne->realisateur).'<br>';
@@ -146,7 +150,7 @@
                         $rep.='                 <button class="btn btn-outline-warning"
                                                     data-src="'.($ligne->urlPreview).'" 
                                                     data-title="'.($ligne->titre).'" 
-                                                    onclick="
+                                                    onClick="
                                                         $(\'#lienDuFilm\').attr(\'src\', $(this).data(\'src\')); 
                                                         $(\'#titreDuFilm\').text($(this).data(\'title\')); 
                                                         $(\'#bandeAnnonceModal\').modal(\'show\');">
@@ -155,7 +159,9 @@
                         $rep.='             </div>';
 
                         $rep.='             <div class="block flex-wrap">
-                                                <button class="btn btn-warning">
+                                                <button class="btn btn-warning" 
+                                                onClick="
+                                                    ajouterPanier('.($ligne->id).')">
                                                     <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Ajouter
                                                 </button>
                                             </div>';

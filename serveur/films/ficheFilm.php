@@ -121,16 +121,22 @@
                     $rep.= "<div id=\"messageDate\">Entrez l'année de la sortie du film</div>\n";
                     $rep.= "<input type=\"text\" class=\"form-control\" id=\"dateFilm\" name=\"dateFilm\" value='".$ligne->annee."'>\n";
                     $rep.= "</div>\n";
-
                     $rep.= "<div class=\"mb-3\">\n";
                     $rep.= "<label for=\"pochette\" class=\"form-label\">Pochette: </label>\n";
                     $rep.= "<input type=\"file\" id=\"pochette\" name=\"pochette\"\n";
                     $rep.= "</div>\n";
 
-                    $rep.= "<div class=\"mb-3 pb-5\">\n";
+                    $rep.= "<div class=\"row mb-3\">\n";
+                    $rep.= "<div class=\"mb-3 pb-5 col-sm\">\n";
                     $rep.= "<label for=\"urlPreview\" class=\"form-label\">URL de l'extrait</label>\n";
                     $rep.= "<div id=\"messageUrl\">Entrez un URL valide débutant par http:// ou https://</div>\n";
                     $rep.= "<input type=\"text\" class=\"form-control\" id=\"urlPreview\" name=\"urlPreview\" value='".$ligne->urlPreview."'>\n";
+                    $rep.= "</div>\n";
+                    $rep.= "<div class=\"mb-3 pb-5 col-sm\">\n";
+                    $rep.= "<label for=\"prix\" class=\"form-label\">Prix en dollars canadiens</label>\n";
+                    $rep.= "<div id=\"messagePrix\">entrez un nombre avec 2 décimales</div>\n";
+                    $rep.= "<input type=\"text\" class=\"form-control\" id=\"prix\" name=\"prix\" value='".$ligne->prix."'>\n";
+                    $rep.= "</div>\n";
                     $rep.= "</div>\n";
 
                     $rep.= "<button type=\"submit\" class=\"btn btn-warning\">Soumettre</button>\n";

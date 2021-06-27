@@ -84,7 +84,7 @@ h5.modal-title {
 #messageMdpVide, #messageMdpErrone, 
 #messageConfMdpVide, #messageConfMdpErrone, #messageNaissance, 
 #messageCourrielMembre, #messageMdpMembreVide, #messageMdpMembreErrone, 
-#messageTitre, #messageRealis, #messageCateg, #messageDuree, #messageLangue, #messageDate, 
+#messageTitre, #messageRealis, #messageCateg, #messageDuree, #messageLangue, #messageDate, #messagePrix, 
 #messageUrl, #messageSupprimer, #messageModifier, #messageCourrielM, #messageStatut, #messagePrenomPM, #messageNomPM, #messageCourrielPM, #messageMdpVidePM, #messageMdpErronePM, #messageConfMdpVidePM, #messageConfMdpErronePM, #messageNaissancePM 
 {
     width:100% !important;
@@ -131,6 +131,12 @@ p.genre{
 .caps{
     text-transform: uppercase;;
 } 
+
+.prix{
+    font-size: 1.25rem;
+    font-weight:900;
+    color:#000;
+}
 
 a {
     color:#FFC107;

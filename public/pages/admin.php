@@ -242,10 +242,18 @@
                                 <input type="file" class="form-control" id="pochette" name="pochette">
                             </div>
 
-                            <div class="mb-3">
-                                <label for="urlPreview" class="form-label">URL de la bande annonce</label>
-                                <div id="messageUrl">SVP entrez un URL provenant de Youtube</div>
-                                <input type="text" class="form-control" id="urlPreview" name="urlPreview">
+                            <div class="row mb-3">
+                                <div class="col-sm">
+                                    <label for="urlPreview" class="form-label">URL de la bande annonce</label>
+                                    <div id="messageUrl">SVP entrez un URL provenant de Youtube</div>
+                                    <input type="text" class="form-control" id="urlPreview" name="urlPreview">
+                                </div>
+
+                                <div class="col-sm">
+                                    <label for="prix" class="form-label">Prix en dollars (CAD) </label>
+                                    <div id="messagePrix">SVP entrez un montant contenant un point et 2 décimales.</div>
+                                    <input type="text" class="form-control" id="prix" name="prix">
+                                </div>
                             </div>
 
                             <button type="submit" class="btn btn-warning">Soumettre</button>
