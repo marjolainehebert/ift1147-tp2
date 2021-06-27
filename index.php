@@ -292,9 +292,6 @@
                             <img src="../../public/images/streamtopia.png" width="24" height="auto" class="rounded me-2" alt="message">
                             <strong class="me-auto">Messages</strong>
                             <small class="text-muted"></small>
-                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
                         </div>
                         <div id="textToast" class="toast-body">
                         </div>

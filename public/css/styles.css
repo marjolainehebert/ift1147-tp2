@@ -126,7 +126,7 @@ a.dark-link:hover {
     }
 }
 
-h1{font-size:3.5rem;};
+h1{font-size:2.5rem;};
 .red {
     color: #FF4E50;
 }
@@ -157,10 +157,9 @@ h1{font-size:3.5rem;};
 }
 
 /* Contenu */
-#enregFilm, #modifierFilm, #supprimerFilm, #modifierMembre, #modifierMembrePM, #listerFilms{
+#enregFilm, #modifierFilm, #supprimerFilm, #modifierMembre, #listerLocationsPM, #genererFacturePM, #afficherProfilPM, #modifierMembrePM, #listerFilms, #accesRefuse{
     display:none;
 }
-
 
 .img-lister{width:auto; max-height:72px;}
 
@@ -196,7 +195,9 @@ h1{font-size:3.5rem;};
 .btn-sm{
     text-transform: uppercase;
     font-weight:700;
-    border-style: solid;
+    border-style: none;
+    padding-left:15px;
+    padding-right:15px;
     background-color: #ffffff;
 }
 

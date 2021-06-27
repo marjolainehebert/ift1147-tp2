@@ -1,56 +1,66 @@
 <?php
-    define("CONNEXION","donnees/connexion.txt"); 
+    session_start();
+    require_once("../bdconfig/connexion.inc.php");
+    
+    $courrielMembre=$_POST['courrielMembre'];
+    $motDePasseMembre=$_POST['motDePasseMembre'];
+    
+    try{
+        $requete="SELECT * FROM connexion WHERE courriel=? AND motDePasse=?";
+        $stmt = $connexion->prepare($requete);
+        $stmt->bind_param("ss", $courrielMembre,$motDePasseMembre);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-    // vérification si on peut ouvrir le fichier
-    if(!$connex=fopen(CONNEXION,"r")) { 
-        echo "Problème pour ouvrir le fichier connexion.txt"; 
-        exit; 
-    }
-    
-    $courriel=$_POST['courrielMembre'];
-    $motDePasse=$_POST['motDePasseMembre'];
-    
-    $ligne=fgets($connex);
-    $trouverCourriel=false;
-    
-    // tant que ce n'est pas la fin du fichier et que le courriel n'est pas trouvé, recherche du courriel
-    while (!feof($connex) && !$trouverCourriel) {
-        $tab=explode(";",$ligne);
-        if ($tab[0] === $courriel) {
-            $leRole=$tab[3];
-            $trouverCourriel=true;
-        }
+        $requeteMembre="SELECT * FROM membres WHERE courriel=?";
+        $stmtMembre = $connexion->prepare($requeteMembre);
+        $stmtMembre->bind_param("s", $courrielMembre);
+        $stmtMembre->execute();
+        $resultMembre = $stmtMembre->get_result();
+        $ligneMembre = $resultMembre->fetch_object();
+        
+        if(!$ligne = $result->fetch_object()){ //si le courriel et le mot de passe ne se retrouve pas dans la BD
+            mysqli_close($connexion);
+            $msg = "Le courriel ou le mot de passe est erroné, veuillez réessayer.";
+            header("Location:../../public/pages/seConnecter.php?msg=$msg");
+        } 
         else {
-            $ligne=fgets($connex);
-        }
-    }
-
-    fclose($connex);
-    
-    if($trouverCourriel){ // si on trouve le courriel
-        if ($motDePasse === $tab[1]) { //vérifier que le mot de passe est le même
+            mysqli_close($connexion);
+            //ajouter les variables aux données de session
+            $_SESSION['courrielSess']=$courrielMembre;
+            $_SESSION['prenomSess']=$ligneMembre->prenom;
+            $_SESSION['nomSess']=$ligneMembre->nom;
+            $_SESSION['sexeSess']=$ligneMembre->sexe;
+            $_SESSION['naissanceSess']=$ligneMembre->naissance;
+            $_SESSION['roleSess']=$ligne->role;
+            $leRole=($ligne->role);
             switch ($leRole) {
                 case 'A': // si le role est admin, envoyer vers la page admin
-                    header("Location: ../public/pages/admin.php");
+                    header("Location: ../../public/pages/admin.php");
                     break;
                 case 'E': // si le role est employé, envoyer vers la page employé
-                    header("Location: ../public/pages/employe.php");
+                    header("Location: ../../public/pages/admin.php");
                     break;
                 case 'M': // si le role est membre, envoyer vers la page membre
-                    header("Location: ../public/pages/membre.php");
+                    header("Location: ../../public/pages/membre.php");
                     break;
                 default: // pour tous les autres cas, faire un message d'erreur
-                    echo "ERREUR: Le rôle n'est pas défini";
+                    echo "<";
+                    $msg = '<div class="alert alert-danger" role="alert">
+                        ERREUR: Le rôle n\'est pas défini. Veuillez réessayer.
+                    </div>';
+                    header("Location:../../public/pages/seConnecter.php?msg=$msg");
+                    break;
             }
-        } else { // sinon envoyer à la page d"erreur de connexion
-            header("Location: ../public/pages/errConnexion.php");
-            exit;
         }
-        
+    }catch (Exception $e){
+        $msg='<h5>Erreur</h5>';
+        $msg.='<p>Rpoblème de connexion. Veuillez réessayer plus tard.</p>';
+        header("Location:../../public/pages/index.php?msg=$msg");
+    }finally {
+        mysqli_close($connexion);
     }
-    else { // sinon envoyer vers la page de courriel non trouvé
-        header("Location: ../public/pages/nonTrouve.php");
-        exit;
-    }
+
+
     
 ?>

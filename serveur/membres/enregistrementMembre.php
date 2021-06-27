@@ -14,6 +14,7 @@
     <div class="row">
         <div class="col-sm-12">
             <?php
+                session_start();
                 require_once("../bdconfig/connexion.inc.php");
                 // attribuer des valeurs aux variables
                 $prenom=$_POST['prenom']; 
@@ -36,7 +37,8 @@
                     while($ligneMembre=mysqli_fetch_object($listeMembres)){
                         if ($ligneMembre->courriel == $courriel) {// Vérifier si le courriel se retrouve déjà dans la base de donnée
                             mysqli_close($connexion);
-                            header("Location:../../public/pages/dejaEnregistre.php");
+                            $msg = "Le courriel ".$courriel.", est déjà utilisé. Veuillez vous connecter.";
+                            header("Location:../../index.php?msg=$msg");
                             exit;
                         }
                     }
@@ -52,11 +54,14 @@
                     $statConnex->execute();
 
                     mysqli_close($connexion);
-                    header("Location: ../../public/pages/enregistrementSucces.php");
+                    $_SESSION['courrielSess']=$courriel;
+                    $msg = "Bienvenue ".$prenom.", vous avèz bien été enregistré.";
+                    header("Location:../../public/pages/membre.php?msg=$msg");
                     
                 } catch (Exeption $e) {
                     $msg = "Problème pour s'enregistrer. Veuillez réessayer plus tard.";
                     header("Location:../../index.php?msg=$msg");
+                    mysqli_close($connexion);
                 } finally {
                     $rep.="</table>";
                     echo $rep;

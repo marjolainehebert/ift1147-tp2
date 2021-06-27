@@ -1,6 +1,30 @@
+<?php
+   if (isset($_GET['msg'])){
+	$msg=$_GET['msg'];
+   }
+   else {
+	   $msg="";
+   }
+   if (isset($_GET['liste'])){
+	$liste= $_GET['liste'];
+   }
+   else {
+	   $liste="";
+   }
+?>
 
+<!DOCTYPE php>
+<html lang="fr">
 
-<!-- Google Font -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Fashi Template">
+    <meta name="keywords" content="Fashi, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>StreamTopia</title>
+
+    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
@@ -17,7 +41,10 @@
     <script src="../javascript/fonctions.js"></script>
     <!-- Javascript -->
 
-<!-- Page Preloder -->
+</head>
+
+<body onLoad="initialiser(<?php echo "'".$msg."'" ?>);">
+    <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
     </div>
@@ -36,36 +63,66 @@
                             </a>
                         </div>
                     </div>
+                    <div class="text-right col-md-10 col-sm-12">
+                        <ul class="nav-right">
+                            <li><a href="#" data-toggle="modal" data-target="#connexion">Connexion</a></li>
+                            <li><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#enregistrer">Devenir Membre</button></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
         
     </header>
     <!-- Header End -->
-
     
 
-    <!-- Banner Section Begin -->
-    <div class="banner-section spad">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-12">
-                    <?php
-                        echo "<h2 class=\"text-center red\">Erreur !</h2>
-                        <h3 class=\"text-center\">Le mot de passe n'est pas bon</h3>
-                        <p class=\"text-center  mt-3\">Veuillez réessayer à partir de la page d'accueil. <br><a href=\"../../index.php\" class=\"btn btn-warning mt-2\">Retour à la page d'accueil</a></p>";
-                    ?>
-                </div>
+    <!-- Contenus-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 pb-4 text-center">
+                <h1 class="mt-5 mb-5">Se connecter</h1>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-5 col-sm-12">
+                <form class="formulaires" id="connexionFromMembre" name="connexionFrom" action="../../serveur/membres/connexionMembre.php" method="POST" onsubmit="return validerConnexion(this);">
+                    <label for="courrielMembre"><b>Courriel</b></label><br>
+                    <div id="messageCourrielMembre">Entrez une adresse courriel valide dans le format votrenom@domaine.com</div>
+                    <input type="text" placeholder="Entrez votre adresse courriel" name="courrielMembre" id="courrielMembre" />
+        
+                    <label for="motDePasseMembre"><b>Mot de passe</b></label><br>
+                    <div id="messageMdpMembreVide">Entrez un mot de passe</div>
+                    <div id="messageMdpMembreErrone">Le mot de passe doit contenir entre 8 et 10 caractères. Les caractères acceptés sont les lettres minuscules et majuscules, les chiffres, les tirets et les caractères de soulignement.</div>
+                    <input type="password" placeholder="Entrez le mot de passe" name="motDePasseMembre" id="motDePasseMembre">
+                    
+                    <div class="modal-footer px-0">
+                        <a href="../../index.php" class="btn btn-light">Annuler</a>
+                        <button type="submit" class="btn btn-warning">Se connecter</button>
+                    </div>
+                </form>
+            </div>  
+        </div>
+    </div>
+    
+    <!-- Contenus End -->
+
+    <!-- Toast -->
+    <div class="toast-container" aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
+        <div id="toastAcc" class="toast posToast" data-delay="3000" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="../images/streamtopia.png" width="24" height="auto" class="rounded me-2" alt="message">
+                <strong class="me-auto">Messages</strong>
+                <small class="text-muted"></small>
+                <button type="button" class="btn-close btn-sm btn-warning" data-bs-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="textToast" class="toast-body">
+                
             </div>
         </div>
     </div>
-    <!-- Banner Section End -->
-
-    
-    
-
-    
-    
 
 
 
@@ -85,7 +142,7 @@
                         <ul>
                             <li>1234 rue Nom de la rue, Montréal, Qc H1H 1H1</li>
                             <li>Téléphone: 1 (800) 555-1234</li>
-                            <li>Courriel: hello.colorlib@gmail.com</li>
+                            <li>Courriel: support@StreamTopia.com</li>
                         </ul>
                     </div>
                 </div>
@@ -138,3 +195,6 @@
     <script src="../utilitaires/js/jquery.slicknav.js"></script>
     <script src="../utilitaires/js/owl.carousel.min.js"></script>
     <script src="../utilitaires/js/main.js"></script>
+</body>
+
+</html>
