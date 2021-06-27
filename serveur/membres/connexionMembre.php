@@ -11,6 +11,13 @@
         $stmt->bind_param("ss", $courrielMembre,$motDePasseMembre);
         $stmt->execute();
         $result = $stmt->get_result();
+
+        $requeteMembre="SELECT * FROM membres WHERE courriel=?";
+        $stmtMembre = $connexion->prepare($requeteMembre);
+        $stmtMembre->bind_param("s", $courrielMembre);
+        $stmtMembre->execute();
+        $resultMembre = $stmtMembre->get_result();
+        $ligneMembre = $resultMembre->fetch_object();
         
         if(!$ligne = $result->fetch_object()){ //si le courriel et le mot de passe ne se retrouve pas dans la BD
             mysqli_close($connexion);
@@ -21,8 +28,12 @@
             mysqli_close($connexion);
             //ajouter les variables aux données de session
             $_SESSION['courrielSess']=$courrielMembre;
+            $_SESSION['prenomSess']=$ligneMembre->prenom;
+            $_SESSION['nomSess']=$ligneMembre->nom;
+            $_SESSION['sexeSess']=$ligneMembre->sexe;
+            $_SESSION['naissanceSess']=$ligneMembre->naissance;
+            $_SESSION['roleSess']=$ligne->role;
             $leRole=($ligne->role);
-            echo $leRole;
             switch ($leRole) {
                 case 'A': // si le role est admin, envoyer vers la page admin
                     header("Location: ../../public/pages/admin.php");

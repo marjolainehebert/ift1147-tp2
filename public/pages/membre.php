@@ -5,18 +5,19 @@
         header("Location:../../public/pages/seConnecter.php");
     }
 
-   if (isset($_GET['msg'])){
-	$msg=$_GET['msg'];
-   }
-   else {
+    if (isset($_GET['msg'])){
+	    $msg=$_GET['msg'];
+    }
+    else {
 	   $msg="";
-   }
-   if (isset($_GET['liste'])){
+    }
+    if (isset($_GET['liste'])){
 	$liste= $_GET['liste'];
-   }
-   else {
+    }
+    else {
 	   $liste="";
-   }
+    }
+
 ?>
 
 <html>
@@ -61,9 +62,10 @@
                     </div>
                     <div class="text-right col-md-10 col-sm-12">
                         <ul class="nav-right">
-                            <li><a href="">Prénom Nom</a></li>
-                            <li><a href="">Modifier profil</a></li>
-                            <li><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#enregistrer">Déconnexion</button></li>
+                            <li><a href=""><?php echo $_SESSION['prenomSess'].' '.$_SESSION['nomSess'];?></a></li>
+                            <li><a href="javascript:montrer('afficherProfilPM');">Profil</a></li>
+                            <li><a href=""><i class="fa fa-shopping-cart"></i> <span id="nbItems"></span></a></li>
+                            <li><a href="../../serveur/membres/deconnexion.php">Déconnexion</a></li>
                         </ul>
                     </div>
                 </div>
@@ -78,20 +80,61 @@
             <div class="row">
                 <div class="col-12 col-md-3 col-xl-2 ">
 
-                    <h5><strong>Gestion membres</strong></h5>
+                    <h5><strong>Gestion locations</strong></h5>
                     <div class="block flex-wrap mt-3 mb-5">
-                        <button class="btn btn-outline-warning mb-3" onclick="envoyerListerMembres()">Lister</button>
-                        <button class="btn btn-outline-info mb-3" onclick="montrer('modifierMembrePM');">Modifier</button>
+                        <button class="btn btn-outline-success mb-3" onclick="montrer('listerLocationsPM');">Vos locations</button>
+                        <button class="btn btn-outline-warning mb-3" onclick="montrer('genererFacturePM')">Facture</button>
+                    </div>
+
+                    <h5><strong>Votre profil</strong></h5>
+                    <div class="block flex-wrap mt-3 mb-5">
+                        <button class="btn btn-outline-info mb-3" onclick="montrer('afficherProfilPM');">Afficher</button>
+                        <button class="btn btn-outline-success mb-3" onclick="montrer('modifierMembrePM');">Modifier</button>
                     </div>
                 </div>
 
                 
 
                 <div class="col-12 col-md-9 col-xl-10 bgcolor pt-2 pb-2">
-                    <h1 class="text-center mb-4">Bienvenue à la page membre</h1>
+                    <h2 class="text-center"><?php echo $_SESSION['prenomSess'];?></h2>
+                    <h3 class="text-center mb-5 pb-4">bienvenue dans votre espace membre</h3>
+
+                    <!-- -- Lister Locations -- -->
+                    <div class="" id="listerLocationsPM">
+                        <h4>Vos locations</h4>
+                        <hr>
+                        Liste locations
+                    </div>
+
+                    <!-- -- Lister Locations -- -->
+                    <div class="" id="afficherProfilPM">
+                        <h4>Votre profil</h4>
+                        <?php
+                            $profil='<table class="table table-striped">';
+                            $profil.='<tr><th>Prénom</th><th>Nom</th><th>Courriel</th><th>Sexe</th><th>Naissance</th></tr>';
+                            $profil.='<tr>';
+                            $profil.='<td>'.$_SESSION['prenomSess'].'</td>';
+                            $profil.='<td>'.$_SESSION['nomSess'].'</td>';
+                            $profil.='<td>'.$_SESSION['courrielSess'].'</td>';
+                            $profil.='<td>'.$_SESSION['sexeSess'].'</td>';
+                            $profil.='<td>'.$_SESSION['naissanceSess'].'</td>';
+                            $profil.='</tr>';
+                            $profil.='</table>';
+
+                            echo $profil;
+                        ?>
+                    </div>
+
+
+
+                    <!-- -- Lister Locations -- -->
+                    <div class="" id="genererFacturePM">
+                        <h4>Générer la facture</h4>
+                    </div>
+
                     <!-- -- Modifier membre -- -->
                     <div class="" id="modifierMembrePM">
-                        <h3>Modifier le statut d'un membre</h3>
+                        <h3>Modification du profil</h3>
                         <hr>
                         <form id="modifierMembreFormPM" name="modifierMembreFormPM" action="../../serveur/membres/ficheMembrePM.php" method="POST"  onsubmit="return validerCourrielMembre(this);">
                             <div class="mb-3">
@@ -116,9 +159,6 @@
                             <img src="../../public/images/streamtopia.png" width="24" height="auto" class="rounded me-2" alt="message">
                             <strong class="me-auto">Messages</strong>
                             <small class="text-muted"></small>
-                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
                         </div>
                         <div id="textToast" class="toast-body">
                         </div>

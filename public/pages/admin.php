@@ -60,8 +60,7 @@
                     </div>
                     <div class="text-right col-md-10 col-sm-12">
                         <ul class="nav-right">
-                            <li><a href="#" data-toggle="modal" data-target="#connexion">Connexion</a></li>
-                            <li><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#enregistrer">Devenir Membre</button></li>
+                            <li><a href="../../serveur/membres/deconnexion.php" class="btn btn-warning">Déconnexion</a></li>
                         </ul>
                     </div>
                 </div>
@@ -81,20 +80,30 @@
                         <button class="btn btn-outline-success mb-3" onclick="montrer('enregFilm');">Enregistrer</button>
                         <button class="btn btn-outline-warning mb-3" onclick="montrer('listerFilms')">Lister</button>
                         <button class="btn btn-outline-info mb-3" onclick="montrer('modifierFilm');">Modifier</button>
-                        <button class="btn btn-outline-danger mb-3" onclick="montrer('supprimerFilm');">Supprimer</button>
+                        <?php
+                            if ($_SESSION['roleSess']=='A'){
+                                echo '<button class="btn btn-outline-danger mb-3" onclick="montrer(\'supprimerFilm\');">Supprimer</button>';
+                            } else {
+                                echo '<button class="btn btn-light mb-3" onclick="montrer(\'accesRefuse\');">Supprimer</button>';
+                            }
+                            
+                        ?>
+                        
                     </div>
 
                     <h5><strong>Gestion membres</strong></h5>
                     <div class="block flex-wrap mt-3 mb-5">
                         <button class="btn btn-outline-warning mb-3" onclick="envoyerListerMembres()">Lister</button>
                         <button class="btn btn-outline-info mb-3" onclick="montrer('modifierMembre');">Modifier</button>
+                        
                     </div>
                 </div>
 
                 
 
                 <div class="col-12 col-md-9 col-xl-10 bgcolor pt-2 pb-2">
-                    <h1 class="text-center mb-4">Bienvenue à la page d'admin</h1>
+                    <h2 class="text-center"><?php echo $_SESSION['prenomSess'];?></h2>
+                    <h3 class="text-center mb-5 pb-4">bienvenue dans l'espace administrateur</h3>
 
                     <div class="" id="enregFilm">
                         <h3 class="mb-2">Enregistrer un film</h3>
@@ -308,6 +317,15 @@
                         </form>
                     </div>
 
+                    <!-- -- Modifier films -- -->
+                    <div class="" id="accesRefuse">
+                        <h3>Supprimer un film</h3>
+                        <hr>
+                        <div class="alert alert-danger" role="alert">
+                            <strong>REFUSÉ</strong>: Vous devez être administrateur pour supprimer un film.
+                        </div>
+                    </div>
+
                     <!-- -- Lister Membres -- -->
                     <div class="" id="listerMembres">
                         <form id="formListerMembres" action="../../serveur/membres/listerMembres.php" method="POST">
@@ -341,9 +359,6 @@
                             <img src="../../public/images/streamtopia.png" width="24" height="auto" class="rounded me-2" alt="message">
                             <strong class="me-auto">Messages</strong>
                             <small class="text-muted"></small>
-                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
                         </div>
                         <div id="textToast" class="toast-body">
                         </div>

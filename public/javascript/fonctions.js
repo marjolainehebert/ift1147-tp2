@@ -25,6 +25,14 @@ function cacher(elem){
 	document.getElementById(elem).style.display='none';
 }
 
+// afficher prénom et nom
+function afficherNomMembre(prenomLigne,nomLigne){
+    let prenom = prenomLigne;
+    let nom = nomLigne;
+    alert (prenom + ' ' + nom)
+    
+}
+
 
 
 
@@ -201,7 +209,6 @@ function validerCourriel(courriel) {
 
 function validerStatut(param){
     let statutMembre=document.getElementById(param).value;
-    alert (statutMembre);
     // aller chercher les éléments et les mettre dans des variables
     var mesStatut = document.getElementById("messageStatut"); 
     // lors de la validation cacher les messages d'erreur

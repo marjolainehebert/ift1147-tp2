@@ -75,7 +75,6 @@
                     header("Location:../../public/pages/admin.php?msg=$msg");
                 ?>
             </div>
-            <p><a href='../../public/pages/admin.php' class='btn btn-outline-warning mb-2 ms-5'>Retour à la page Admin</a></p>
 
         </div>
     </div>

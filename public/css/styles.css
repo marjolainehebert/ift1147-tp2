@@ -157,10 +157,9 @@ h1{font-size:2.5rem;};
 }
 
 /* Contenu */
-#enregFilm, #modifierFilm, #supprimerFilm, #modifierMembre, #modifierMembrePM, #listerFilms{
+#enregFilm, #modifierFilm, #supprimerFilm, #modifierMembre, #listerLocationsPM, #genererFacturePM, #afficherProfilPM, #modifierMembrePM, #listerFilms, #accesRefuse{
     display:none;
 }
-
 
 .img-lister{width:auto; max-height:72px;}
 
