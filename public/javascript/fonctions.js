@@ -10,26 +10,42 @@ function enregistrementModal() {
     $('#enregistrer').modal('show');
 }
 
+
+
 // ------- Fonctions de page Admin ------- //
 // montrer le formulaire
 function montrer(elem){
     cacher('enregFilm');
+    cacher ('listerFilms');
     cacher('modifierFilm');
     cacher('supprimerFilm');
+    cacher ('accesRefuse');
     cacher('modifierMembre');
-	document.getElementById(elem).style.display='block';
+	
+    document.getElementById(elem).style.display='block';
+}
+
+function montrerM(elem){
+    cacher('listerLocationsPM');
+    cacher ('genererFacturePM');
+    cacher('afficherProfilPM');
+    cacher('modifierMembrePM');
+	
+    document.getElementById(elem).style.display='block';
 }
 
 // cacher le formulaire
 function cacher(elem){
-	document.getElementById(elem).style.display='none';
+    if (document.getElementById(elem).style.display='block'){
+        document.getElementById(elem).style.display='none';
+    }
+	
 }
 
 // afficher prénom et nom
 function afficherNomMembre(prenomLigne,nomLigne){
     let prenom = prenomLigne;
     let nom = nomLigne;
-    alert (prenom + ' ' + nom)
     
 }
 
@@ -198,6 +214,61 @@ function validerFormEnreg(formulaire) {
     } 
 }
 
+
+// valider le formulaire d'enregistrement de membre
+function validerProfil(formulaire) {
+    let prenom = formulaire.prenom.value; // mettre le prénom entré dans une variable
+    let nom = formulaire.nom.value; // mettre le nom entré dans une variable
+    let courriel = formulaire.courrielM.value; // mettre le courriel entré dans une variable
+    let motDePasse = formulaire.motDePasse.value; // mettre le mot de passe entré dans une variable
+    let repeterMDP = formulaire.repeterMDP.value; // mettre la confirmation du mot de passe entré dans une variable
+    let naissance = formulaire.naissance.value; // mettre la confirmation du mot de passe entré dans une variable
+    let sexe = formulaire.sexe.value; // mettre la confirmation du mot de passe entré dans une variable
+    let validationMDP; // pour la validation du mot de passe
+
+    var mesPrenom = document.getElementById("messagePrenomPM"); // aller chercher l'élément messagePrenom
+    var mesNom = document.getElementById("messageNomPM"); // aller chercher l'élément messageNom
+    var mesMdpErrone = document.getElementById("messageMdpErronePM"); // aller chercher l'élément messageMdpErrone
+    var mesConfMdpVide = document.getElementById("messageConfMdpVidePM"); // aller chercher l'élément messageConfMdpVide
+    var mesConfMdpErrone = document.getElementById("messageConfMdpErronePM"); // aller chercher l'élément messageConfMdpErrone
+    var mesNaissance = document.getElementById("messageNaissancePM"); // aller chercher l'élément messageNaissance
+
+    
+
+    // lors de la validation cacher les messages d'erreur
+    mesPrenom.style.display = "none";
+    mesNom.style.display = "none";
+    mesMdpErrone.style.display = "none";
+    mesConfMdpVide.style.display = "none";
+    mesConfMdpErrone.style.display = "none";
+    mesNaissance.style.display = "none";
+
+    // Vérifier que le champs Prénom ne soit pas vide
+    if (prenom == '') { 
+        mesPrenom.style.display = "block"; // montrer le message d'erreur
+        return false; // retourne false
+    } 
+    
+    // Vérifier que le champs Nom ne soit pas vide
+    if (nom == '') { 
+        mesNom.style.display = "block"; // montrer le message d'erreur
+        return false; // retourne false
+    } 
+    
+    // validation du mot de passe
+    validationMDP = verifierMotsDePassesProfil(motDePasse, repeterMDP); // appeler la fonction 
+        if (validationMDP == false) { // si ça retourne false
+            return false; // retourne false
+        } 
+    
+    
+    // si la date de naissance est vide
+    if (naissance == '') {
+        mesNaissance.style.display = "block"; // montrer le message d'erreur
+        return false; // retourne false
+    } 
+}
+
 // valider que le courriel est bien rempli
 function validerCourriel(courriel) {
     let regexCourriel = /(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@[*[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+]*/;
@@ -232,6 +303,15 @@ function validerMotsDePasses(motDePasse) {
     
 }
 
+function validerMotsDePassesProfil(motDePasse) {
+    let regexMDP =  /^[a-zA-Z0-9_-]{8,10}$/;
+    if (!motDePasse == ""){ 
+        if (!regexMDP.test(motDePasse)) {  // si le mot de passe ne se conforme pas à l'expression régulière
+            return false;  // retourne false
+        } 
+    } 
+}
+
 // valider les mots de passe identiques
 function verifierMotsDePasses(psw, repPsw) {
     let motDePasse = psw; // mettre le paramètre dans la variable
@@ -245,6 +325,29 @@ function verifierMotsDePasses(psw, repPsw) {
         mesMdpErrone.style.display = "block"; // montrer le message d'erreur
         return false; // retourne false
     } else if (repeterMDP == '') { // Si la confirmation du mot de passe est vide
+        mesConfMdpVide.style.display = "block"; // montrer le message d'erreur
+        return false; // retourne false
+    } else if (motDePasse != repeterMDP) { // Si les 2 mots de passes sont différents
+        mesConfMdpErrone.style.display = "block"; // montrer le message d'erreur
+        return false; // retourne false
+    } else { //sinon
+        return true; // retourne true
+    }
+}
+
+// valider les mots de passe identiques
+function verifierMotsDePassesProfil(psw, repPsw) {
+    let motDePasse = psw; // mettre le paramètre dans la variable
+    let repeterMDP = repPsw; // mettre le paramètre dans la variable
+    let validation = validerMotsDePassesProfil(motDePasse); // aller valider le mot de passe
+    let mesMdpErrone = document.getElementById("messageMdpErronePM"); // aller chercher l'élément messageMdpErrone
+    let mesConfMdpVide = document.getElementById("messageConfMdpVidePM"); // aller chercher l'élément messageConfMdpVide
+    let mesConfMdpErrone = document.getElementById("messageConfMdpErronePM"); // aller chercher l'élément messageConfMdpErrone
+        
+    if (validation == false) {
+        mesMdpErrone.style.display = "block"; // montrer le message d'erreur
+        return false; // retourne false
+    } else if (repeterMDP == '' && !motDePasse =='' ) { // Si la confirmation du mot de passe est vide
         mesConfMdpVide.style.display = "block"; // montrer le message d'erreur
         return false; // retourne false
     } else if (motDePasse != repeterMDP) { // Si les 2 mots de passes sont différents
