@@ -1,10 +1,11 @@
 <?php
     session_start();
-   $courriel = $_SESSION['courrielSess'];
+   $courriel = $_POST['courriel'];
    $panier = json_decode($_POST['panier']);
    //echo "Vous avez choisi le film ".$panier[3]->idFilm;
-   $rep="Panier pour le membre :".$courriel."<br>";
+   $rep="Vos locations en cours :".$courriel."<br>";
    $taille = count($panier); //taille du tableau
+   $rep.="<table>";
    for ($i=0; $i < $taille; $i++){
        if($panier[$i] != null){
             $uneLocation = $panier[$i];
@@ -15,6 +16,7 @@
             $rep.="<br>********************************";
        }
    }
+   $rep.="</table>";
    echo $rep;
 ?>
 
