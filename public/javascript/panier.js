@@ -81,7 +81,7 @@ let courriel = $_SESSION['courrielSess'];
 let envoyerPanierServeur = () => {
     $.ajax({
         type:"POST",
-        url:"../../serveur/locations/enregistrerLocations.php",
+        url:"../../serveur/locations/panierMembre.php",
         data:{"courriel": courriel, "panier" : localStorage.getItem("panier")},
         dataType : "text",
         //La réponse du serveur
