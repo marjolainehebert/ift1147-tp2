@@ -41,7 +41,7 @@
         <!-- Javascript -->
     </head>
 
-<body onLoad="initialiser(<?php echo "'".$msg."'" ?>);">
+<body onLoad="initialiser(<?php echo "'".$msg."'" ?>); afficherPanier();">
 <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -90,8 +90,9 @@
 
                     <h5><strong>Gestion locations</strong></h5>
                     <div class="block flex-wrap mt-3 mb-5">
-                        <button class="btn btn-outline-success mb-3" onclick="montrerM('listerLocationsPM');">Vos locations</button>
-                        <button class="btn btn-outline-warning mb-3" onclick="montrerM('genererFacturePM')">Facture</button>
+                        <a class="btn btn-outline-info mb-3" href="../../index.php">Ajouter des films</a>
+                        <button class="btn btn-outline-success mb-3" onclick="afficherPanier()">Panier</button>
+                        <button class="btn btn-outline-warning mb-3" onClick="payer();">Payer</button>
                     </div>
 
                     <h5><strong>Votre profil</strong></h5>
@@ -105,13 +106,24 @@
 
                 <div class="col-12 col-md-9 col-xl-10 bgcolor pt-2 pb-2">
                     <h2 class="text-center"><?php echo $_SESSION['prenomSess'];?></h2>
-                    <h3 class="text-center mb-5 pb-4">bienvenue dans votre espace membre</h3>
+                    <h3 class="text-center mb-5 pb-4">Bienvenue dans votre espace membre</h3>
 
                     <!-- -- Lister Locations -- -->
                     <div id="listerLocationsPM">
-                        <h4>Vos locations</h4>
-                        <hr>
-                        Liste locations
+                        <button onClick="document.querySelector('#divRetirer').style.display='block';">Retirer du panier</button>
+                        <div id="divRetirer" style="display:none">
+                            </br></br>Entrer Id du film : <input type="number" id="idf"></br>
+                            <button onClick="retirerPanier(document.querySelector('#idf').value);">Envoyer</button>
+                        </div>
+                        <br><br>
+                        
+                        <button onClick="payer();">Payer</button>
+                
+                        </br></br>
+                        <span id="votrePanier"></span>
+                        </br></br>
+                        <div id="panierServeur"></div>
+
                     </div>
 
                     <!-- -- Lister Locations -- -->
@@ -138,8 +150,9 @@
 
                     <!-- -- Lister Locations -- -->
                     <div id="genererFacturePM">
-                        <h4>Générer la facture</h4>
+                        <h4>Facture</h4>
                         <hr>
+                        <p>Votre facture est payée. Merci!</p>
                     </div>
 
                     

@@ -174,7 +174,7 @@ a.dark-link:hover {
 }
 
 /* Contenu */
-#enregFilm, #modifierFilm, #supprimerFilm, #modifierMembre, #listerLocationsPM, #genererFacturePM, #afficherProfilPM, #modifierMembrePM, #listerFilms, #accesRefuse{
+#enregFilm, #modifierFilm, #supprimerFilm, #modifierMembre, #genererFacturePM, #afficherProfilPM, #modifierMembrePM, #listerFilms, #accesRefuse{
     display:none;
 }
 

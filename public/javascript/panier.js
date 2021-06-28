@@ -4,9 +4,19 @@ if(localStorage.getItem("panier")==undefined){
 var panier=null;
 let i=1;
 
-/***************** fonctions panier **********************/
-function ajouterPanier(id,titre,courriel){
-    let film={"id": i,"titre":"Le film "+(i++),"courriel":120};
+
+
+
+function ajoutPanier(bouton) {
+    // alert('patatepoil');
+    // alert ($(bouton).data('title'));
+    let id = $(bouton).data('idFilm');
+    let pochette = $(bouton).data('pochette');
+    let titre = $(bouton).data('title');
+    let prix = $(bouton).data('prix');
+    
+    let film={"idFilm": idFilm,"titre":titre,"pochette":pochette,"prix":prix};
+    alert (film);
     panier=JSON.parse(localStorage.getItem("panier"));
     panier.push(film);
     localStorage.setItem("panier",JSON.stringify(panier));
@@ -27,32 +37,47 @@ function retirerPanier(idF) {
 }
 
 function afficherPanier() {
-    var lePanier="<h3>Contenu de votre panier</h3></br>";
+    montrerM('listerLocationsPM');
+    var lePanier="<div class='d-flex justify-content-between align-items-baseline'>";
+    lePanier+="<h4>Contenu de votre panier</h4>";
+    lePanier+="<button class='btn btn-warning' onClick='payer()'>Payer</button>";
+    lePanier+="</div>";
     panier=JSON.parse(localStorage.getItem("panier"));
+    nombre=0;
+
+    lePanier+="<table class='table table-striped'>";
+    lePanier+="<tr><th>ID</th><th>Pochette</th><th>Titre</th><th>Nombre de jours</th><th>Prix</th><th>Retirer</th></tr>";
     for( var unFilm of panier){
+        lePanier+="<tr>"
         if(unFilm!==null){
-            lePanier+="</br>Id film = "+unFilm.idFilm;
-            lePanier+="</br>Titre = "+unFilm.titre;
-            lePanier+="</br>Durée = "+unFilm.duree;
-            lePanier+="</br>*******************";
-        }
+            lePanier+="<td><img src='"+unFilm.pochette+"' style='max-width:60px; height:auto;'></td>";
+            lePanier+="<td>"+unFilm.id+"</td>";
+            lePanier+="<td>"+unFilm.titre+"</td>";
+            lePanier+="<td><input type='text' id='nombreJours' name='nombreJours'></td>";
+            lePanier+="<td>"+unFilm.prix+"</td>";
+            lePanier+="<td><button class='btn btn-warning' onClick='retirerPanier("+unFilm.id+")'>Retirer</button></td>";
+            nombre++;
+        } else {lePanier+="<p>Le panier est vide.</p><a href='../../index.php' class='btn btn-warning'>Ajouter des films</a>"}
+
+        lePanier+="</tr>";
     }
     document.querySelector("#votrePanier").innerHTML=lePanier;
+    document.querySelector("#nbItems").innerHTML=nombre;
 }
 
 let payer = () => {
-    alert("Cool c'est payé");
+    montrerM('genererFacturePM')
     envoyerPanierServeur();
 
 }
-let courriel = "abc@abc.com";
+let courriel = $_SESSION['courrielSess'];
 let envoyerPanierServeur = () => {
     $.ajax({
         type:"POST",
-        url:"gestionLocations.php",
+        url:"../../serveur/locations/panierMembre.php",
         data:{"courriel": courriel, "panier" : localStorage.getItem("panier")},
         dataType : "text",
-        //La réponse du seerveur
+        //La réponse du serveur
         success : (reponse) => {
             //alert(reponse);
             document.getElementById("panierServeur").innerHTML=reponse;
@@ -61,4 +86,18 @@ let envoyerPanierServeur = () => {
             alert("Grave Erreur");
         }
     })
+}
+
+
+
+function ajouterNombre(){
+    $nbItems=$_SESSION['panierTaille'];
+    $nbItems=$nbItems++;
+    alert ($nbItems);
+}
+
+function retirerNombre(){
+    $nbItems=$_SESSION['panierTaille'];
+    $nbItems=$nbItems--;
+    alert ($nbItems);
 }

@@ -12,6 +12,7 @@
     else {
 	       $liste="";
     }
+    
 ?>
 
 <!DOCTYPE php>
@@ -72,9 +73,8 @@
                                     echo "<li><a href=\"#\" data-toggle=\"modal\" data-target=\"#connexion\">Connexion</a></li>";
                                     echo "<li><button type=\"button\" class=\"btn btn-warning\" data-toggle=\"modal\" data-target=\"#enregistrer\">Devenir Membre</button></li>";
                                 }else {
-                                    echo "<li><a href=\"javascript:montrerM('afficherProfilPM');\">".$_SESSION['prenomSess']." ".$_SESSION['nomSess']."</a></li>";
                                     echo "<li><a href=\"\"><i class=\"fa fa-shopping-cart\"></i> <span id=\"nbItems\"></span></a></li>";
-                                    echo "<li><a href=\"javascript:montrerM('afficherProfilPM');\">Profil</a></li>";
+                                    echo "<li><a href=\"public/pages/membre.php\">Page Membre</a></li>";
                                     echo "<li><a href=\"serveur/membres/deconnexion.php\" class=\"btn btn-warning\">Déconnexion</a></li>";
                                 }
                             ?>
@@ -129,7 +129,6 @@
                 try {
                     $listeFilms=mysqli_query($connexion,$requeteLister);
                     while($ligne=mysqli_fetch_object($listeFilms)){
-
                         $rep.='<div class="col-lg-3 mb-5">';
                         $rep.='    <div class="card">';
                         $rep.='        <img class="card-img-top" src="public/images/pochettes/'.($ligne->pochette).'" alt="'.($ligne->titre).'">';
@@ -154,15 +153,23 @@
                                                     onClick="
                                                         $(\'#lienDuFilm\').attr(\'src\', $(this).data(\'src\')); 
                                                         $(\'#titreDuFilm\').text($(this).data(\'title\')); 
-                                                        $(\'#bandeAnnonceModal\').modal(\'show\');">
+                                                        $(\'#bandeAnnonceModal\').modal(\'show\');
+                                                        ">
                                                     Bande Annonce
                                                 </button>';
                         $rep.='             </div>';
 
                         $rep.='             <div class="block flex-wrap">
-                                                <button class="btn btn-warning" 
-                                                onClick="
-                                                    ajouterPanier('.($ligne->id).')">
+                                                <button class="btn btn-warning ajouterAuPanier" 
+                                                    data-idFilm="'.($ligne->id).'" 
+                                                    data-title="'.($ligne->titre).'" 
+                                                    data-pochette="'.($ligne->pochette).'" 
+                                                    data-prix="'.($ligne->prix).'" 
+                                                    onClick="
+                                                        ajoutPanier(this);
+                                                        $(\'#titreDuFilmAjout\').text($(this).data(\'title\')); 
+                                                        $(\'#ajout\').modal(\'show\');">
+                                                    
                                                     <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Ajouter
                                                 </button>
                                             </div>';
@@ -198,6 +205,25 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="ajout" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Ajout de film</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Le film <span id="titreDuFilmAjout" class="bold"></span> a été ajouté</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Ajouter d'autres films</button>
+                    <a class="btn btn-warning" href="public/pages/membre.php">voir le panier</a>
                 </div>
             </div>
         </div>
@@ -375,6 +401,17 @@
         if (window.location.hash == "#openm") {
             $("#myModal").modal("show");
         }
+
+
+        $('.ajouterAuPanier').click(function (event) {
+                                                        event.preventDefault();
+                                                        var ligne = $(this).data('ligne');
+                                                        $.ajax({
+                                                           method: "POST",
+                                                           cache: false,
+                                                           data: { ligne: ligne }
+                                                        });
+                                                     });
     </script>
     
 
