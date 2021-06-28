@@ -2,21 +2,22 @@ if(localStorage.getItem("panier")==undefined){
     localStorage.setItem("panier",'[]');//panier vide
 }
 var panier=null;
+var idFilmSelect;
 let i=1;
 
 
-
+function viderPanier(){
+    storage.clear();
+}
 
 function ajoutPanier(bouton) {
-    // alert('patatepoil');
-    // alert ($(bouton).data('title'));
-    let id = $(bouton).data('idFilm');
+    let idFilm = $(bouton).data('idFilm');
+    idFilmSelect = idFilm;
     let pochette = $(bouton).data('pochette');
     let titre = $(bouton).data('title');
     let prix = $(bouton).data('prix');
     
     let film={"idFilm": idFilm,"titre":titre,"pochette":pochette,"prix":prix};
-    alert (film);
     panier=JSON.parse(localStorage.getItem("panier"));
     panier.push(film);
     localStorage.setItem("panier",JSON.stringify(panier));
@@ -40,33 +41,39 @@ function afficherPanier() {
     montrerM('listerLocationsPM');
     var lePanier="<div class='d-flex justify-content-between align-items-baseline'>";
     lePanier+="<h4>Contenu de votre panier</h4>";
+    lePanier+="<button class='btn btn-outline-warning' onClick='viderPanier()'>abandonner</button>";
     lePanier+="<button class='btn btn-warning' onClick='payer()'>Payer</button>";
     lePanier+="</div>";
+    lePanier+="<hr>";
     panier=JSON.parse(localStorage.getItem("panier"));
     nombre=0;
+    let leTotal=0;
 
     lePanier+="<table class='table table-striped'>";
-    lePanier+="<tr><th>ID</th><th>Pochette</th><th>Titre</th><th>Nombre de jours</th><th>Prix</th><th>Retirer</th></tr>";
+    lePanier+="<tr><th>Pochette</th><th>ID</th><th>Titre</th><th>Prix/3 jours</th><th></th></tr>";
     for( var unFilm of panier){
         lePanier+="<tr>"
         if(unFilm!==null){
-            lePanier+="<td><img src='"+unFilm.pochette+"' style='max-width:60px; height:auto;'></td>";
-            lePanier+="<td>"+unFilm.id+"</td>";
+            lePanier+="<td><img src='../images/pochettes/"+unFilm.pochette+"' style='max-width:60px; height:auto;'></td>";
+            lePanier+="<td>"+unFilm.idFilm+"</td>";
             lePanier+="<td>"+unFilm.titre+"</td>";
-            lePanier+="<td><input type='text' id='nombreJours' name='nombreJours'></td>";
-            lePanier+="<td>"+unFilm.prix+"</td>";
-            lePanier+="<td><button class='btn btn-warning' onClick='retirerPanier("+unFilm.id+")'>Retirer</button></td>";
-            nombre++;
+            lePanier+="<td>"+unFilm.prix+" $</td>";
+            lePanier+="<td><a class='dark-link' onClick='retirerPanier("+unFilm.idFilm+")'>Retirer</a></td>";
+            nombre++; 
+            leTotal+= parseFloat(unFilm.prix);
         } else {lePanier+="<p>Le panier est vide.</p><a href='../../index.php' class='btn btn-warning'>Ajouter des films</a>"}
 
         lePanier+="</tr>";
     }
+    lePanier+="</table>";
+    lePanier+="<hr>";
+    lePanier+="<div d-flex d-flex align-items-end><div>Le total est : <strong>"+leTotal+"<strong></div>";
     document.querySelector("#votrePanier").innerHTML=lePanier;
     document.querySelector("#nbItems").innerHTML=nombre;
 }
 
 let payer = () => {
-    montrerM('genererFacturePM')
+    
     envoyerPanierServeur();
 
 }
@@ -74,7 +81,7 @@ let courriel = $_SESSION['courrielSess'];
 let envoyerPanierServeur = () => {
     $.ajax({
         type:"POST",
-        url:"../../serveur/locations/panierMembre.php",
+        url:"../../serveur/locations/enregistrerLocations.php",
         data:{"courriel": courriel, "panier" : localStorage.getItem("panier")},
         dataType : "text",
         //La réponse du serveur
@@ -83,21 +90,7 @@ let envoyerPanierServeur = () => {
             document.getElementById("panierServeur").innerHTML=reponse;
         },
         fail : () => {
-            alert("Grave Erreur");
+            alert("Erreur: impossible d'envoyer votre commande au serveur. Veuillez réessayer plus tard.");
         }
     })
-}
-
-
-
-function ajouterNombre(){
-    $nbItems=$_SESSION['panierTaille'];
-    $nbItems=$nbItems++;
-    alert ($nbItems);
-}
-
-function retirerNombre(){
-    $nbItems=$_SESSION['panierTaille'];
-    $nbItems=$nbItems--;
-    alert ($nbItems);
 }

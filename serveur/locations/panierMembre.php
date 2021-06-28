@@ -1,5 +1,6 @@
 <?php
-   $courriel = $_POST['courriel'];
+    session_start();
+   $courriel = $_SESSION['courrielSess'];
    $panier = json_decode($_POST['panier']);
    //echo "Vous avez choisi le film ".$panier[3]->idFilm;
    $rep="Panier pour le membre :".$courriel."<br>";
@@ -9,7 +10,8 @@
             $uneLocation = $panier[$i];
             $rep.="<br>ID = ".$uneLocation->idFilm;
             $rep.="<br>TITRE = ".$uneLocation->titre;
-            $rep.="<br>DURÉE = ".$uneLocation->duree;
+            $rep.="<br>DURÉE = ".$uneLocation->pochette;
+            $rep.="<br>DURÉE = ".$uneLocation->prix;
             $rep.="<br>********************************";
        }
    }

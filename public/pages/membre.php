@@ -110,16 +110,6 @@
 
                     <!-- -- Lister Locations -- -->
                     <div id="listerLocationsPM">
-                        <button onClick="document.querySelector('#divRetirer').style.display='block';">Retirer du panier</button>
-                        <div id="divRetirer" style="display:none">
-                            </br></br>Entrer Id du film : <input type="number" id="idf"></br>
-                            <button onClick="retirerPanier(document.querySelector('#idf').value);">Envoyer</button>
-                        </div>
-                        <br><br>
-                        
-                        <button onClick="payer();">Payer</button>
-                
-                        </br></br>
                         <span id="votrePanier"></span>
                         </br></br>
                         <div id="panierServeur"></div>
