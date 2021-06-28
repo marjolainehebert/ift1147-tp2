@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="../../public/utilitaires/css/style.css" type="text/css">
     <link rel="stylesheet" href="../../public/css/styles.css" type="text/css">
     <script src="../../public/javascript/fonctions.js"></script>
+    <script src="../../public/javascript/panier.js"></script>
 </head>
 
 <body>
@@ -42,7 +43,17 @@
                     </div>
                     <div class="text-right col-md-10 col-sm-12">
                         <ul class="nav-right">
-                            <li><a href="../../serveur/membres/deconnexion.php" class="btn btn-warning">Déconnexion</a></li>
+                            <?php
+                                if(!isset($_SESSION['courrielSess'])){
+                                    echo "<li><a href=\"#\" data-toggle=\"modal\" data-target=\"#connexion\">Connexion</a></li>";
+                                    echo "<li><button type=\"button\" class=\"btn btn-warning\" data-toggle=\"modal\" data-target=\"#enregistrer\">Devenir Membre</button></li>";
+                                }else {
+                                    echo "<li><a href=\"javascript:montrerM('afficherProfilPM');\">".$_SESSION['prenomSess']." ".$_SESSION['nomSess']."</a></li>";
+                                    echo "<li><a href=\"\"><i class=\"fa fa-shopping-cart\"></i> <span id=\"nbItems\"></span></a></li>";
+                                    echo "<li><a href=\"javascript:montrerM('afficherProfilPM');\">Profil</a></li>";
+                                    echo "<li><a href=\"../serveur/membres/deconnexion.php\" class=\"btn btn-warning\">Déconnexion</a></li>";
+                                }
+                            ?>
                         </ul>
                     </div>
                 </div>
@@ -113,15 +124,16 @@
                                     $rep.='        <img class="card-img-top" src="../../public/images/pochettes/'.($ligne->pochette).'" alt="'.($ligne->titre).'">';
                                     $rep.='        <div class="montrerID">#'.($ligne->id).'</div>';
                                     $rep.='        <div class="card-body">';
-                                    $rep.='            <h5 class="card-title"><strong>'.($ligne->titre).'</strong> ('.($ligne->annee).')</h5>';
-                                    $rep.='            <p class="card-text bold">';
+                                    $rep.='            <h5><strong>'.($ligne->titre).'</strong> ('.($ligne->annee).')</h5>';
+                                    $rep.='            <p class="bold">';
                                     $rep.=                 $ligne->categorie;
                                     $rep.='            </p>';
-                                    $rep.='            <p class="card-text">';
-                                    $rep.='                 <span class="light">Réalisateur:</span> <br>'.($ligne->realisateur).'<br>';
-                                    $rep.='                 <span class="light">Durée:</span> '.($ligne->duree).' minutes<br>';
-                                    $rep.='                 <span class="light">Langue:</span> '.($ligne->langue).'<br>';
-                                    $rep.='                 <span class="light">URL de la bande annonce:</span> <br><a href="'.($ligne->urlPreview).'" class="dark-link">'.($ligne->urlPreview).'</a>';
+                                    $rep.='            <p class="">';
+                                    $rep.='                 Prix: <strong>'.($ligne->prix).' $</strong><br>';
+                                    $rep.='                 Réalisateur: <br><strong>'.($ligne->realisateur).'</strong><br>';
+                                    $rep.='                 Durée: <strong>'.($ligne->duree).' minutes</strong> <br>';
+                                    $rep.='                 Langue:<strong> '.($ligne->langue).'</strong><br>';
+                                    $rep.='                 URL de la bande annonce: <br><a href="'.($ligne->urlPreview).'" class="dark-link"><strong>'.($ligne->urlPreview).'</strong></a>';
                                     $rep.='            </p>';
                                     $rep.='        </div>';
                                     $rep.='    </div>';

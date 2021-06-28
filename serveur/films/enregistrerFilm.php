@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../public/utilitaires/css/style.css" type="text/css">
     <link rel="stylesheet" href="../../public/css/styles.css" type="text/css">
     <script src="../../public/javascript/fonctions.js"></script>
+    <script src="../../public/javascript/panier.js"></script>
 
 <div class="container">
     <div class="row">
@@ -23,6 +24,7 @@
 				$langFilm=$_POST['langueFilm']; 
                 $dateFilm=$_POST['dateFilm'];
 				$urlPreview=$_POST['urlPreview'];
+                $prix=$_POST['prix'];
                 $dossier="../../public/images/pochettes/";
                 $nomPochette=sha1($titreFilm.time());
                 $pochette="avatar.jpg";
@@ -39,9 +41,9 @@
                     $pochette = $nomPochette.$extension;
                 }
                 
-                $requete="INSERT INTO films values(0,?,?,?,?,?,?,?,?)";
+                $requete="INSERT INTO films values(0,?,?,?,?,?,?,?,?,?)";
                 $statement=$connexion->prepare($requete);
-                $statement->bind_param("sssisiss", $titreFilm,$realisFilm,$categFilm,$dureeFilm,$langFilm,$dateFilm,$pochette,$urlPreview);
+                $statement->bind_param("sssisisss", $titreFilm,$realisFilm,$categFilm,$dureeFilm,$langFilm,$dateFilm,$pochette,$urlPreview,$prix);
                 $statement->execute();
 
 

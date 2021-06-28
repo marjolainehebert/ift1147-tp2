@@ -42,10 +42,10 @@
                     header("Location: ../../public/pages/admin.php");
                     break;
                 case 'M': // si le role est membre, envoyer vers la page membre
-                    header("Location: ../../public/pages/membre.php");
+                    $msg = 'Bienvenue '.$ligneMembre->prenom.'!';
+                    header("Location: ../../index.php?msg=$msg");
                     break;
-                default: // pour tous les autres cas, faire un message d'erreur
-                    echo "<";
+                default: // pour tous les autres cas, faire un message d'erreur=
                     $msg = '<div class="alert alert-danger" role="alert">
                         ERREUR: Le rôle n\'est pas défini. Veuillez réessayer.
                     </div>';

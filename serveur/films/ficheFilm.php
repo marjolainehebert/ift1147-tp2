@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="../../public/utilitaires/css/style.css" type="text/css">
     <link rel="stylesheet" href="../../public/css/styles.css" type="text/css">
     <script src="../../public/javascript/fonctions.js"></script>
+    <script src="../../public/javascript/panier.js"></script>
 </head>
 
 <body>
@@ -42,7 +43,17 @@
                     </div>
                     <div class="text-right col-md-10 col-sm-12">
                         <ul class="nav-right">
-                            <li><a href="../../serveur/membres/deconnexion.php" class="btn btn-warning">Déconnexion</a></li>
+                            <?php
+                                if(!isset($_SESSION['courrielSess'])){
+                                    echo "<li><a href=\"#\" data-toggle=\"modal\" data-target=\"#connexion\">Connexion</a></li>";
+                                    echo "<li><button type=\"button\" class=\"btn btn-warning\" data-toggle=\"modal\" data-target=\"#enregistrer\">Devenir Membre</button></li>";
+                                }else {
+                                    echo "<li><a href=\"javascript:montrerM('afficherProfilPM');\">".$_SESSION['prenomSess']." ".$_SESSION['nomSess']."</a></li>";
+                                    echo "<li><a href=\"\"><i class=\"fa fa-shopping-cart\"></i> <span id=\"nbItems\"></span></a></li>";
+                                    echo "<li><a href=\"javascript:montrerM('afficherProfilPM');\">Profil</a></li>";
+                                    echo "<li><a href=\"../serveur/membres/deconnexion.php\" class=\"btn btn-warning\">Déconnexion</a></li>";
+                                }
+                            ?>
                         </ul>
                     </div>
                 </div>
@@ -111,16 +122,22 @@
                     $rep.= "<div id=\"messageDate\">Entrez l'année de la sortie du film</div>\n";
                     $rep.= "<input type=\"text\" class=\"form-control\" id=\"dateFilm\" name=\"dateFilm\" value='".$ligne->annee."'>\n";
                     $rep.= "</div>\n";
-
                     $rep.= "<div class=\"mb-3\">\n";
                     $rep.= "<label for=\"pochette\" class=\"form-label\">Pochette: </label>\n";
                     $rep.= "<input type=\"file\" id=\"pochette\" name=\"pochette\"\n";
                     $rep.= "</div>\n";
 
-                    $rep.= "<div class=\"mb-3 pb-5\">\n";
+                    $rep.= "<div class=\"row mb-3\">\n";
+                    $rep.= "<div class=\"mb-3 pb-5 col-sm\">\n";
                     $rep.= "<label for=\"urlPreview\" class=\"form-label\">URL de l'extrait</label>\n";
                     $rep.= "<div id=\"messageUrl\">Entrez un URL valide débutant par http:// ou https://</div>\n";
                     $rep.= "<input type=\"text\" class=\"form-control\" id=\"urlPreview\" name=\"urlPreview\" value='".$ligne->urlPreview."'>\n";
+                    $rep.= "</div>\n";
+                    $rep.= "<div class=\"mb-3 pb-5 col-sm\">\n";
+                    $rep.= "<label for=\"prix\" class=\"form-label\">Prix en dollars canadiens</label>\n";
+                    $rep.= "<div id=\"messagePrix\">entrez un nombre avec 2 décimales</div>\n";
+                    $rep.= "<input type=\"text\" class=\"form-control\" id=\"prix\" name=\"prix\" value='".$ligne->prix."'>\n";
+                    $rep.= "</div>\n";
                     $rep.= "</div>\n";
 
                     $rep.= "<button type=\"submit\" class=\"btn btn-warning\">Soumettre</button>\n";

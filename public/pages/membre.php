@@ -37,10 +37,11 @@
         <link rel="stylesheet" href="../utilitaires/css/style.css" type="text/css">
         <link rel="stylesheet" href="../css/styles.css" type="text/css">
         <script src="../javascript/fonctions.js"></script>
+        <script src="../javascript/panier.js"></script>
         <!-- Javascript -->
     </head>
 
-<body onLoad="initialiser(<?php echo "'".$msg."'" ?>);">
+<body onLoad="initialiser(<?php echo "'".$msg."'" ?>); afficherPanier();">
 <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -62,10 +63,17 @@
                     </div>
                     <div class="text-right col-md-10 col-sm-12">
                         <ul class="nav-right">
-                            <li><a href="javascript:montrerM('afficherProfilPM');"><?php echo $_SESSION['prenomSess'].' '.$_SESSION['nomSess'];?></a></li>
-                            <li><a href=""><i class="fa fa-shopping-cart"></i> <span id="nbItems"></span></a></li>
-                            <li><a href="javascript:montrerM('afficherProfilPM');">Profil</a></li>
-                            <li><a href="../../serveur/membres/deconnexion.php">Déconnexion</a></li>
+                            <?php
+                                if(!isset($_SESSION['courrielSess'])){
+                                    echo "<li><a href=\"#\" data-toggle=\"modal\" data-target=\"#connexion\">Connexion</a></li>";
+                                    echo "<li><button type=\"button\" class=\"btn btn-warning\" data-toggle=\"modal\" data-target=\"#enregistrer\">Devenir Membre</button></li>";
+                                }else {
+                                    echo "<li><a href=\"javascript:montrerM('afficherProfilPM');\">".$_SESSION['prenomSess']." ".$_SESSION['nomSess']."</a></li>";
+                                    echo "<li><a href=\"\"><i class=\"fa fa-shopping-cart\"></i> <span id=\"nbItems\"></span></a></li>";
+                                    echo "<li><a href=\"javascript:montrerM('afficherProfilPM');\">Profil</a></li>";
+                                    echo "<li><a href=\"../../serveur/membres/deconnexion.php\" class=\"btn btn-warning\">Déconnexion</a></li>";
+                                }
+                            ?>
                         </ul>
                     </div>
                 </div>
@@ -82,8 +90,9 @@
 
                     <h5><strong>Gestion locations</strong></h5>
                     <div class="block flex-wrap mt-3 mb-5">
-                        <button class="btn btn-outline-success mb-3" onclick="montrerM('listerLocationsPM');">Vos locations</button>
-                        <button class="btn btn-outline-warning mb-3" onclick="montrerM('genererFacturePM')">Facture</button>
+                        <a class="btn btn-outline-info mb-3" href="../../index.php">Ajouter des films</a>
+                        <button class="btn btn-outline-success mb-3" onclick="afficherPanier()">Panier</button>
+                        <button class="btn btn-outline-warning mb-3" onClick="payer();">Payer</button>
                     </div>
 
                     <h5><strong>Votre profil</strong></h5>
@@ -97,13 +106,14 @@
 
                 <div class="col-12 col-md-9 col-xl-10 bgcolor pt-2 pb-2">
                     <h2 class="text-center"><?php echo $_SESSION['prenomSess'];?></h2>
-                    <h3 class="text-center mb-5 pb-4">bienvenue dans votre espace membre</h3>
+                    <h3 class="text-center mb-5 pb-4">Bienvenue dans votre espace membre</h3>
 
                     <!-- -- Lister Locations -- -->
                     <div id="listerLocationsPM">
-                        <h4>Vos locations</h4>
-                        <hr>
-                        Liste locations
+                        <span id="votrePanier"></span>
+                        </br></br>
+                        <div id="panierServeur"></div>
+
                     </div>
 
                     <!-- -- Lister Locations -- -->
@@ -130,8 +140,9 @@
 
                     <!-- -- Lister Locations -- -->
                     <div id="genererFacturePM">
-                        <h4>Générer la facture</h4>
+                        <h4>Facture</h4>
                         <hr>
+                        <p>Votre facture est payée. Merci!</p>
                     </div>
 
                     
@@ -148,7 +159,6 @@
                         <div class="toast-header">
                             <img src="../../public/images/streamtopia.png" width="24" height="auto" class="rounded me-2" alt="message">
                             <strong class="me-auto">Messages</strong>
-                            <small class="text-muted"></small>
                         </div>
                         <div id="textToast" class="toast-body">
                         </div>

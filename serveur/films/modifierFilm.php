@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../../public/utilitaires/css/style.css" type="text/css">
     <link rel="stylesheet" href="../../public/css/styles.css" type="text/css">
     <script src="../../public/javascript/fonctions.js"></script>
+    <script src="../../public/javascript/panier.js"></script>
 </head>
 
 <body>
@@ -29,6 +30,7 @@
                     $langue=$_POST['langFilm'];
                     $annee=$_POST['dateFilm'];
                     $urlPreview=$_POST['urlPreview'];
+                    $prix=$_POST['prix'];
                     $dossier="../../public/images/pochettes/";
 
                     $requete="SELECT pochette FROM films WHERE id=?";
@@ -66,9 +68,9 @@
                         @unlink($tmp); //effacer le fichier temporaire
                     }
 
-                    $requete="UPDATE films SET titre=?,realisateur=?,categorie=?,duree=?,langue=?,annee=?,pochette=?,urlPreview=? WHERE id=?";
+                    $requete="UPDATE films SET titre=?,realisateur=?,categorie=?,duree=?,langue=?,annee=?,pochette=?,urlPreview=?,prix=? WHERE id=?";
                     $stmt = $connexion->prepare($requete);
-                    $stmt->bind_param("sssisissi",$titre,$realis,$categ,$duree,$langue,$annee,$pochette,$urlPreview,$num);
+                    $stmt->bind_param("sssisisssi",$titre,$realis,$categ,$duree,$langue,$annee,$pochette,$urlPreview,$prix,$num);
                     $stmt->execute();
                     mysqli_close($connexion);
                     $msg = "Le film <strong>".$num."</strong> a été modifié.";

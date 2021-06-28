@@ -35,6 +35,7 @@
         <link rel="stylesheet" href="../utilitaires/css/style.css" type="text/css">
         <link rel="stylesheet" href="../css/styles.css" type="text/css">
         <script src="../javascript/fonctions.js"></script>
+        <script src="../javascript/panier.js"></script>
         <!-- Javascript -->
     </head>
 
@@ -60,7 +61,17 @@
                     </div>
                     <div class="text-right col-md-10 col-sm-12">
                         <ul class="nav-right">
-                            <li><a href="../../serveur/membres/deconnexion.php" class="btn btn-warning">Déconnexion</a></li>
+                            <?php
+                                if(!isset($_SESSION['courrielSess'])){
+                                    echo "<li><a href=\"#\" data-toggle=\"modal\" data-target=\"#connexion\">Connexion</a></li>";
+                                    echo "<li><button type=\"button\" class=\"btn btn-warning\" data-toggle=\"modal\" data-target=\"#enregistrer\">Devenir Membre</button></li>";
+                                }else {
+                                    echo "<li><a href=\"javascript:montrerM('afficherProfilPM');\">".$_SESSION['prenomSess']." ".$_SESSION['nomSess']."</a></li>";
+                                    echo "<li><a href=\"\"><i class=\"fa fa-shopping-cart\"></i> <span id=\"nbItems\"></span></a></li>";
+                                    echo "<li><a href=\"javascript:montrerM('afficherProfilPM');\">Profil</a></li>";
+                                    echo "<li><a href=\"../../serveur/membres/deconnexion.php\" class=\"btn btn-warning\">Déconnexion</a></li>";
+                                }
+                            ?>
                         </ul>
                     </div>
                 </div>
@@ -232,10 +243,18 @@
                                 <input type="file" class="form-control" id="pochette" name="pochette">
                             </div>
 
-                            <div class="mb-3">
-                                <label for="urlPreview" class="form-label">URL de la bande annonce</label>
-                                <div id="messageUrl">SVP entrez un URL provenant de Youtube</div>
-                                <input type="text" class="form-control" id="urlPreview" name="urlPreview">
+                            <div class="row mb-3">
+                                <div class="col-sm">
+                                    <label for="urlPreview" class="form-label">URL de la bande annonce</label>
+                                    <div id="messageUrl">SVP entrez un URL provenant de Youtube</div>
+                                    <input type="text" class="form-control" id="urlPreview" name="urlPreview">
+                                </div>
+
+                                <div class="col-sm">
+                                    <label for="prix" class="form-label">Prix en dollars (CAD) </label>
+                                    <div id="messagePrix">SVP entrez un montant contenant un point et 2 décimales.</div>
+                                    <input type="text" class="form-control" id="prix" name="prix">
+                                </div>
                             </div>
 
                             <button type="submit" class="btn btn-warning">Soumettre</button>
