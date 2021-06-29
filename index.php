@@ -73,7 +73,7 @@
                                     echo "<li><a href=\"#\" data-toggle=\"modal\" data-target=\"#connexion\">Connexion</a></li>";
                                     echo "<li><button type=\"button\" class=\"btn btn-warning\" data-toggle=\"modal\" data-target=\"#enregistrer\">Devenir Membre</button></li>";
                                 }else {
-                                    echo "<li><a href=\"\"><i class=\"fa fa-shopping-cart\"></i> <span id=\"nbItems\"></span></a></li>";
+                                    echo "<li><a href=\"public/pages/membre.php\"><i class=\"fa fa-shopping-cart\"></i> <span id=\"nbItems\"></span></a></li>";
                                     echo "<li><a href=\"public/pages/membre.php\">Page Membre</a></li>";
                                     echo "<li><a href=\"serveur/membres/deconnexion.php\" class=\"btn btn-warning\">Déconnexion</a></li>";
                                 }

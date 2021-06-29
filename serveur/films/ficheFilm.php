@@ -8,6 +8,7 @@
 
 <!DOCTYPE php>
 <html lang="fr">
+<meta charset="UTF-8">
 
 <head>
     <link rel="stylesheet" href="../../public/utilitaires/css/bootstrap.min.css" type="text/css">
