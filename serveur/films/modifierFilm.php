@@ -1,8 +1,8 @@
 <!DOCTYPE php>
 <html lang="fr">
-<meta charset="UTF-8">
 
 <head>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="../../public/utilitaires/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="../../public/utilitaires/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="../../public/utilitaires/css/themify-icons.css" type="text/css">

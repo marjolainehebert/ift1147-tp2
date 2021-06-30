@@ -8,9 +8,9 @@
 
 <!DOCTYPE php>
 <html lang="fr">
-<meta charset="UTF-8">
 
 <head>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="../../public/utilitaires/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="../../public/utilitaires/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="../../public/utilitaires/css/themify-icons.css" type="text/css">
@@ -118,7 +118,7 @@
                                 
                                 $rep.=' <div class="row">';
                                 while($ligne=mysqli_fetch_object($listeFilms)){
-                                    $categ = $categories[$ligne->categ];
+                                    //$categ = $categories[$ligne->categ];
                                     
                                     $rep.='<div class="col-lg-3 mb-5">';
                                     $rep.='    <div class="card">';
