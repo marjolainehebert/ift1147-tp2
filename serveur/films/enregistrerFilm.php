@@ -15,6 +15,8 @@
     <div class="row">
         <div class="col-sm-12">
             <?php
+                session_start();
+
                 require_once("../bdconfig/connexion.inc.php");
 
                 $titreFilm=$_POST['titreFilm']; 
