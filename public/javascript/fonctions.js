@@ -77,12 +77,12 @@ function validerFormEnregFilms(){
 	var dateFilm=document.getElementById('dateFilm').value;
 	var urlFilm=document.getElementById('urlPreview').value;
     var prixFilm=document.getElementById('prix').value;
-    // var regexUrl=new RegExp('^(?!mailto:)(?:(?:http|https|ftp)://)(?:\\S+(?::\\S*)?@)?(?:(?:(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[0-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)(?:\\.(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)*(?:\\.(?:[a-z\\u00a1-\\uffff]{2,})))|localhost)(?::\\d{2,5})?(?:(/|\\?|#)[^\\s]*)?$');
 
     var regexDuree=new RegExp("^[0-9]{1,3}$");
     var regexDate=new RegExp("(?:(?:18|19|20|21)[0-9]{2})");
+    //var regexUrl=new RegExp('^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$');
     var regexUrl=new RegExp('(?:https?:\/\/)?(?:www\.)?youtu(?:\.be\/|be.com\/\S*(?:watch|embed)(?:(?:(?=\/[^&\s\?]+(?!\S))\/)|(?:\S*v=|v\/)))([^&\s\?]+)');
-    var regexPrix=new RegExp("[0-9]{1,2}+(\.[0-9][0-9])?$/");
+    var regexPrix=new RegExp("^[0-9]{1,2}[.][0-9]{2}$");
 
     // aller chercher les éléments et les mettre dans des variables
     var mesTitre = document.getElementById("messageTitre"); 
@@ -137,8 +137,7 @@ function validerFormEnregFilms(){
     if (urlFilm == '' || !regexUrl.test(urlFilm)) { // vérifier que le titre ne soit pas vide
         mesUrl.style.display = "block"; // montrer le message d'erreur
         return false; // retourne false
-    } 
-
+    }
 
     if(prixFilm == '' || !regexPrix.test(prixFilm)){
         mesPrix.style.display = "block"; // montrer le message d'erreur
