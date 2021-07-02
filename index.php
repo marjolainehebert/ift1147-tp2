@@ -30,18 +30,18 @@
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="public/utilitaires/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="public/utilitaires/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="public/utilitaires/css/themify-icons.css" type="text/css">
-    <link rel="stylesheet" href="public/utilitaires/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="public/utilitaires/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="public/utilitaires/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="public/utilitaires/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="public/utilitaires/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="public/utilitaires/css/style.css" type="text/css">
-    <link rel="stylesheet" href="public/css/styles.css" type="text/css">
-    <script src="public/javascript/fonctions.js"></script>
-    <script src="public/javascript/panier.js"></script>
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/css/styles.css" type="text/css">
+    <script src="/tp2/public/javascript/fonctions.js"></script>
+    <script src="/tp2/public/javascript/panier.js"></script>
     <!-- Javascript -->
 
 </head>
@@ -60,7 +60,7 @@
                 <div class="row">
                     <div class="col-md-2 col-sm-12">
                         <div class="logo">
-                            <img src="public/images/streamtopia.png" alt="StreamTopia">
+                            <img src="/tp2/public/images/streamtopia.png" alt="StreamTopia">
                             <a href="index.php">
                                 StreamTopia
                             </a>
@@ -96,7 +96,7 @@
     <!-- Hero Section Begin -->
     <section class="hero-section pt-0">
         <div class="hero-items owl-carousel">
-            <div class="single-hero-items set-bg" data-setbg="public/images/background.jpg">
+            <div class="single-hero-items set-bg" data-setbg="/tp2/public/images/background.jpg">
                 <div class="container">
                     <div class="row justify-content-around align-middle">
                         <div class="align-middle col-8">
@@ -137,7 +137,7 @@
                     while($ligne=mysqli_fetch_object($listeFilms)){
                         $rep.='<div class="col-lg-3 mb-5">';
                         $rep.='    <div class="card">';
-                        $rep.='        <img class="card-img-top" src="public/images/pochettes/'.($ligne->pochette).'" alt="'.($ligne->titre).'">';
+                        $rep.='        <img class="card-img-top" src="/tp2/public/images/pochettes/'.($ligne->pochette).'" alt="'.($ligne->titre).'">';
                         $rep.='        <div class="montrerID">#'.($ligne->id).'</div>';
                         $rep.='        <div class="card-body">';
                         $rep.='            <h5 class="card-title"><strong>'.($ligne->titre).'</strong> ('.($ligne->annee).')</h5>';
@@ -229,7 +229,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-dismiss="modal">Ajouter d'autres films</button>
-                    <a class="btn btn-warning" href="public/pages/membre.php">voir le panier</a>
+                    <a class="btn btn-warning" href="/tp2/public/pages/membre.php">voir le panier</a>
                 </div>
             </div>
         </div>
@@ -343,7 +343,7 @@
     <div class="toast-container" aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
                     <div id="toastAcc" class="toast posToast" data-delay="3000" role="alert" aria-live="assertive" aria-atomic="true">
                         <div class="toast-header">
-                            <img src="../../public/images/streamtopia.png" width="24" height="auto" class="rounded me-2" alt="message">
+                            <img src="/tp2/public/images/streamtopia.png" width="24" height="auto" class="rounded me-2" alt="message">
                             <strong class="me-auto">Messages</strong>
                             <small class="text-muted"></small>
                         </div>
@@ -362,7 +362,7 @@
                     <div class="footer-left">
                         
                         <div class="logo">
-                            <img src="public/images/streamtopia.png" alt="StreamTopia">
+                            <img src="/tp2/public/images/streamtopia.png" alt="StreamTopia">
                             <a href="index.php">
                                 StreamTopia
                             </a>
@@ -424,16 +424,16 @@
 
 
     <!-- Js Plugins -->
-    <script src="public/utilitaires/js/jquery-3.3.1.min.js"></script>
-    <script src="public/utilitaires/js/bootstrap.min.js"></script>
-    <script src="public/utilitaires/js/jquery-ui.min.js"></script>
-    <script src="public/utilitaires/js/jquery.countdown.min.js"></script>
-    <script src="public/utilitaires/js/jquery.nice-select.min.js"></script>
-    <script src="public/utilitaires/js/jquery.zoom.min.js"></script>
-    <script src="public/utilitaires/js/jquery.dd.min.js"></script>
-    <script src="public/utilitaires/js/jquery.slicknav.js"></script>
-    <script src="public/utilitaires/js/owl.carousel.min.js"></script>
-    <script src="public/utilitaires/js/main.js"></script>
+    <script src="/tp2/public/utilitaires/js/jquery-3.3.1.min.js"></script>
+    <script src="/tp2/public/utilitaires/js/bootstrap.min.js"></script>
+    <script src="/tp2/public/utilitaires/js/jquery-ui.min.js"></script>
+    <script src="/tp2/public/utilitaires/js/jquery.countdown.min.js"></script>
+    <script src="/tp2/public/utilitaires/js/jquery.nice-select.min.js"></script>
+    <script src="/tp2/public/utilitaires/js/jquery.zoom.min.js"></script>
+    <script src="/tp2/public/utilitaires/js/jquery.dd.min.js"></script>
+    <script src="/tp2/public/utilitaires/js/jquery.slicknav.js"></script>
+    <script src="/tp2/public/utilitaires/js/owl.carousel.min.js"></script>
+    <script src="/tp2/public/utilitaires/js/main.js"></script>
 </body>
 
 </html>

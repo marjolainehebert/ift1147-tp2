@@ -2,7 +2,7 @@
     session_start();
 
     if(!isset($_SESSION['courrielSess'])){
-        header("Location:../../public/pages/seConnecter.php");
+        header("Location:/tp2/public/pages/seConnecter.php");
     }
 ?>
 
@@ -11,18 +11,18 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../../public/utilitaires/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/themify-icons.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/style.css" type="text/css">
-    <link rel="stylesheet" href="../../public/css/styles.css" type="text/css">
-    <script src="../../public/javascript/fonctions.js"></script>
-    <script src="../../public/javascript/panier.js"></script>
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/css/styles.css" type="text/css">
+    <script src="/tp2/public/javascript/fonctions.js"></script>
+    <script src="/tp2/public/javascript/panier.js"></script>
 </head>
 
 <body>
@@ -36,8 +36,8 @@
                 <div class="row">
                     <div class="col-md-2 col-sm-12">
                         <div class="logo">
-                            <img src="../../public/images/streamtopia.png" alt="StreamTopia">
-                            <a href="../../index.php">
+                            <img src="/tp2/public/images/streamtopia.png" alt="StreamTopia">
+                            <a href="/tp2/index.php">
                                 StreamTopia
                             </a>
                         </div>
@@ -107,8 +107,8 @@
 
                             echo '
                             <div class="d-flex  justify-content-between align-items-baseline mb-5 pb-5">
-                                <div><h3 style="display:inline-block;" class="mt-2 mb-3"><a href="../../public/pages/admin.php" class="dark-link">Admin</a> > '.$nomFiltre.'</h3></div>
-                                <div><a href="../../public/pages/admin.php" class="btn btn-outline-warning">Revenir en arrière</a></div>
+                                <div><h3 style="display:inline-block;" class="mt-2 mb-3"><a href="/tp2/public/pages/admin.php" class="dark-link">Admin</a> > '.$nomFiltre.'</h3></div>
+                                <div><a href="/tp2/public/pages/admin.php" class="btn btn-outline-warning">Revenir en arrière</a></div>
                             </div>
                             ';
                             
@@ -127,7 +127,7 @@
                                     
                                     $rep.='<div class="col-lg-3 mb-5">';
                                     $rep.='    <div class="card">';
-                                    $rep.='        <img class="card-img-top" src="../../public/images/pochettes/'.($ligne->pochette).'" alt="'.($ligne->titre).'">';
+                                    $rep.='        <img class="card-img-top" src="/tp2/public/images/pochettes/'.($ligne->pochette).'" alt="'.($ligne->titre).'">';
                                     $rep.='        <div class="montrerID">#'.($ligne->id).'</div>';
                                     $rep.='        <div class="card-body">';
                                     $rep.='            <h5><strong>'.($ligne->titre).'</strong> ('.($ligne->annee).')</h5>';
@@ -161,7 +161,7 @@
                             }finally {
                                 mysqli_close($connexion);
                                 echo $rep;
-                                //header("Location:../../index.php?liste=$rep");
+                                //header("Location:/tp2/index.php?liste=$rep");
                             }
                 ?>
                 </div>

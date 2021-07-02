@@ -2,7 +2,7 @@
     session_start();
 
     if(!isset($_SESSION['courrielSess'])){
-        header("Location:../../public/pages/seConnecter.php");
+        header("Location:/tp2/public/pages/seConnecter.php");
     }
 ?>
 
@@ -11,18 +11,18 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../../public/utilitaires/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/themify-icons.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/style.css" type="text/css">
-    <link rel="stylesheet" href="../../public/css/styles.css" type="text/css">
-    <script src="../../public/javascript/fonctions.js"></script>
-    <script src="../../public/javascript/panier.js"></script>
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/css/styles.css" type="text/css">
+    <script src="/tp2/public/javascript/fonctions.js"></script>
+    <script src="/tp2/public/javascript/panier.js"></script>
 </head>
 
 <body>
@@ -36,8 +36,8 @@
                 <div class="row">
                     <div class="col-md-2 col-sm-12">
                         <div class="logo">
-                            <img src="../../public/images/streamtopia.png" alt="StreamTopia">
-                            <a href="../../index.php">
+                            <img src="/tp2/public/images/streamtopia.png" alt="StreamTopia">
+                            <a href="/tp2/index.php">
                                 StreamTopia
                             </a>
                         </div>
@@ -80,8 +80,8 @@
                     $courriel=$_POST['courrielM']; 
                     
                     echo "<div class=\"d-flex justify-content-between align-items-baseline\">
-                        <div><h3 style=\"display:inline-block;\" class=\"mt-2 mb-3\"><a href=\"../../public/pages/admin.php\" class=\"dark-link\">Admin</a> > Modifier membre</h3></div>
-                        <div><a href=\"../../public/pages/admin.php\" class=\"btn-sm btn-warning\">Revenir en arrière</a></div>
+                        <div><h3 style=\"display:inline-block;\" class=\"mt-2 mb-3\"><a href=\"/tp2/public/pages/admin.php\" class=\"dark-link\">Admin</a> > Modifier membre</h3></div>
+                        <div><a href=\"/tp2/public/pages/admin.php\" class=\"btn-sm btn-warning\">Revenir en arrière</a></div>
                     </div>";
 
                     function envoyerFormModifierMembre($ligne){
@@ -114,7 +114,7 @@
                     if(!$ligne = $result->fetch_object()){
                         mysqli_close($connexion);
                         $msg = "Le courriel <strong>".$courriel."</strong> ne se retrouve pas dans notre base de donnée. Veuillez réessayer.";
-                        header("Location:../../public/pages/admin.php?msg=$msg");
+                        header("Location:/tp2/public/pages/admin.php?msg=$msg");
                     } else {
                         mysqli_close($connexion);
                         $leRole = $ligne->role;

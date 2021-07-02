@@ -2,20 +2,26 @@
     session_start();
 
     if(!isset($_SESSION['courrielSess'])){
-        header("Location:../../public/pages/seConnecter.php");
+        header("Location:/tp2/public/pages/seConnecter.php");
     }
-   if (isset($_GET['msg'])){
-	$msg=$_GET['msg'];
-   }
-   else {
-	   $msg="";
-   }
-   if (isset($_GET['liste'])){
-	$liste= $_GET['liste'];
-   }
-   else {
-	   $liste="";
-   }
+
+    if (!($_SESSION['roleSess']=='A')){
+        $msg="Connectez vous en tant qu'administrateur";
+        header("Location:/tp2/public/pages/seConnecter.php");
+    }
+
+    if (isset($_GET['msg'])){
+    	$msg=$_GET['msg'];
+     }
+     else {
+	       $msg="";
+    }
+    if (isset($_GET['liste'])){
+	    $liste= $_GET['liste'];
+    }
+    else {
+	       $liste="";
+    }
 ?>
 
 <!DOCTYPE php>
@@ -26,18 +32,18 @@
         <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
         <!-- Css Styles -->
-        <link rel="stylesheet" href="../utilitaires/css/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="../utilitaires/css/font-awesome.min.css" type="text/css">
-        <link rel="stylesheet" href="../utilitaires/css/themify-icons.css" type="text/css">
-        <link rel="stylesheet" href="../utilitaires/css/elegant-icons.css" type="text/css">
-        <link rel="stylesheet" href="../utilitaires/css/owl.carousel.min.css" type="text/css">
-        <link rel="stylesheet" href="../utilitaires/css/nice-select.css" type="text/css">
-        <link rel="stylesheet" href="../utilitaires/css/jquery-ui.min.css" type="text/css">
-        <link rel="stylesheet" href="../utilitaires/css/slicknav.min.css" type="text/css">
-        <link rel="stylesheet" href="../utilitaires/css/style.css" type="text/css">
-        <link rel="stylesheet" href="../css/styles.css" type="text/css">
-        <script src="../javascript/fonctions.js"></script>
-        <script src="../javascript/panier.js"></script>
+        <link rel="stylesheet" href="/tp2/public/utilitaires/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="/tp2/public/utilitaires/css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="/tp2/public/utilitaires/css/themify-icons.css" type="text/css">
+        <link rel="stylesheet" href="/tp2/public/utilitaires/css/elegant-icons.css" type="text/css">
+        <link rel="stylesheet" href="/tp2/public/utilitaires/css/owl.carousel.min.css" type="text/css">
+        <link rel="stylesheet" href="/tp2/public/utilitaires/css/nice-select.css" type="text/css">
+        <link rel="stylesheet" href="/tp2/public/utilitaires/css/jquery-ui.min.css" type="text/css">
+        <link rel="stylesheet" href="/tp2/public/utilitaires/css/slicknav.min.css" type="text/css">
+        <link rel="stylesheet" href="/tp2/public/utilitaires/css/style.css" type="text/css">
+        <link rel="stylesheet" href="/tp2/public/css/styles.css" type="text/css">
+        <script src="/tp2/public/javascript/fonctions.js"></script>
+        <script src="/tp2/public/javascript/panier.js"></script>
         <!-- Javascript -->
     </head>
 
@@ -55,8 +61,8 @@
                 <div class="row">
                     <div class="col-md-2 col-sm-12">
                         <div class="logo">
-                            <img src="../images/streamtopia.png" alt="StreamTopia">
-                            <a href="../../index.php">
+                            <img src="/tp2/public/images/streamtopia.png" alt="StreamTopia">
+                            <a href="/tp2/index.php">
                                 StreamTopia
                             </a>
                         </div>
@@ -69,7 +75,7 @@
                                     echo "<li><a href=\"#\" data-toggle=\"modal\" data-target=\"#connexion\">Connexion</a></li>";
                                     echo "<li><button type=\"button\" class=\"btn btn-warning\" data-toggle=\"modal\" data-target=\"#enregistrer\">Devenir Membre</button></li>";
                                 }else if($_SESSION['roleSess']=='A'){
-                                    echo "<li><a href=\"/tp2/public/pages/admin.php\">".$_SESSION['prenomSess']." ".$_SESSION['nomSess']."</a></li>";
+                                    echo "<li><a href=\"/tp2/public/pages/membre.php\">".$_SESSION['prenomSess']." ".$_SESSION['nomSess']."</a></li>";
                                     echo "<li><a href=\"/tp2/public/pages/admin.php\">Page Admin</a></li>";
                                     echo "<li><a href=\"/tp2/serveur/membres/deconnexion.php\" class=\"btn btn-warning\">Déconnexion</a></li>";
                                 }else {
@@ -126,7 +132,7 @@
                     <div class="" id="enregFilm">
                         <h3 class="mb-2">Enregistrer un film</h3>
                         <hr>
-                        <form id="enregFilmForm" enctype="multipart/form-data" name="enregFilmForm" action="../../serveur/films/enregistrerFilm.php" method="POST" onsubmit="return validerFormEnregFilms();">
+                        <form id="enregFilmForm" enctype="multipart/form-data" name="enregFilmForm" action="/tp2/serveur/films/enregistrerFilm.php" method="POST" onsubmit="return validerFormEnregFilms();">
                             <div class="mb-3">
                                 <label for="titreFilm" class="form-label">Titre du film</label>
                                 <div id="messageTitre">Entrez le titre</div>
@@ -272,7 +278,7 @@
                     <div class="" id="listerFilms">
                         <h3 class="mb-2">Lister les films</h3>
                         <hr>
-                        <form id="formLister" action="../../serveur/films/listerFilms.php" method="POST">
+                        <form id="formLister" action="/tp2/serveur/films/listerFilms.php" method="POST">
                             <div class="row mb-5">
                                 <div class="col-sm">
                                     <h4 class="pb-3">Tous les films</h4>
@@ -319,7 +325,7 @@
                     <div class="" id="modifierFilm">
                         <h3>Modifier un film</h3>
                         <hr>
-                        <form id="modifierForm" name="modifierForm" action="../../serveur/films/ficheFilm.php" method="POST">
+                        <form id="modifierForm" name="modifierForm" action="/tp2/serveur/films/ficheFilm.php" method="POST">
                             <div class="mb-3">
                                 <label for="numFilmM" class="form-label">ID du Film</label>
                                 <div id="messageModifier">Entrez un nombre entre 1 et 9999</div>
@@ -333,7 +339,7 @@
                     <div class="" id="supprimerFilm">
                         <h3>Supprimer un film</h3>
                         <hr>
-                        <form id="supprimerForm" name="supprimerForm" action="../../serveur/films/supprimerFilm.php" method="POST" onsubmit="return validerNombre('numFilmS');">
+                        <form id="supprimerForm" name="supprimerForm" action="/tp2/serveur/films/supprimerFilm.php" method="POST" onsubmit="return validerNombre('numFilmS');">
                             <div class="mb-3">
                                 <label for="numFilmS" class="form-label">ID du Film</label>
                                 <div id="messageSupprimer">Entrez un nombre entre 1 et 9999</div>
@@ -354,7 +360,7 @@
 
                     <!-- -- Lister Membres -- -->
                     <div class="" id="listerMembres">
-                        <form id="formListerMembres" action="../../serveur/membres/listerMembres.php" method="POST">
+                        <form id="formListerMembres" action="/tp2/serveur/membres/listerMembres.php" method="POST">
                         </form>
                     </div>
 
@@ -362,7 +368,7 @@
                     <div class="" id="modifierMembre">
                         <h3>Modifier le statut d'un membre</h3>
                         <hr>
-                        <form id="modifierMembreForm" name="modifierMembreForm" action="../../serveur/membres/ficheMembre.php" method="POST"  onsubmit="return validerCourrielMembre(this);">
+                        <form id="modifierMembreForm" name="modifierMembreForm" action="/tp2/serveur/membres/ficheMembre.php" method="POST"  onsubmit="return validerCourrielMembre(this);">
                             <div class="mb-3">
                             <label for="courrielM"><b>Courriel</b></label><br>
                             <div id="messageCourrielM">Entrez une adresse courriel valide dans le format votrenom@domaine.com</div>
@@ -375,14 +381,14 @@
                 </div>
 
                 <div class="col-md-12">
-                    <p class="text-right"><a href="../../index.php" class="btn btn-outline-warning mt-5">Retour à la page d'accueil</a></p>
+                    <p class="text-right"><a href="/tp2/index.php" class="btn btn-outline-warning mt-5">Retour à la page d'accueil</a></p>
                 </div>
 
                 <!-- Toast -->
                 <div class="toast-container" aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
                     <div id="toast" class="toast posToast" data-delay="3000" role="alert" aria-live="assertive" aria-atomic="true">
                         <div class="toast-header">
-                            <img src="../../public/images/streamtopia.png" width="24" height="auto" class="rounded me-2" alt="message">
+                            <img src="/tp2/public/images/streamtopia.png" width="24" height="auto" class="rounded me-2" alt="message">
                             <strong class="me-auto">Messages</strong>
                             <small class="text-muted"></small>
                         </div>
@@ -403,8 +409,8 @@
                     <div class="footer-left">
                         
                         <div class="logo">
-                            <img src="../images/streamtopia.png" alt="StreamTopia">
-                            <a href="../../index.php">
+                            <img src="/tp2/public/images/streamtopia.png" alt="StreamTopia">
+                            <a href="/tp2/index.php">
                                 StreamTopia
                             </a>
                         </div>
@@ -454,16 +460,16 @@
 
 
     <!-- Js Plugins -->
-    <script src="../utilitaires/js/jquery-3.3.1.min.js"></script>
-    <script src="../utilitaires/js/bootstrap.min.js"></script>
-    <script src="../utilitaires/js/jquery-ui.min.js"></script>
-    <script src="../utilitaires/js/jquery.countdown.min.js"></script>
-    <script src="../utilitaires/js/jquery.nice-select.min.js"></script>
-    <!-- <script src="../utilitaires/js/jquery.zoom.min.js"></script> -->
-    <script src="../utilitaires/js/jquery.dd.min.js"></script>
-    <script src="../utilitaires/js/jquery.slicknav.js"></script>
-    <script src="../utilitaires/js/owl.carousel.min.js"></script>
-    <script src="../utilitaires/js/main.js"></script>
+    <script src="/tp2/public/utilitaires/js/jquery-3.3.1.min.js"></script>
+    <script src="/tp2/public/utilitaires/js/bootstrap.min.js"></script>
+    <script src="/tp2/public/utilitaires/js/jquery-ui.min.js"></script>
+    <script src="/tp2/public/utilitaires/js/jquery.countdown.min.js"></script>
+    <script src="/tp2/public/utilitaires/js/jquery.nice-select.min.js"></script>
+    <!-- <script src="/tp2/public/utilitaires/js/jquery.zoom.min.js"></script> -->
+    <script src="/tp2/public/utilitaires/js/jquery.dd.min.js"></script>
+    <script src="/tp2/public/utilitaires/js/jquery.slicknav.js"></script>
+    <script src="/tp2/public/utilitaires/js/owl.carousel.min.js"></script>
+    <script src="/tp2/public/utilitaires/js/main.js"></script>
 
 	</body>
 </html>

@@ -30,18 +30,18 @@
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="../utilitaires/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="../utilitaires/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="../utilitaires/css/themify-icons.css" type="text/css">
-    <link rel="stylesheet" href="../utilitaires/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="../utilitaires/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="../utilitaires/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="../utilitaires/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="../utilitaires/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="../utilitaires/css/style.css" type="text/css">
-    <link rel="stylesheet" href="../css/styles.css" type="text/css">
-    <script src="../javascript/fonctions.js"></script>
-    <script src="../javascript/panier.js"></script>
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/css/styles.css" type="text/css">
+    <script src="/tp2/public/javascript/fonctions.js"></script>
+    <script src="/tp2/public/javascript/panier.js"></script>
     <!-- Javascript -->
 
 </head>
@@ -60,8 +60,8 @@
                 <div class="row">
                     <div class="col-md-2 col-sm-12">
                         <div class="logo">
-                            <img src="../images/streamtopia.png" alt="StreamTopia">
-                            <a href="../../index.php">
+                            <img src="/tp2/public/images/streamtopia.png" alt="StreamTopia">
+                            <a href="/tp2/index.php">
                                 StreamTopia
                             </a>
                         </div>
@@ -103,7 +103,7 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-md-5 col-sm-12">
-                <form class="formulaires" id="connexionFromMembre" name="connexionFrom" action="../../serveur/membres/connexionMembre.php" method="POST" onsubmit="return validerConnexion(this);">
+                <form class="formulaires" id="connexionFromMembre" name="connexionFrom" action="/tp2/serveur/membres/connexionMembre.php" method="POST" onsubmit="return validerConnexion(this);">
                     <label for="courrielMembre"><b>Courriel</b></label><br>
                     <div id="messageCourrielMembre">Entrez une adresse courriel valide dans le format votrenom@domaine.com</div>
                     <input type="text" placeholder="Entrez votre adresse courriel" name="courrielMembre" id="courrielMembre" />
@@ -114,7 +114,7 @@
                     <input type="password" placeholder="Entrez le mot de passe" name="motDePasseMembre" id="motDePasseMembre">
                     
                     <div class="modal-footer px-0">
-                        <a href="../../index.php" class="btn btn-light">Annuler</a>
+                        <a href="/tp2/index.php" class="btn btn-light">Annuler</a>
                         <button type="submit" class="btn btn-warning">Se connecter</button>
                     </div>
                 </form>
@@ -128,7 +128,7 @@
     <div class="toast-container" aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
         <div id="toastAcc" class="toast posToast" data-delay="3000" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
-                <img src="../images/streamtopia.png" width="24" height="auto" class="rounded me-2" alt="message">
+                <img src="/tp2/public/images/streamtopia.png" width="24" height="auto" class="rounded me-2" alt="message">
                 <strong class="me-auto">Messages</strong>
                 <small class="text-muted"></small>
             </div>
@@ -149,7 +149,7 @@
             </button>
             </div>
             <div class="modal-body">
-                <form class="formulaires" id="enregForm" name="enregForm" action="../../serveur/membres/enregistrementMembre.php" method="POST" onsubmit="return validerFormEnreg(this);">
+                <form class="formulaires" id="enregForm" name="enregForm" action="/tp2/serveur/membres/enregistrementMembre.php" method="POST" onsubmit="return validerFormEnreg(this);">
                     <label for="prenom"><b>Prénom</b></label><br>
                     <div id="messagePrenom">Entrez votre prénom</div>
                     <input type="text" placeholder="Enter votre prénom" title="Enter votre prénom" name="prenom" id="prenom" />
@@ -218,7 +218,7 @@
                 </button>
                 </div>
                 <div class="modal-body">
-                    <form class="formulaires" id="connexionFrom" name="connexionFrom" action="../../serveur/membres/connexionMembre.php" method="POST" onsubmit="return validerConnexion(this);">
+                    <form class="formulaires" id="connexionFrom" name="connexionFrom" action="/tp2/serveur/membres/connexionMembre.php" method="POST" onsubmit="return validerConnexion(this);">
                         <label for="courrielMembre"><b>Courriel</b></label><br>
                         <div id="messageCourrielMembre">Entrez une adresse courriel valide dans le format votrenom@domaine.com</div>
                         <input type="text" placeholder="Entrez votre adresse courriel" name="courrielMembre" id="courrielMembre" />
@@ -250,8 +250,8 @@
                     <div class="footer-left">
                         
                         <div class="logo">
-                            <img src="../images/streamtopia.png" alt="StreamTopia">
-                            <a href="../../index.php">
+                            <img src="/tp2/public/images/streamtopia.png" alt="StreamTopia">
+                            <a href="/tp2/index.php">
                                 StreamTopia
                             </a>
                         </div>
@@ -301,16 +301,16 @@
 
 
     <!-- Js Plugins -->
-    <script src="../utilitaires/js/jquery-3.3.1.min.js"></script>
-    <script src="../utilitaires/js/bootstrap.min.js"></script>
-    <script src="../utilitaires/js/jquery-ui.min.js"></script>
-    <script src="../utilitaires/js/jquery.countdown.min.js"></script>
-    <script src="../utilitaires/js/jquery.nice-select.min.js"></script>
-    <script src="../utilitaires/js/jquery.zoom.min.js"></script>
-    <script src="../utilitaires/js/jquery.dd.min.js"></script>
-    <script src="../utilitaires/js/jquery.slicknav.js"></script>
-    <script src="../utilitaires/js/owl.carousel.min.js"></script>
-    <script src="../utilitaires/js/main.js"></script>
+    <script src="/tp2/public/utilitaires/js/jquery-3.3.1.min.js"></script>
+    <script src="/tp2/public/utilitaires/js/bootstrap.min.js"></script>
+    <script src="/tp2/public/utilitaires/js/jquery-ui.min.js"></script>
+    <script src="/tp2/public/utilitaires/js/jquery.countdown.min.js"></script>
+    <script src="/tp2/public/utilitaires/js/jquery.nice-select.min.js"></script>
+    <script src="/tp2/public/utilitaires/js/jquery.zoom.min.js"></script>
+    <script src="/tp2/public/utilitaires/js/jquery.dd.min.js"></script>
+    <script src="/tp2/public/utilitaires/js/jquery.slicknav.js"></script>
+    <script src="/tp2/public/utilitaires/js/owl.carousel.min.js"></script>
+    <script src="/tp2/public/utilitaires/js/main.js"></script>
 </body>
 
 </html>

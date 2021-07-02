@@ -6,18 +6,18 @@
         <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
         <!-- Css Styles -->
-        <link rel="stylesheet" href="../utilitaires/css/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="../utilitaires/css/font-awesome.min.css" type="text/css">
-        <link rel="stylesheet" href="../utilitaires/css/themify-icons.css" type="text/css">
-        <link rel="stylesheet" href="../utilitaires/css/elegant-icons.css" type="text/css">
-        <link rel="stylesheet" href="../utilitaires/css/owl.carousel.min.css" type="text/css">
-        <link rel="stylesheet" href="../utilitaires/css/nice-select.css" type="text/css">
-        <link rel="stylesheet" href="../utilitaires/css/jquery-ui.min.css" type="text/css">
-        <link rel="stylesheet" href="../utilitaires/css/slicknav.min.css" type="text/css">
-        <link rel="stylesheet" href="../utilitaires/css/style.css" type="text/css">
-        <link rel="stylesheet" href="../css/styles.css" type="text/css">
-        <script src="../javascript/fonctions.js"></script>
-        <script src="../javascript/panier.js"></script>
+        <link rel="stylesheet" href="/tp2/public/utilitaires/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="/tp2/public/utilitaires/css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="/tp2/public/utilitaires/css/themify-icons.css" type="text/css">
+        <link rel="stylesheet" href="/tp2/public/utilitaires/css/elegant-icons.css" type="text/css">
+        <link rel="stylesheet" href="/tp2/public/utilitaires/css/owl.carousel.min.css" type="text/css">
+        <link rel="stylesheet" href="/tp2/public/utilitaires/css/nice-select.css" type="text/css">
+        <link rel="stylesheet" href="/tp2/public/utilitaires/css/jquery-ui.min.css" type="text/css">
+        <link rel="stylesheet" href="/tp2/public/utilitaires/css/slicknav.min.css" type="text/css">
+        <link rel="stylesheet" href="/tp2/public/utilitaires/css/style.css" type="text/css">
+        <link rel="stylesheet" href="/tp2/public/css/styles.css" type="text/css">
+        <script src="/tp2/public/javascript/fonctions.js"></script>
+        <script src="/tp2/public/javascript/panier.js"></script>
         <!-- Javascript -->
     </head>
 
@@ -34,12 +34,12 @@
 	if(!$ligne = $result->fetch_object()){
 		mysqli_close($connexion);
 		$msg = "Le film <strong>".$num."</strong> ne se retrouve pas dans notre base de donnée. Veuillez réessayer.";
-		header("Location:../../public/pages/admin.php?msg=$msg");
+		header("Location:/tp2/public/pages/admin.php?msg=$msg");
 		exit;
 	}
 	$pochette=$ligne->pochette;
 	if($pochette!="avatar.jpg"){
-		$rmPoc='../../public/images/pochettes/'.$pochette;
+		$rmPoc='/tp2/public/images/pochettes/'.$pochette;
 		$tabFichiers = glob('pochettes/*');
 		// parcourir les fichier
 		foreach($tabFichiers as $fichier){
@@ -56,7 +56,7 @@
 	$statement->execute();
 	mysqli_close($connexion);
 	$msg = "Le film <strong>".$num."</strong> a été retiré.";
-	header("Location:../../public/pages/admin.php?msg=$msg");
+	header("Location:/tp2/public/pages/admin.php?msg=$msg");
 ?>
 
 

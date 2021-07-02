@@ -1,15 +1,15 @@
-    <link rel="stylesheet" href="../../public/utilitaires/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/themify-icons.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/style.css" type="text/css">
-    <link rel="stylesheet" href="../../public/css/styles.css" type="text/css">
-    <script src="../../public/javascript/fonctions.js"></script>
-    <script src="../../public/javascript/panier.js"></script>
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/css/styles.css" type="text/css">
+    <script src="/tp2/public/javascript/fonctions.js"></script>
+    <script src="/tp2/public/javascript/panier.js"></script>
 
 <div class="container">
     <div class="row">
@@ -27,7 +27,7 @@
                 $dateFilm=$_POST['dateFilm'];
 				$urlPreview=$_POST['urlPreview'];
                 $prix=$_POST['prix'];
-                $dossier="../../public/images/pochettes/";
+                $dossier="/tp2/public/images/pochettes/";
                 $nomPochette=sha1($titreFilm.time());
                 $pochette="avatar.jpg";
 
@@ -51,7 +51,7 @@
 
                 mysqli_close($connexion);
                 $msg = "Le film <strong>".$titreFilm."</strong> a été bien enregistré.";
-	            header("Location:../../public/pages/admin.php?msg=$msg");
+	            header("Location:/tp2/public/pages/admin.php?msg=$msg");
             ?>
         </div>
     </div>

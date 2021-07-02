@@ -4,6 +4,7 @@ if(localStorage.getItem("panier")==undefined){
 var panier=null;
 var idFilmSelect;
 let i=1;
+var leRoleUtilisateur = "<?php echo $_SESSION['roleSess']?>";
 
 
 function viderPanier(){
@@ -48,26 +49,34 @@ function afficherPanier() {
     panier=JSON.parse(localStorage.getItem("panier"));
     nombre=0;
     let leTotal=0;
+    
 
     lePanier+="<table class='table table-striped'>";
     lePanier+="<tr><th>Pochette</th><th>ID</th><th>Titre</th><th>Prix/3 jours</th><th></th></tr>";
     for( var unFilm of panier){
         lePanier+="<tr>"
         if(unFilm!==null){
-            lePanier+="<td><img src='../images/pochettes/"+unFilm.pochette+"' style='max-width:60px; height:auto;'></td>";
+            lePanier+="<td><img src='/tp2/public/images/pochettes/"+unFilm.pochette+"' style='max-width:60px; height:auto;'></td>";
             lePanier+="<td>"+unFilm.idFilm+"</td>";
             lePanier+="<td>"+unFilm.titre+"</td>";
-            lePanier+="<td>"+unFilm.prix+" $</td>";
+            if (!leRoleUtilisateur.value=='M'){
+                unFilm.prix = unFilm.prix/2;
+                alert(unFilm.prix);
+                lePanier+="<td><span class='small jaune'>Prix employé (50%)</span><br>"+unFilm.prix+" $</td>";
+            } else {
+                lePanier+="<td>"+unFilm.prix+" $</td>";
+            }
+            
             lePanier+="<td><a class='dark-link' onClick='retirerPanier("+unFilm.idFilm+")'>Retirer</a></td>";
             nombre++; 
             leTotal+= parseFloat(unFilm.prix);
-        } else {lePanier+="<p>Le panier est vide.</p><a href='../../index.php' class='btn btn-warning'>Ajouter des films</a>"}
+        } else {lePanier+="<p>Le panier est vide.</p><a href='/tp2/index.php' class='btn btn-warning'>Ajouter des films</a>"}
 
         lePanier+="</tr>";
     }
     lePanier+="</table>";
     lePanier+="<hr>";
-    lePanier+="<div d-flex d-flex align-items-end><div>Le total est : <strong>"+leTotal+"<strong></div>";
+    lePanier+="<div><h4 class=\"text-right\">Le total est : <strong>"+leTotal+"$<strong></h4></div>";
     document.querySelector("#votrePanier").innerHTML=lePanier;
     document.querySelector("#nbItems").innerHTML=nombre;
 }
@@ -77,11 +86,12 @@ let payer = () => {
     envoyerPanierServeur();
 
 }
-let courriel = $_SESSION['courrielSess'];
+let courriel = "<?php echo $_SESSION['courrielSess']; ?>";
+alert(courriel);
 let envoyerPanierServeur = () => {
     $.ajax({
         type:"POST",
-        url:"../../serveur/locations/panierMembre.php",
+        url:"/tp2/serveur/locations/panierMembre.php",
         data:{"courriel": courriel, "panier" : localStorage.getItem("panier")},
         dataType : "text",
         //La réponse du serveur

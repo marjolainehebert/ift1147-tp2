@@ -1,15 +1,15 @@
-<link rel="stylesheet" href="../../public/utilitaires/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/themify-icons.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/style.css" type="text/css">
-    <link rel="stylesheet" href="../../public/css/styles.css" type="text/css">
-    <script src="../../public/javascript/fonctions.js"></script>
-    <script src="../../public/javascript/panier.js"></script>
+<link rel="stylesheet" href="/tp2/public/utilitaires/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/css/styles.css" type="text/css">
+    <script src="/tp2/public/javascript/fonctions.js"></script>
+    <script src="/tp2/public/javascript/panier.js"></script>
 
 <div class="container">
     <div class="row">
@@ -39,7 +39,7 @@
                         if ($ligneMembre->courriel == $courriel) {// Vérifier si le courriel se retrouve déjà dans la base de donnée
                             mysqli_close($connexion);
                             $msg = "Le courriel ".$courriel.", est déjà utilisé. Veuillez vous connecter.";
-                            header("Location:../../index.php?msg=$msg");
+                            header("Location:/tp2/index.php?msg=$msg");
                             exit;
                         }
                     }
@@ -57,11 +57,11 @@
                     mysqli_close($connexion);
                     $_SESSION['courrielSess']=$courriel;
                     $msg = "Bienvenue ".$prenom.", vous avèz bien été enregistré.";
-                    header("Location:../../public/pages/membre.php?msg=$msg");
+                    header("Location:/tp2/public/pages/membre.php?msg=$msg");
                     
                 } catch (Exeption $e) {
                     $msg = "Problème pour s'enregistrer. Veuillez réessayer plus tard.";
-                    header("Location:../../index.php?msg=$msg");
+                    header("Location:/tp2/index.php?msg=$msg");
                     mysqli_close($connexion);
                 } finally {
                     $rep.="</table>";

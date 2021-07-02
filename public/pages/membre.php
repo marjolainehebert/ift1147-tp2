@@ -2,7 +2,7 @@
     session_start();
 
     if(!isset($_SESSION['courrielSess'])){
-        header("Location:../../public/pages/seConnecter.php");
+        header("Location:/tp2/public/pages/seConnecter.php");
     }
 
     if (isset($_GET['msg'])){
@@ -28,18 +28,18 @@
         <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
         <!-- Css Styles -->
-        <link rel="stylesheet" href="../utilitaires/css/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="../utilitaires/css/font-awesome.min.css" type="text/css">
-        <link rel="stylesheet" href="../utilitaires/css/themify-icons.css" type="text/css">
-        <link rel="stylesheet" href="../utilitaires/css/elegant-icons.css" type="text/css">
-        <link rel="stylesheet" href="../utilitaires/css/owl.carousel.min.css" type="text/css">
-        <link rel="stylesheet" href="../utilitaires/css/nice-select.css" type="text/css">
-        <link rel="stylesheet" href="../utilitaires/css/jquery-ui.min.css" type="text/css">
-        <link rel="stylesheet" href="../utilitaires/css/slicknav.min.css" type="text/css">
-        <link rel="stylesheet" href="../utilitaires/css/style.css" type="text/css">
-        <link rel="stylesheet" href="../css/styles.css" type="text/css">
-        <script src="../javascript/fonctions.js"></script>
-        <script src="../javascript/panier.js"></script>
+        <link rel="stylesheet" href="/tp2/public/utilitaires/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="/tp2/public/utilitaires/css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="/tp2/public/utilitaires/css/themify-icons.css" type="text/css">
+        <link rel="stylesheet" href="/tp2/public/utilitaires/css/elegant-icons.css" type="text/css">
+        <link rel="stylesheet" href="/tp2/public/utilitaires/css/owl.carousel.min.css" type="text/css">
+        <link rel="stylesheet" href="/tp2/public/utilitaires/css/nice-select.css" type="text/css">
+        <link rel="stylesheet" href="/tp2/public/utilitaires/css/jquery-ui.min.css" type="text/css">
+        <link rel="stylesheet" href="/tp2/public/utilitaires/css/slicknav.min.css" type="text/css">
+        <link rel="stylesheet" href="/tp2/public/utilitaires/css/style.css" type="text/css">
+        <link rel="stylesheet" href="/tp2/public/css/styles.css" type="text/css">
+        <script src="/tp2/public/javascript/fonctions.js"></script>
+        <script src="/tp2/public/javascript/panier.js"></script>
         <!-- Javascript -->
     </head>
 
@@ -57,8 +57,8 @@
                 <div class="row">
                     <div class="col-md-2 col-sm-12">
                         <div class="logo">
-                            <img src="../images/streamtopia.png" alt="StreamTopia">
-                            <a href="../../index.php">
+                            <img src="/tp2/public/images/streamtopia.png" alt="StreamTopia">
+                            <a href="/tp2/index.php">
                                 StreamTopia
                             </a>
                         </div>
@@ -97,7 +97,7 @@
 
                     <h5><strong>Gestion locations</strong></h5>
                     <div class="block flex-wrap mt-3 mb-5">
-                        <a class="btn btn-outline-info mb-3" href="../../index.php">Ajouter des films</a>
+                        <a class="btn btn-outline-info mb-3" href="/tp2/index.php">Ajouter des films</a>
                         <button class="btn btn-outline-success mb-3" onclick="afficherPanier()">Panier</button>
                         <button class="btn btn-outline-warning mb-3" onClick="payer();">Payer</button>
                     </div>
@@ -105,7 +105,7 @@
                     <h5><strong>Votre profil</strong></h5>
                     <div class="block flex-wrap mt-3 mb-5">
                         <button class="btn btn-outline-info mb-3" onclick="montrerM('afficherProfilPM');">Afficher</button>
-                        <a class="btn btn-outline-success mb-3" href="../../serveur/membres/ficheProfil.php">Modifier</a>
+                        <a class="btn btn-outline-success mb-3" href="/tp2/serveur/membres/ficheProfil.php">Modifier</a>
                     </div>
                 </div>
 
@@ -157,14 +157,14 @@
                 </div>
 
                 <div class="col-md-12">
-                    <p class="text-right"><a href="../../index.php" class="btn btn-warning mt-5">Retour à la page d'accueil</a></p>
+                    <p class="text-right"><a href="/tp2/index.php" class="btn btn-warning mt-5">Retour à la page d'accueil</a></p>
                 </div>
 
                 <!-- Toast -->
                 <div class="toast-container" aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
                     <div id="toast" class="toast posToast" data-delay="3000" role="alert" aria-live="assertive" aria-atomic="true">
                         <div class="toast-header">
-                            <img src="../../public/images/streamtopia.png" width="24" height="auto" class="rounded me-2" alt="message">
+                            <img src="/tp2/public/images/streamtopia.png" width="24" height="auto" class="rounded me-2" alt="message">
                             <strong class="me-auto">Messages</strong>
                         </div>
                         <div id="textToast" class="toast-body">
@@ -184,8 +184,8 @@
                     <div class="footer-left">
                         
                         <div class="logo">
-                            <img src="../images/streamtopia.png" alt="StreamTopia">
-                            <a href="../../index.php">
+                            <img src="/tp2/public/images/streamtopia.png" alt="StreamTopia">
+                            <a href="/tp2/index.php">
                                 StreamTopia
                             </a>
                         </div>
@@ -235,16 +235,16 @@
 
 
     <!-- Js Plugins -->
-    <script src="../utilitaires/js/jquery-3.3.1.min.js"></script>
-    <script src="../utilitaires/js/bootstrap.min.js"></script>
-    <script src="../utilitaires/js/jquery-ui.min.js"></script>
-    <script src="../utilitaires/js/jquery.countdown.min.js"></script>
-    <script src="../utilitaires/js/jquery.nice-select.min.js"></script>
-    <!-- <script src="../utilitaires/js/jquery.zoom.min.js"></script> -->
-    <script src="../utilitaires/js/jquery.dd.min.js"></script>
-    <script src="../utilitaires/js/jquery.slicknav.js"></script>
-    <script src="../utilitaires/js/owl.carousel.min.js"></script>
-    <script src="../utilitaires/js/main.js"></script>
+    <script src="/tp2/public/utilitaires/js/jquery-3.3.1.min.js"></script>
+    <script src="/tp2/public/utilitaires/js/bootstrap.min.js"></script>
+    <script src="/tp2/public/utilitaires/js/jquery-ui.min.js"></script>
+    <script src="/tp2/public/utilitaires/js/jquery.countdown.min.js"></script>
+    <script src="/tp2/public/utilitaires/js/jquery.nice-select.min.js"></script>
+    <!-- <script src="/tp2/public/utilitaires/js/jquery.zoom.min.js"></script> -->
+    <script src="/tp2/public/utilitaires/js/jquery.dd.min.js"></script>
+    <script src="/tp2/public/utilitaires/js/jquery.slicknav.js"></script>
+    <script src="/tp2/public/utilitaires/js/owl.carousel.min.js"></script>
+    <script src="/tp2/public/utilitaires/js/main.js"></script>
 
 	</body>
 </html>

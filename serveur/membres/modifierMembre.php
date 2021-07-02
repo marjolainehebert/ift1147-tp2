@@ -3,18 +3,18 @@
 
 <head>
 <meta charset="UTF-8">
-    <link rel="stylesheet" href="../../public/utilitaires/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/themify-icons.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="../../public/utilitaires/css/style.css" type="text/css">
-    <link rel="stylesheet" href="../../public/css/styles.css" type="text/css">
-    <script src="../../public/javascript/fonctions.js"></script>
-    <script src="../../public/javascript/panier.js"></script>
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/utilitaires/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/tp2/public/css/styles.css" type="text/css">
+    <script src="/tp2/public/javascript/fonctions.js"></script>
+    <script src="/tp2/public/javascript/panier.js"></script>
 </head>
 
 <body>
@@ -28,8 +28,8 @@
                 <div class="row">
                     <div class="col-md-2 col-sm-12">
                         <div class="logo">
-                            <img src="../../public/images/streamtopia.png" alt="StreamTopia">
-                            <a href="../../index.php">
+                            <img src="/tp2/public/images/streamtopia.png" alt="StreamTopia">
+                            <a href="/tp2/index.php">
                                 StreamTopia
                             </a>
                         </div>
@@ -79,7 +79,7 @@
                     $stmt->execute();
                     mysqli_close($connexion);
                     $msg = "Le membre <strong>".$courriel."</strong> a été modifié.";
-                    header("Location:../../public/pages/admin.php?msg=$msg");
+                    header("Location:/tp2/public/pages/admin.php?msg=$msg");
                 ?>
             </div>
             <p>
