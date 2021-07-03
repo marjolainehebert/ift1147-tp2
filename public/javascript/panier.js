@@ -5,8 +5,12 @@ if(localStorage.getItem("panier")==undefined){
 
 var panier=null;
 let i=1;
-function ajoutPanier() {
-    let film={"idFilm": i,"titre":"Le film "+(i++),"duree":120,"increment":i++};
+function ajoutPanier(bouton) {
+    let pochette = $(bouton).data('pochette');
+    let leFilm = $(bouton).data('lefilm');
+    let titre = $(bouton).data('title');
+    let prix = $(bouton).data('prix');
+    let film={"idFilm": leFilm,"titre":titre,"pochette":pochette,"prix":prix,"increment":i++};
     panier=JSON.parse(localStorage.getItem("panier"));
    panier.push(film);
    localStorage.setItem("panier",JSON.stringify(panier));
@@ -27,17 +31,37 @@ function retirerPanier(idF) {
 }
 
 function afficherPanier() {
-    var lePanier="<h3>Contenu de votre panier</h3></br>";
+    var lePanier="</br>";
+    nombre=0;
+    let leTotal=0;
     panier=JSON.parse(localStorage.getItem("panier"));
-    for( var unFilm of panier){
-        if(unFilm!==null){
-            lePanier+="</br>Id film = "+unFilm.idFilm;
-            lePanier+="</br>Titre = "+unFilm.titre;
-            lePanier+="</br>Durée = "+unFilm.duree;
-            lePanier+="</br>*******************";
+    if (!panier==[]){
+        lePanier+="<table class='table table-striped'>";
+        lePanier+="<tr><th>Pochette</th><th>ID</th><th>Titre</th><th>Prix/3 jours</th><th></th></tr>";
+        for( var unFilm of panier){
+            if(unFilm!==null){
+                // lePanier+="</br>Id film = "+unFilm.idFilm;
+                // lePanier+="</br>Titre = "+unFilm.titre;
+                // lePanier+="</br>Durée = "+unFilm.pochette;
+                // lePanier+="</br>Durée = "+unFilm.prix;
+                // lePanier+="</br>*******************";
+                // nombre++
+                lePanier+="<tr>";
+                lePanier+="<td><img src='/tp2/public/images/pochettes/"+unFilm.pochette+"' style='max-width:60px; height:auto;'></td>";
+                lePanier+="<td>"+unFilm.idFilm+"</td>";
+                lePanier+="<td>"+unFilm.titre+"</td>";
+                lePanier+="<td>"+unFilm.prix+" $</td>";
+                lePanier+="<td><a class='dark-link' onClick='retirerPanier("+unFilm.idFilm+")'>Retirer</a></td>";
+                
+                lePanier+="</tr>";
+                nombre++; 
+                leTotal+= parseFloat(unFilm.prix);
+            }
         }
-    }
+        lePanier+='</table>'; 
+    } else {lePanier+="Le panier est vide";}
     document.querySelector("#votrePanier").innerHTML=lePanier;
+    document.querySelector("#nbItems").innerHTML=nombre;
 }
 
 function confirmSubmit(){
@@ -53,8 +77,9 @@ function confirmSubmit(){
 
 function viderPanier(){
     localStorage.clear();
-    var lePanier="<h4>Votre panier est vide</h4></br>";
-    document.querySelector("#votrePanier").innerHTML=lePanier;
+    // var lePanier="<p>Votre panier est vide</p></br>";
+    // document.querySelector("#votrePanier").innerHTML=lePanier;
+    afficherPanier()
 }
 
 let payer = () => {

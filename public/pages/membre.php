@@ -118,8 +118,11 @@
 
                     <!-- -- Lister Locations -- -->
                     <div id="listerLocationsPM">
-                        <span id="votrePanier"></span>
-                        </br></br>
+                        <div>
+                            <h4>Contenu de votre panier</h4>
+                            <span id="votrePanier"></span>
+                        </div>
+                        
                         <div>
                             <hr>
                             <h4>Votre historique de locations</h4>
