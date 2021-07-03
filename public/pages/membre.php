@@ -119,13 +119,13 @@
                     <!-- -- Lister Locations -- -->
                     <div id="listerLocationsPM">
                         <div>
-                            <h4>Contenu de votre panier</h4>
+                            <h4 class="pb-5">Contenu de votre panier</h4>
                             <span id="votrePanier"></span>
                         </div>
                         
                         <div>
                             <hr>
-                            <h4>Vos locations en cours</h4>
+                            <h4 class="pb-5">Vos locations en cours</h4>
                             <div id="panierServeur"></div>
                         </div>
 

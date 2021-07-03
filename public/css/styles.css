@@ -128,8 +128,9 @@ p.genre{
 .jaune{
     color:#FFC107;
 }
+
 .caps{
-    text-transform: uppercase;;
+    text-transform: uppercase;
 } 
 
 .prix{

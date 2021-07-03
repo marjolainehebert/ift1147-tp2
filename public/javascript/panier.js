@@ -80,7 +80,6 @@ function viderPanier(){
 }
 
 let payer = () => {
-    alert("Paiement reçu. Merci.");
     envoyerPanierServeur();
     viderPanier();
 }
