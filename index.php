@@ -166,9 +166,9 @@
                         $rep.='             </div>';
 
                         $rep.='             <div class="block flex-wrap">
-                                                <button class="btn btn-warning ajouterAuPanier" 
-                                                    data-idFilm="'.($ligne->id).'" 
-                                                    data-title="'.($ligne->titre).'" 
+                                                <button class="btn btn-warning ajouterAuPanier"
+                                                    data-title="'.($ligne->titre).'"  
+                                                    data-lefilm="'.($ligne->id).'"
                                                     data-pochette="'.($ligne->pochette).'" 
                                                     data-prix="'.($ligne->prix).'" 
                                                     onClick="

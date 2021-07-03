@@ -100,6 +100,7 @@
                         <a class="btn btn-outline-info mb-3" href="/tp2/index.php">Ajouter des films</a>
                         <button class="btn btn-outline-success mb-3" onclick="afficherPanier()">Panier</button>
                         <button class="btn btn-outline-warning mb-3" onClick="payer();">Payer</button>
+                        <button class="btn btn-outline-danger mb-3" onClick="return confirmSubmit();">Vider Panier</button>
                     </div>
 
                     <h5><strong>Votre profil</strong></h5>
@@ -119,7 +120,11 @@
                     <div id="listerLocationsPM">
                         <span id="votrePanier"></span>
                         </br></br>
-                        <div id="panierServeur"></div>
+                        <div>
+                            <hr>
+                            <h4>Votre historique de locations</h4>
+                            <div id="panierServeur"></div>
+                        </div>
 
                     </div>
 

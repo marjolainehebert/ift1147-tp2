@@ -1,27 +1,15 @@
+
 if(localStorage.getItem("panier")==undefined){
     localStorage.setItem("panier",'[]');//panier vide
 }
+
 var panier=null;
-var idFilmSelect;
 let i=1;
-var leRoleUtilisateur = "<?php echo $_SESSION['roleSess']?>";
-
-
-function viderPanier(){
-    storage.clear();
-}
-
-function ajoutPanier(bouton) {
-    let idFilm = $(bouton).data('idFilm');
-    idFilmSelect = idFilm;
-    let pochette = $(bouton).data('pochette');
-    let titre = $(bouton).data('title');
-    let prix = $(bouton).data('prix');
-    
-    let film={"idFilm": idFilm,"titre":titre,"pochette":pochette,"prix":prix};
+function ajoutPanier() {
+    let film={"idFilm": i,"titre":"Le film "+(i++),"duree":120,"increment":i++};
     panier=JSON.parse(localStorage.getItem("panier"));
-    panier.push(film);
-    localStorage.setItem("panier",JSON.stringify(panier));
+   panier.push(film);
+   localStorage.setItem("panier",JSON.stringify(panier));
 }
 
 function retirerPanier(idF) {
@@ -39,68 +27,55 @@ function retirerPanier(idF) {
 }
 
 function afficherPanier() {
-    montrerM('listerLocationsPM');
-    var lePanier="<div class='d-flex justify-content-between align-items-baseline'>";
-    lePanier+="<h4>Contenu de votre panier</h4>";
-    lePanier+="<button class='btn btn-outline-warning' onClick='viderPanier()'>abandonner</button>";
-    lePanier+="<button class='btn btn-warning' onClick='payer()'>Payer</button>";
-    lePanier+="</div>";
-    lePanier+="<hr>";
+    var lePanier="<h3>Contenu de votre panier</h3></br>";
     panier=JSON.parse(localStorage.getItem("panier"));
-    nombre=0;
-    let leTotal=0;
-    
-
-    lePanier+="<table class='table table-striped'>";
-    lePanier+="<tr><th>Pochette</th><th>ID</th><th>Titre</th><th>Prix/3 jours</th><th></th></tr>";
     for( var unFilm of panier){
-        lePanier+="<tr>"
         if(unFilm!==null){
-            lePanier+="<td><img src='/tp2/public/images/pochettes/"+unFilm.pochette+"' style='max-width:60px; height:auto;'></td>";
-            lePanier+="<td>"+unFilm.idFilm+"</td>";
-            lePanier+="<td>"+unFilm.titre+"</td>";
-            if (!leRoleUtilisateur.value=='M'){
-                unFilm.prix = unFilm.prix/2;
-                alert(unFilm.prix);
-                lePanier+="<td><span class='small jaune'>Prix employé (50%)</span><br>"+unFilm.prix+" $</td>";
-            } else {
-                lePanier+="<td>"+unFilm.prix+" $</td>";
-            }
-            
-            lePanier+="<td><a class='dark-link' onClick='retirerPanier("+unFilm.idFilm+")'>Retirer</a></td>";
-            nombre++; 
-            leTotal+= parseFloat(unFilm.prix);
-        } else {lePanier+="<p>Le panier est vide.</p><a href='/tp2/index.php' class='btn btn-warning'>Ajouter des films</a>"}
-
-        lePanier+="</tr>";
+            lePanier+="</br>Id film = "+unFilm.idFilm;
+            lePanier+="</br>Titre = "+unFilm.titre;
+            lePanier+="</br>Durée = "+unFilm.duree;
+            lePanier+="</br>*******************";
+        }
     }
-    lePanier+="</table>";
-    lePanier+="<hr>";
-    lePanier+="<div><h4 class=\"text-right\">Le total est : <strong>"+leTotal+"$<strong></h4></div>";
     document.querySelector("#votrePanier").innerHTML=lePanier;
-    document.querySelector("#nbItems").innerHTML=nombre;
+}
+
+function confirmSubmit(){
+    var agree=confirm("Voulez-vous vraiment vider votre panier?");
+    if (agree){
+        viderPanier();
+        return true ;
+    }
+    else {
+        return false ;
+    }
+}
+
+function viderPanier(){
+    localStorage.clear();
+    var lePanier="<h4>Votre panier est vide</h4></br>";
+    document.querySelector("#votrePanier").innerHTML=lePanier;
 }
 
 let payer = () => {
-    
+    alert("Paiement reçu. Merci.");
     envoyerPanierServeur();
-
+    viderPanier();
 }
-let courriel = "<?php echo $_SESSION['courrielSess']; ?>";
-alert(courriel);
+let courriel = "abc@abc.com";
 let envoyerPanierServeur = () => {
     $.ajax({
         type:"POST",
-        url:"/tp2/serveur/locations/panierMembre.php",
+        url:"gestionLocations.php",
         data:{"courriel": courriel, "panier" : localStorage.getItem("panier")},
         dataType : "text",
-        //La réponse du serveur
+        //La réponse du seerveur
         success : (reponse) => {
             //alert(reponse);
             document.getElementById("panierServeur").innerHTML=reponse;
         },
         fail : () => {
-            alert("Erreur: impossible d'envoyer votre commande au serveur. Veuillez réessayer plus tard.");
+            alert("Grave Erreur");
         }
     })
 }
