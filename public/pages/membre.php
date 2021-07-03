@@ -125,7 +125,7 @@
                         
                         <div>
                             <hr>
-                            <h4>Votre historique de locations</h4>
+                            <h4>Vos locations en cours</h4>
                             <div id="panierServeur"></div>
                         </div>
 
