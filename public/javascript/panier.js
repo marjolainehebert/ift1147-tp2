@@ -31,7 +31,7 @@ function retirerPanier(idF) {
 }
 
 function afficherPanier() {
-    var lePanier="</br>";
+    var lePanier=" ";
     nombre=0;
     let leTotal=0;
     panier=JSON.parse(localStorage.getItem("panier"));
@@ -40,12 +40,6 @@ function afficherPanier() {
         lePanier+="<tr><th>Pochette</th><th>ID</th><th>Titre</th><th>Prix/3 jours</th><th></th></tr>";
         for( var unFilm of panier){
             if(unFilm!==null){
-                // lePanier+="</br>Id film = "+unFilm.idFilm;
-                // lePanier+="</br>Titre = "+unFilm.titre;
-                // lePanier+="</br>Durée = "+unFilm.pochette;
-                // lePanier+="</br>Durée = "+unFilm.prix;
-                // lePanier+="</br>*******************";
-                // nombre++
                 lePanier+="<tr>";
                 lePanier+="<td><img src='/tp2/public/images/pochettes/"+unFilm.pochette+"' style='max-width:60px; height:auto;'></td>";
                 lePanier+="<td>"+unFilm.idFilm+"</td>";
@@ -59,6 +53,11 @@ function afficherPanier() {
             }
         }
         lePanier+='</table>'; 
+        lePanier+="<hr>";
+        lePanier+="<div class='d-flex justify-content-end  align-items-center'>";
+        lePanier+="<h4 class='mx-3'>Le total est : <strong>"+leTotal+"$<strong></h4>"; 
+        lePanier+="<button class='btn btn-warning ms-2' onClick='payer()'>Payer</button>";
+        lePanier+="</div>";
     } else {lePanier+="Le panier est vide";}
     document.querySelector("#votrePanier").innerHTML=lePanier;
     document.querySelector("#nbItems").innerHTML=nombre;
@@ -77,9 +76,7 @@ function confirmSubmit(){
 
 function viderPanier(){
     localStorage.clear();
-    // var lePanier="<p>Votre panier est vide</p></br>";
-    // document.querySelector("#votrePanier").innerHTML=lePanier;
-    afficherPanier()
+    afficherPanier();
 }
 
 let payer = () => {
@@ -91,16 +88,16 @@ let courriel = "abc@abc.com";
 let envoyerPanierServeur = () => {
     $.ajax({
         type:"POST",
-        url:"gestionLocations.php",
+        url:"/tp2/serveur/locations/enregistrerLocations.php",
         data:{"courriel": courriel, "panier" : localStorage.getItem("panier")},
         dataType : "text",
-        //La réponse du seerveur
+        //La réponse du serveur
         success : (reponse) => {
             //alert(reponse);
             document.getElementById("panierServeur").innerHTML=reponse;
         },
         fail : () => {
-            alert("Grave Erreur");
+            alert("Erreur de connexion au serveur. Veuillez réessayer plus tard.");
         }
     })
 }

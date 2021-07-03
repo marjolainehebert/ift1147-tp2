@@ -18,8 +18,8 @@
                 session_start();
                 require_once("../bdconfig/connexion.inc.php");
                 // attribuer des valeurs aux variables
-                $panier=$_POST['panier']; 
-                $courriel=$_POST['courriel'];
+                $courriel = $_SESSION['courrielSess'];
+                $panier = json_decode($_POST['panier']);
 
                 
                 $requete="SELECT * FROM locationEtPaiements";

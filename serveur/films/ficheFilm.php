@@ -154,7 +154,7 @@
 
 
                 $requete="SELECT * FROM films WHERE id=?";
-                $stmt = $connexion->prepare($requete);
+                gi($requete);
                 $stmt->bind_param("i", $num);
                 $stmt->execute();
                 $result = $stmt->get_result();
