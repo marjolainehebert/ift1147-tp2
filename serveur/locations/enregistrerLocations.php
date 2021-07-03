@@ -18,7 +18,7 @@
                                 $idsPanier.= $uneLocation->idFilm.";";
                             }
                         }
-                        $requete="INSERT INTO locations values(?,?,?)";
+                        $requete="INSERT INTO locations values(0,?,?,?)";
                         $stmt=$connexion->prepare($requete);
                         $stmt->bind_param("sss", $courriel,$dateLocation,$idsPanier);
                         $stmt->execute();
@@ -29,6 +29,7 @@
                         echo "<span aria-hidden='true'>&times;</span>";
                         echo "</button>";
                         echo "</div>";
+                        echo "<p>Votre panier est vide.</p>";
                     } else echo "Votre panier est vide. Aucun film n'a été enregistré.";
                     
                 } catch (Exeption $e) {

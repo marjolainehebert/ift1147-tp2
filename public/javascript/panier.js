@@ -93,6 +93,21 @@ let envoyerPanierServeur = () => {
         //La réponse du serveur
         success : (reponse) => {
             //alert(reponse);
+            document.getElementById("votrePanier").innerHTML=reponse;
+        },
+        fail : () => {
+            alert("Erreur de connexion au serveur. Veuillez réessayer plus tard.");
+        }
+    })
+
+    $.ajax({
+        type:"POST",
+        url:"/tp2/serveur/locations/panierMembre.php",
+        data:{"panier" : localStorage.getItem("panier")},
+        dataType : "text",
+        //La réponse du serveur
+        success : (reponse) => {
+            //alert(reponse);
             document.getElementById("panierServeur").innerHTML=reponse;
         },
         fail : () => {
