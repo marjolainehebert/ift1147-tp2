@@ -55,7 +55,7 @@ function afficherPanier() {
         lePanier+='</table>'; 
         lePanier+="<hr>";
         lePanier+="<div class='d-flex justify-content-end  align-items-center'>";
-        lePanier+="<h4 class='mx-3'>Le total est : <strong>"+leTotal+"$<strong></h4>"; 
+        lePanier+="<h4 class='mx-3'>Le total est : <strong>"+leTotal+" $<strong></h4>"; 
         lePanier+="<button class='btn btn-warning ms-2' onClick='payer()'>Payer</button>";
         lePanier+="</div>";
     } else {lePanier+="Le panier est vide";}
@@ -80,16 +80,15 @@ function viderPanier(){
 }
 
 let payer = () => {
-    alert("Paiement reçu. Merci.");
     envoyerPanierServeur();
     viderPanier();
 }
-let courriel = "abc@abc.com";
+
 let envoyerPanierServeur = () => {
     $.ajax({
         type:"POST",
         url:"/tp2/serveur/locations/enregistrerLocations.php",
-        data:{"courriel": courriel, "panier" : localStorage.getItem("panier")},
+        data:{"panier" : localStorage.getItem("panier")},
         dataType : "text",
         //La réponse du serveur
         success : (reponse) => {
