@@ -27,7 +27,7 @@
                 $dateFilm=$_POST['dateFilm'];
 				$urlPreview=$_POST['urlPreview'];
                 $prix=$_POST['prix'];
-                $dossier="/tp2/public/images/pochettes/";
+                $dossier="../../public/images/pochettes/";
                 $nomPochette=sha1($titreFilm.time());
                 $pochette="avatar.jpg";
 
