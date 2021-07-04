@@ -1,20 +1,20 @@
 <!DOCTYPE php>
 <html lang="fr">
+<meta charset="UTF-8">
 
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/tp2/public/utilitaires/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="/tp2/public/utilitaires/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="/tp2/public/utilitaires/css/themify-icons.css" type="text/css">
-    <link rel="stylesheet" href="/tp2/public/utilitaires/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="/tp2/public/utilitaires/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="/tp2/public/utilitaires/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="/tp2/public/utilitaires/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="/tp2/public/utilitaires/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="/tp2/public/utilitaires/css/style.css" type="text/css">
-    <link rel="stylesheet" href="/tp2/public/css/styles.css" type="text/css">
-    <script src="/tp2/public/javascript/fonctions.js"></script>
-    <script src="/tp2/public/javascript/panier.js"></script>
+    <link rel="stylesheet" href="../../public/utilitaires/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../../public/utilitaires/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../../public/utilitaires/css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="../../public/utilitaires/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../../public/utilitaires/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../../public/utilitaires/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="../../public/utilitaires/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="../../public/utilitaires/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../../public/utilitaires/css/style.css" type="text/css">
+    <link rel="stylesheet" href="../../public/css/styles.css" type="text/css">
+    <script src="../../public/javascript/fonctions.js"></script>
+    <script src="../../public/javascript/panier.js"></script>
 </head>
 
 <body>
@@ -32,7 +32,7 @@
                     $annee=$_POST['dateFilm'];
                     $urlPreview=$_POST['urlPreview'];
                     $prix=$_POST['prix'];
-                    $dossier="/tp2/public/images/pochettes/";
+                    $dossier="../../public/images/pochettes/";
 
                     $requete="SELECT pochette FROM films WHERE id=?";
                     $stmt = $connexion->prepare($requete);
@@ -46,8 +46,8 @@
                     if($_FILES['pochette']['tmp_name']!==""){
                         //enlever ancienne pochette
                         if($pochette!="avatar.jpg"){
-                            $rmPoc='/tp2/public/images/pochettes/'.$pochette;
-                            $tabFichiers = glob('/tp2/public/images/pochettes/*');
+                            $rmPoc='../../public/images/pochettes/'.$pochette;
+                            $tabFichiers = glob('../../public/images/pochettes/*');
                             // parcourir les fichier
                             foreach($tabFichiers as $fichier){
                               if(is_file($fichier) && $fichier==trim($rmPoc)) {

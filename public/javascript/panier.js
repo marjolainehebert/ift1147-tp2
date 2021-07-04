@@ -49,7 +49,7 @@ function afficherPanier() {
                 
                 lePanier+="</tr>";
                 nombre++; 
-                leTotal+= parseFloat(unFilm.prix).toFixed(2);
+                leTotal+= parseFloat(unFilm.prix);
             }
         }
         lePanier+='</table>'; 
