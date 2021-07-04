@@ -128,7 +128,9 @@ p.genre{
 .jaune{
     color:#FFC107;
 }
-
+.gris {
+    color:#939393;
+}
 .caps{
     text-transform: uppercase;
 } 

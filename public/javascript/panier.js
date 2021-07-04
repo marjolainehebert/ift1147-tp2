@@ -49,7 +49,7 @@ function afficherPanier() {
                 
                 lePanier+="</tr>";
                 nombre++; 
-                leTotal+= parseFloat(unFilm.prix);
+                leTotal+= parseFloat(unFilm.prix).toFixed(2);
             }
         }
         lePanier+='</table>'; 
@@ -99,9 +99,26 @@ let envoyerPanierServeur = () => {
             alert("Erreur de connexion au serveur. Veuillez réessayer plus tard.");
         }
     })
+    listerPanier();
+    // $.ajax({
+    //     type:"POST",
+    //     url:"/tp2/serveur/locations/panierMembre.php",
+    //     data:{"panier" : localStorage.getItem("panier")},
+    //     dataType : "text",
+    //     //La réponse du serveur
+    //     success : (reponse) => {
+    //         //alert(reponse);
+    //         document.getElementById("panierServeur").innerHTML=reponse;
+    //     },
+    //     fail : () => {
+    //         alert("Erreur de connexion au serveur. Veuillez réessayer plus tard.");
+    //     }
+    // })
+}
 
+let listerPanier = () => {
     $.ajax({
-        type:"POST",
+        type:"GET",
         url:"/tp2/serveur/locations/panierMembre.php",
         data:{"panier" : localStorage.getItem("panier")},
         dataType : "text",
