@@ -98,7 +98,7 @@
                     <h5><strong>Gestion locations</strong></h5>
                     <div class="block flex-wrap mt-3 mb-5">
                         <a class="btn btn-outline-info mb-3" href="/tp2/index.php">Ajouter des films</a>
-                        <button class="btn btn-outline-success mb-3" onclick="afficherPanier()">Panier</button>
+                        <button class="btn btn-outline-success mb-3" onclick="afficherPanier() listerPanier()">Panier</button>
                         <button class="btn btn-outline-warning mb-3" onClick="payer();">Payer</button>
                         <button class="btn btn-outline-danger mb-3" onClick="return confirmSubmit();">Vider Panier</button>
                     </div>
