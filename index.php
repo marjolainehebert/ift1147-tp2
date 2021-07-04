@@ -410,14 +410,14 @@
 
 
         $('.ajouterAuPanier').click(function (event) {
-                                                        event.preventDefault();
-                                                        var ligne = $(this).data('ligne');
-                                                        $.ajax({
-                                                           method: "POST",
-                                                           cache: false,
-                                                           data: { ligne: ligne }
-                                                        });
-                                                     });
+            event.preventDefault();
+            var ligne = $(this).data('ligne');
+            $.ajax({
+                method: "POST",
+                cache: false,
+                data: { ligne: ligne }
+            });
+        });
     </script>
     
 

@@ -43,7 +43,7 @@
         <!-- Javascript -->
     </head>
 
-<body onLoad="initialiser(<?php echo "'".$msg."'" ?>); afficherPanier();">
+<body onLoad="initialiser(<?php echo "'".$msg."'" ?>); afficherPanier(); listerPanier();">
 <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
