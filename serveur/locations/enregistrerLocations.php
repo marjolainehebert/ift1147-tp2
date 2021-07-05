@@ -5,6 +5,7 @@
                 // attribuer des valeurs aux variables
                 $courriel = $_SESSION['courrielSess'];
                 $prenom = $_SESSION['prenomSess'];
+                date_default_timezone_set("America/New_York");
                 $dateLocation = date('Y-m-d');
                 $panier = json_decode($_POST['panier']);
                 $idsPanier="";

@@ -27,14 +27,14 @@
                         $statement->execute();
                         $result = $statement->get_result();
                         $ligne = $result->fetch_object();
+                        echo $ligne->pochette;
                         
                         $rep.="<tr>"; // nouvelle ligne
                         $rep.="<td class='align-middle'><img src='/tp2/public/images/pochettes/".($ligne->pochette)."' style='max-width:30px; height:auto;'></td>"; // afficher pochette
                         $rep.="<td class='align-middle'>".($ligne->titre)."</td>"; // afficher le titre
-                        
-                        $from=strtotime($ligneLoca->date)."<br>"; //la date de location
+                        $from=strtotime($ligneLoca->date); //la date de location
                         $from = $from + $troisJours; // ajouter 3 jours
-                        $today = time()."<br>"; // la date d'aujourd'hui
+                        $today = time(); // la date d'aujourd'hui
                         $difference = $from - $today; // calculer la différence entre les 2 en secondes
                         $nbJours = floor($difference / 86400);  // (60 * 60 * 24)
                         if ($nbJours >= 1){
