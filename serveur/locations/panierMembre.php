@@ -27,7 +27,6 @@
                         $statement->execute();
                         $result = $statement->get_result();
                         $ligne = $result->fetch_object();
-                        echo $ligne->pochette;
                         
                         $rep.="<tr>"; // nouvelle ligne
                         $rep.="<td class='align-middle'><img src='/tp2/public/images/pochettes/".($ligne->pochette)."' style='max-width:30px; height:auto;'></td>"; // afficher pochette
